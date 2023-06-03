@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@noteable/be-common": ["libs/be-common/src/index.ts"],
+      "@noteable/be-utils": ["libs/be-utils/src/index.ts"],
+      "@noteable/db": ["libs/db/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

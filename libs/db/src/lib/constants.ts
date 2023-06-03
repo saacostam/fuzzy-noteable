@@ -1,0 +1,5 @@
+export enum DB_KEYS{
+    USER = 'USER_MODEL',
+}
+
+export const DATABASE_CONNECTION_KEY = 'DATABASE_CONNECTION';
