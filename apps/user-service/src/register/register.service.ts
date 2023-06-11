@@ -7,6 +7,10 @@ export class RegisterService {
         private readonly userService: UsersService,
     ){}
 
+    async getUsers(): Promise<User[]>{
+        return this.userService.findAll();
+    }
+
     async registerUser(registerUserDto: CreateUserDto): Promise<User>{
         const { email, username, password } = registerUserDto;
 
