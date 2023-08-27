@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Artist {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  songIDs String[] @db.ObjectId
+  songs   Song[]   @relation(fields: [songIDs], references: [id])
+}
+
+model Song {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  key        String?
+  bpm        Int[]
+  decade     Int?
+  genre      String?
+  tablatures Tablature[]
+  artistsIDs String[]    @db.ObjectId
+  artists    Artist[]    @relation(fields: [artistsIDs], references: [id])
+}
+
+model Tablature {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  difficulty    String
+  tunning       String
+  transposition Int
+  source        String
+  type          String
+  musicUnits    String
+  songID        String @db.ObjectId
+  song          Song   @relation(fields: [songID], references: [id])
+  userID        String @db.ObjectId
+  user          User   @relation(fields: [userID], references: [id])
+}
+
+model User {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  username   String      @unique
+  role       String
+  tablatures Tablature[]
+}
