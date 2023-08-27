@@ -10,15 +10,22 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
+    "jsx": "react-jsx",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "strictPropertyInitialization": false,
     "paths": {
+      "@noteable/axios": ["libs/axios/src/index.ts"],
       "@noteable/be-common": ["libs/be-common/src/index.ts"],
       "@noteable/be-utils": ["libs/be-utils/src/index.ts"],
-      "@noteable/db": ["libs/db/src/index.ts"]
+      "@noteable/noteable-core": ["libs/noteable-core/src/index.ts"],
+      "@noteable/react-components": ["libs/react-components/src/index.ts"],
+      "@noteable/realistic-mock-data": [
+        "libs/realistic-mock-data/src/index.ts"
+      ],
+      "@noteable/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

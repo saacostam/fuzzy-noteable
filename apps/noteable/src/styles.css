@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+  background-color: #e0e2e4;
+  background-image:  radial-gradient(#011627 0.5px, transparent 0.5px), radial-gradient(#011627 0.5px, #e0e2e4 0.5px);
+  background-size: 25px 25px;
+  background-position: 0 0,10px 10px;
+}
