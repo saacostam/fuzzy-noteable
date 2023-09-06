@@ -41,7 +41,7 @@ export interface Song{
   genre?: Genre;
 }
 
-export interface Tablature{
+export type Tablature = {
   id: string;
   song: Song;
   difficulty: Difficulty;
@@ -52,6 +52,8 @@ export interface Tablature{
   type: TablatureType;
   musicUnits: (MusicUnitChord | MusicUnitKeyNote | MusicUnitFretBoardNote)[];
 }
+
+export type MinifiedTablature = Omit<Tablature, 'musicUnits'> & { musicUnits: string }
 
 export type SourceType = 'youtube';
 
@@ -87,10 +89,8 @@ export type KeyNote = {
   note: Note;
 }
 
-export interface ChordName{
-  note: Note;
-  suffix: string;
-}
+export type ChordSuffix = '' | 'm';
+export type ChordName = `${Note}${ChordSuffix}`;
 
 interface IChordDefinition{
   usability: number;
@@ -105,7 +105,7 @@ export type ChordDefinition = GuitarChordDefinition;
 
 export type MusicUnitChord = MusicUnitBase & {
   type: 'chord';
-  self: Chord;
+  self: ChordName;
 }
 
 export type Chord = {

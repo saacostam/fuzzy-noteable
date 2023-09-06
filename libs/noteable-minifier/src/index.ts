@@ -1,1 +1,1 @@
-export * from './lib/noteable-minifier';
+export * from './lib';

@@ -11,7 +11,7 @@ const C_DEF: GuitarChordDefinition = {
 };
 
 const C:Chord = {
-  name: { note: 'C', suffix: '' },
+  name: 'C',
   definitions: [ C_DEF ],
 };
 
@@ -25,7 +25,7 @@ const G_DEF: GuitarChordDefinition = {
 }
 
 const G: Chord = {
-  name: { note: 'G', suffix: '' },
+  name: 'G',
   definitions: [ G_DEF ],
 }
 
@@ -39,7 +39,7 @@ const Am_DEF: GuitarChordDefinition = {
 }
 
 const Am: Chord = {
-  name: { note: 'A', suffix: 'm' },
+  name: 'Am',
   definitions: [ Am_DEF ],
 }
 
@@ -54,7 +54,7 @@ const F_DEF: GuitarChordDefinition = {
 }
 
 const F: Chord = {
-  name: { note: 'F', suffix: '' },
+  name: 'F',
   definitions: [ F_DEF ],
 }
 
@@ -68,7 +68,7 @@ const D_DEF: GuitarChordDefinition = {
 }
 
 const D: Chord = {
-  name: { note: 'D', suffix: '' },
+  name: 'D',
   definitions: [ D_DEF ],
 }
 
@@ -82,7 +82,7 @@ const A_DEF: GuitarChordDefinition = {
 }
 
 const A: Chord = {
-  name: { note: 'A', suffix: '' },
+  name: 'A',
   definitions: [ A_DEF ],
 }
 
@@ -97,7 +97,7 @@ const Bm_DEF: GuitarChordDefinition = {
 }
 
 const Bm: Chord = {
-  name: { note: 'B', suffix: 'm' },
+  name: 'Bm',
   definitions: [ Bm_DEF ],
 }
 
@@ -130,7 +130,7 @@ export const LOVE_STORY_GUITAR_TAB: Tablature = {
         {
             type: 'chord',
             beatDuration: 8,
-            self: C,
+            self: 'C',
             syncPoint: new Date(700),
             bpm: 119,
             timeSignature: {
@@ -138,101 +138,101 @@ export const LOVE_STORY_GUITAR_TAB: Tablature = {
                 bottom: 4,
             },
         },
-        { type: 'chord', beatDuration: 8, self: G },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 8, self: F },
+        { type: 'chord', beatDuration: 8, self: 'G' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 8, self: 'F' },
 
-        { type: 'chord', beatDuration: 8, self: C },
-        { type: 'chord', beatDuration: 8, self: F },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 8, self: F },
+        { type: 'chord', beatDuration: 8, self: 'C' },
+        { type: 'chord', beatDuration: 8, self: 'F' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 8, self: 'F' },
 
-        { type: 'chord', beatDuration: 8, self: C },
-        { type: 'chord', beatDuration: 8, self: F },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 8, self: G },
+        { type: 'chord', beatDuration: 8, self: 'C' },
+        { type: 'chord', beatDuration: 8, self: 'F' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 8, self: 'G' },
 
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
-        { type: 'chord', beatDuration: 4, self: Am },
-        { type: 'chord', beatDuration: 4, self: C },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
+        { type: 'chord', beatDuration: 4, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'C' },
 
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
-        { type: 'chord', beatDuration: 4, self: Am },
-        { type: 'chord', beatDuration: 2, self: F },
-        { type: 'chord', beatDuration: 2, self: G },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
+        { type: 'chord', beatDuration: 4, self: 'Am' },
+        { type: 'chord', beatDuration: 2, self: 'F' },
+        { type: 'chord', beatDuration: 2, self: 'G' },
 
-        { type: 'chord', beatDuration: 8, self: C },
-        { type: 'chord', beatDuration: 8, self: G },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
+        { type: 'chord', beatDuration: 8, self: 'C' },
+        { type: 'chord', beatDuration: 8, self: 'G' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
 
-        { type: 'chord', beatDuration: 8, self: C },
+        { type: 'chord', beatDuration: 8, self: 'C' },
 
-        { type: 'chord', beatDuration: 8, self: C },
-        { type: 'chord', beatDuration: 8, self: F },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 8, self: G },
+        { type: 'chord', beatDuration: 8, self: 'C' },
+        { type: 'chord', beatDuration: 8, self: 'F' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 8, self: 'G' },
 
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
-        { type: 'chord', beatDuration: 4, self: Am },
-        { type: 'chord', beatDuration: 4, self: C },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
+        { type: 'chord', beatDuration: 4, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'C' },
 
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
-        { type: 'chord', beatDuration: 4, self: Am },
-        { type: 'chord', beatDuration: 2, self: F },
-        { type: 'chord', beatDuration: 2, self: G },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
+        { type: 'chord', beatDuration: 4, self: 'Am' },
+        { type: 'chord', beatDuration: 2, self: 'F' },
+        { type: 'chord', beatDuration: 2, self: 'G' },
 
-        { type: 'chord', beatDuration: 8, self: C },
-        { type: 'chord', beatDuration: 8, self: G },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
+        { type: 'chord', beatDuration: 8, self: 'C' },
+        { type: 'chord', beatDuration: 8, self: 'G' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
 
-        { type: 'chord', beatDuration: 8, self: C },
-        { type: 'chord', beatDuration: 8, self: G },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
+        { type: 'chord', beatDuration: 8, self: 'C' },
+        { type: 'chord', beatDuration: 8, self: 'G' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
 
-        { type: 'chord', beatDuration: 8, self: C },
-        { type: 'chord', beatDuration: 8, self: G },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
+        { type: 'chord', beatDuration: 8, self: 'C' },
+        { type: 'chord', beatDuration: 8, self: 'G' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
 
-        { type: 'chord', beatDuration: 4, self: Am },
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: C },
-        { type: 'chord', beatDuration: 4, self: G },
+        { type: 'chord', beatDuration: 4, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'C' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
 
-        { type: 'chord', beatDuration: 4, self: Am },
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: C },
-        { type: 'chord', beatDuration: 4, self: G },
+        { type: 'chord', beatDuration: 4, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'C' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
 
-        { type: 'chord', beatDuration: 8, self: C },
-        { type: 'chord', beatDuration: 8, self: G },
-        { type: 'chord', beatDuration: 8, self: Am },
-        { type: 'chord', beatDuration: 4, self: F },
-        { type: 'chord', beatDuration: 4, self: G },
+        { type: 'chord', beatDuration: 8, self: 'C' },
+        { type: 'chord', beatDuration: 8, self: 'G' },
+        { type: 'chord', beatDuration: 8, self: 'Am' },
+        { type: 'chord', beatDuration: 4, self: 'F' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
 
-        { type: 'chord', beatDuration: 8, self: D },
-        { type: 'chord', beatDuration: 8, self: A },
-        { type: 'chord', beatDuration: 8, self: Bm },
-        { type: 'chord', beatDuration: 4, self: G },
-        { type: 'chord', beatDuration: 4, self: A},
+        { type: 'chord', beatDuration: 8, self: 'D' },
+        { type: 'chord', beatDuration: 8, self: 'A' },
+        { type: 'chord', beatDuration: 8, self: 'Bm' },
+        { type: 'chord', beatDuration: 4, self: 'G' },
+        { type: 'chord', beatDuration: 4, self: 'A'},
 
-        { type: 'chord', beatDuration: 8, self: D },
-        { type: 'chord', beatDuration: 8, self: A },
-        { type: 'chord', beatDuration: 8, self: Bm },
-        { type: 'chord', beatDuration: 8, self: G },
+        { type: 'chord', beatDuration: 8, self: 'D' },
+        { type: 'chord', beatDuration: 8, self: 'A' },
+        { type: 'chord', beatDuration: 8, self: 'Bm' },
+        { type: 'chord', beatDuration: 8, self: 'G' },
 
-        { type: 'chord', beatDuration: 8, self: D},
+        { type: 'chord', beatDuration: 8, self: 'D'},
 
     ]
 }
