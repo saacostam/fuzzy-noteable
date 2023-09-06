@@ -1,75 +1,5 @@
-import {Song, Tablature, Tuning, Chord, GuitarChordDefinition} from '@noteable/types';
+import {Song, Tablature, Tuning } from '@noteable/types';
 import { v4 as uuid } from 'uuid';
-
-const C_DEF: GuitarChordDefinition = {
-  fingerPositions: [
-    { string: 2, fret: 1 },
-    { string: 4, fret: 2 },
-    { string: 5, fret: 3 },
-  ],
-  usability: 0,
-};
-
-const C:Chord = {
-  name: 'C',
-  definitions: [ C_DEF ],
-};
-
-const G_DEF: GuitarChordDefinition = {
-  fingerPositions: [
-    { string: 1, fret: 3 },
-    { string: 5, fret: 2 },
-    { string: 6, fret: 3 },
-  ],
-  usability: 0,
-}
-
-const G: Chord = {
-  name: 'G',
-  definitions: [ G_DEF ],
-}
-
-const Am_DEF: GuitarChordDefinition = {
-  fingerPositions: [
-    { string: 2, fret: 1 },
-    { string: 3, fret: 2 },
-    { string: 4, fret: 2 },
-  ],
-  usability: 0,
-}
-
-const Am: Chord = {
-  name: 'Am',
-  definitions: [ Am_DEF ],
-}
-
-const F_DEF: GuitarChordDefinition = {
-  bar: 1,
-  fingerPositions: [
-    { string: 3, fret: 2 },
-    { string: 4, fret: 3 },
-    { string: 5, fret: 3 },
-  ],
-  usability: 0,
-}
-
-const F: Chord = {
-  name: 'F',
-  definitions: [ F_DEF ],
-}
-
-const Em_DEF: GuitarChordDefinition = {
-  fingerPositions: [
-    { string: 4, fret: 2 },
-    { string: 5, fret: 2 },
-  ],
-  usability: 0,
-}
-
-const Em: Chord = {
-  name: 'Em',
-  definitions: [Em_DEF],
-}
 
 const GOODBYE_MY_LOVER : Song = {
   id: uuid(),
@@ -99,7 +29,7 @@ export const GOODBYE_MY_LOVER_GUITAR_TAB: Tablature = {
         {
             type: 'chord',
             beatDuration: 4,
-            self: 'Cm',
+            self: 'C',
             syncPoint: new Date(600),
             bpm: 95,
             timeSignature: {

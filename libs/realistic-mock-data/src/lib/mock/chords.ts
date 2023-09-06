@@ -9,8 +9,8 @@ const C_DEF: GuitarChordDefinition = {
     usability: 0,
 };
 
-export const C:Chord = {
-    name: { note: 'C', suffix: '' },
+const C:Chord = {
+    name: 'C',
     definitions: [ C_DEF ],
 };
 
@@ -23,8 +23,8 @@ const G_DEF: GuitarChordDefinition = {
     usability: 0,
 }
 
-export const G: Chord = {
-    name: { note: 'G', suffix: '' },
+const G: Chord = {
+    name: 'G',
     definitions: [ G_DEF ],
 }
 
@@ -37,8 +37,8 @@ const Am_DEF: GuitarChordDefinition = {
     usability: 0,
 }
 
-export const Am: Chord = {
-    name: { note: 'A', suffix: 'm' },
+const Am: Chord = {
+    name: 'Am',
     definitions: [ Am_DEF ],
 }
 
@@ -52,8 +52,8 @@ const F_DEF: GuitarChordDefinition = {
     usability: 0,
 }
 
-export const F: Chord = {
-    name: { note: 'F', suffix: '' },
+const F: Chord = {
+    name: 'F',
     definitions: [ F_DEF ],
 }
 
@@ -66,8 +66,8 @@ const D_DEF: GuitarChordDefinition = {
     usability: 0,
 }
 
-export const D: Chord = {
-    name: { note: 'D', suffix: '' },
+const D: Chord = {
+    name: 'D',
     definitions: [ D_DEF ],
 }
 
@@ -80,8 +80,8 @@ const A_DEF: GuitarChordDefinition = {
     usability: 0,
 }
 
-export const A: Chord = {
-    name: { note: 'A', suffix: '' },
+const A: Chord = {
+    name: 'A',
     definitions: [ A_DEF ],
 }
 
@@ -95,8 +95,8 @@ const Bm_DEF: GuitarChordDefinition = {
     usability: 0,
 }
 
-export const Bm: Chord = {
-    name: { note: 'B', suffix: 'm' },
+const Bm: Chord = {
+    name: 'Bm',
     definitions: [ Bm_DEF ],
 }
 
@@ -108,7 +108,18 @@ const Em_DEF: GuitarChordDefinition = {
     usability: 0,
 }
 
-export const Em: Chord = {
-    name: { note: 'E', suffix: 'm'},
+const Em: Chord = {
+    name: 'Em',
     definitions: [Em_DEF],
 }
+
+export const CHORDS = [
+  G,
+  Em,
+  Bm,
+  Am,
+  A,
+  D,
+  C,
+  F,
+]

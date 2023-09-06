@@ -113,7 +113,13 @@ export type Chord = {
   definitions: ChordDefinition[];
 }
 
-export type SyncMusicUnit = (MusicUnitChord | MusicUnitKeyNote | MusicUnitFretBoardNote) & {
+export type SyncMusicUnit = (
+    Omit<MusicUnitChord, 'self'> & {
+      self: Chord,
+    }
+  | MusicUnitKeyNote
+  | MusicUnitFretBoardNote
+  ) & {
   syncPoint: Date;
   id: string;
 };
