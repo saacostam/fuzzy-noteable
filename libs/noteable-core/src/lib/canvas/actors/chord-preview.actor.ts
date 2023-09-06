@@ -31,7 +31,6 @@ export class ChordPreviewActor extends Actor{
         this.deltaTime = 0;
     }
 
-    // @ts-ignore
     update(engine: CanvasHandler, deltaTime: number) {
         this.deltaTime += deltaTime;
     }
@@ -52,7 +51,7 @@ export class ChordPreviewActor extends Actor{
         ctx.textBaseline = 'middle';
         ctx.fillStyle = '#FDFFFC';
 
-        const CHORD = `${this.chord.name.note}${this.chord.name.suffix}`;
+        const CHORD = this.chord.name;
 
         ctx.fillText(CHORD, this.x + this.width/2, this.y + this.height * 0.15);
 

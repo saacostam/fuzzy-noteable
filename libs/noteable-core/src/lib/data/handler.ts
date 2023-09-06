@@ -1,5 +1,6 @@
 import {SyncMusicUnit, Tablature, DataError} from "@noteable/types";
 import {v4 as uuid} from 'uuid';
+import {CHORDS} from "@noteable/realistic-mock-data";
 
 export interface DataHandlerParameters{
     tablature: Tablature;
@@ -30,12 +31,22 @@ export class DataHandler{
             bpm = mUnit.bpm ? mUnit.bpm : bpm;
             currentTime = mUnit.syncPoint ? mUnit.syncPoint : currentTime;
 
-            syncedMusicUnits.push({
-                ...mUnit,
+            if (mUnit.type === 'chord'){
+              const chord = CHORDS.find(CH => CH.name === mUnit.self);
+
+              if (!chord) throw new DataError(`Trying to access a undefined chord! ${mUnit.self}`);
+
+              const newlySyncedUnit: SyncMusicUnit = {
+                type: mUnit.type,
+                beatDuration: mUnit.beatDuration,
                 syncPoint: currentTime,
                 bpm: bpm,
                 id: uuid(),
-            })
+                self: chord,
+              }
+
+              syncedMusicUnits.push(newlySyncedUnit);
+            }
 
             currentTime = new Date( currentTime.getTime() + mUnit.beatDuration*(60000/bpm) );
         }

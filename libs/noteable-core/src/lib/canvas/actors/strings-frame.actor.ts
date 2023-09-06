@@ -95,7 +95,7 @@ export class StringsFrameActor extends Actor{
 
             const currUnit = this.musicUnitQueue[i];
             if (currUnit.type === 'chord'){
-                const CHORD = `${currUnit.self.name.note}${currUnit.self.name.suffix}`;
+                const CHORD = currUnit.self.name;
                 ctx.fillText(
                     CHORD,
                     BASE_X + (X_PROPORTION * this.width) + ((WIDTH_PROPORTION * this.width)-20)/2,
