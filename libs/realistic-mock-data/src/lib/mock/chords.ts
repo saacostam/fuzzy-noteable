@@ -339,9 +339,9 @@ const Asm: Chord = {
 const Bm_DEF: GuitarChordDefinition = {
     bar: 2,
     fingerPositions: [
-        { string: 2, fret: 3 },
-        { string: 3, fret: 4 },
-        { string: 4, fret: 4 },
+        { string: 2, fret: 2 },
+        { string: 3, fret: 3 },
+        { string: 4, fret: 3 },
     ],
     usability: 0,
 }

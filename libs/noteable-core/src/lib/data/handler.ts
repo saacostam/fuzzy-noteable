@@ -1,6 +1,7 @@
-import {SyncMusicUnit, Tablature, DataError} from "@noteable/types";
+import {Chord, DataError, SortedNotes, SyncMusicUnit, Tablature, Transposition} from "@noteable/types";
 import {v4 as uuid} from 'uuid';
 import {CHORDS} from "@noteable/realistic-mock-data";
+import {parseChord} from "./chord.util";
 
 export interface DataHandlerParameters{
     tablature: Tablature;
@@ -13,6 +14,10 @@ export class DataHandler{
     constructor({tablature}: DataHandlerParameters) {
         this.tablature = tablature;
         this.schedule = this.buildSchedule(this.tablature);
+    }
+
+    private undefinedChordError(chord?: Chord | string){
+      return new DataError(`Trying to access a undefined chord! ${chord}`);
     }
 
     buildSchedule(tablature: Tablature): SyncMusicUnit[]{
@@ -34,7 +39,7 @@ export class DataHandler{
             if (mUnit.type === 'chord'){
               const chord = CHORDS.find(CH => CH.name === mUnit.self);
 
-              if (!chord) throw new DataError(`Trying to access a undefined chord! ${mUnit.self}`);
+              if (!chord) throw this.undefinedChordError(mUnit.self);
 
               const newlySyncedUnit: SyncMusicUnit = {
                 type: mUnit.type,
@@ -103,5 +108,35 @@ export class DataHandler{
 
     get song(){
         return this.tablature.song;
+    }
+
+    transposeDown(){
+      this.transpose(false);
+    }
+
+  transposeUp(){
+    this.transpose(true);
+  }
+
+  private transpose(up?: boolean){
+    this.tablature.transposition = (this.tablature.transposition + ( up ? 1 : -1) + SortedNotes.length) % SortedNotes.length as Transposition;
+    this.schedule.forEach(
+      SMU => {
+        if (SMU.type === 'chord'){
+          const { note, suffix } = parseChord(SMU.self.name);
+          const newNoteIndex = (SortedNotes.findIndex(val => val === note) + ( !up ? 1 : -1) + SortedNotes.length) % SortedNotes.length;
+          const newNote = SortedNotes[newNoteIndex];
+
+          const newChord = CHORDS.find(CH => CH.name === `${newNote}${suffix}`);
+
+          if (!newChord) throw this.undefinedChordError(newChord);
+          SMU.self = newChord;
+        }
+      }
+    )
+  }
+
+    get transposition(){
+      return this.tablature.transposition;
     }
 }

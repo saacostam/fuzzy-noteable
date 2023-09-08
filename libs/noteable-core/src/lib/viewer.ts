@@ -1,9 +1,9 @@
 import {DomHandler, DomHandlerParameters} from "./dom";
 import {DataHandler, DataHandlerParameters} from "./data";
 import {SourceHandler} from "./source";
-import {CanvasHandler} from "./canvas";
+import {CanvasHandler, CanvasHandlerModeParameters} from "./canvas";
 
-export type NoteAbleViewerParameters = DomHandlerParameters & DataHandlerParameters;
+export type NoteAbleViewerParameters = DomHandlerParameters & DataHandlerParameters & CanvasHandlerModeParameters;
 
 export class NotaAbleViewer{
     domHandler: DomHandler;
@@ -11,7 +11,7 @@ export class NotaAbleViewer{
     sourceHandler: SourceHandler;
     canvasHandler: CanvasHandler;
 
-    constructor({canvasId, playerId, tablature}: NoteAbleViewerParameters) {
+    constructor({canvasId, playerId, tablature, mode}: NoteAbleViewerParameters) {
         this.domHandler = new DomHandler({canvasId, playerId});
         this.dataHandler = new DataHandler({tablature});
 
@@ -24,6 +24,7 @@ export class NotaAbleViewer{
             dataHandler: this.dataHandler,
             sourceHandler: this.sourceHandler,
             ctx: ctx,
+            mode: mode,
         });
     }
 }

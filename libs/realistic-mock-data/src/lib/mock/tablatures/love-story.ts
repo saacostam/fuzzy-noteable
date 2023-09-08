@@ -24,7 +24,7 @@ export const LOVE_STORY_GUITAR_TAB: Tablature = {
     song: LOVE_STORY,
     difficulty: 'beginner',
     tuning: ['E', 'A', 'D', 'G', 'B', 'E'] as unknown as Tuning,
-    transposition: { delta: 2, sign: 'negative' },
+    transposition: 2,
     type: 'guitar',
     musicUnits: [
         {

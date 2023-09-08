@@ -5,6 +5,8 @@ export type Enumerate<N extends number, Acc extends number[] = []> = Acc['length
 export type IntRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>
 
 export type Note = 'C'| 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' | 'A#' | 'B';
+export const SortedNotes: Note[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] as Note[];
+
 export type ScaleType = 'major' | 'minor';
 export type Decade = '1940' | '1950' | '1960' | '1970' | '1980' | '1990' | '2000' | '2010' | '2020';
 export type Genre = string;
@@ -15,11 +17,6 @@ export type Tuning = GuitarTuning;
 export type Sign = 'positive' | 'negative';
 
 export type TablatureType = 'guitar';
-
-export interface Transposition{
-  delta: IntRange<0, 11>;
-  sign: Sign;
-}
 
 export interface Artist{
   id: string;
@@ -52,6 +49,8 @@ export type Tablature = {
   type: TablatureType;
   musicUnits: (MusicUnitChord | MusicUnitKeyNote | MusicUnitFretBoardNote)[];
 }
+
+export type Transposition = IntRange<0, 12>;
 
 export type MinifiedTablature = Omit<Tablature, 'musicUnits'> & { musicUnits: string }
 

@@ -23,9 +23,6 @@ export class Actor{
     draw(ctx: CanvasRenderingContext2D, delta: number ){
       // pass
     }
-    onClick(){
-      // pass
-    }
 
     kill(){ this.isKilled = true }
 

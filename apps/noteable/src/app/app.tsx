@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { NoteableViewer } from "@noteable/react-components";
-import {GOODBYE_MY_LOVER_GUITAR_TAB} from "@noteable/realistic-mock-data";
+import {LOVE_STORY_GUITAR_TAB} from "@noteable/realistic-mock-data";
 import {ResponsiveAppBar} from "../components";
 
 const HomeView = () => {
   return (
-    <NoteableViewer tablature={GOODBYE_MY_LOVER_GUITAR_TAB} />
+    <NoteableViewer tablature={LOVE_STORY_GUITAR_TAB} mode={'interactive'}/>
   )
 }
 
