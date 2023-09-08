@@ -95,7 +95,16 @@ export class ChordPreviewActor extends Actor{
             const EXTENSION = (0.05 * this.width);
             const BAR_X = FRAME_X - (EXTENSION/2);
             const BAR_WIDTH = FRAME_WIDTH + EXTENSION;
-            this.drawLine(ctx, BAR_X, CHORD_BASE_Y + DELTA_Y_AMOUNT*(bar-1), BAR_X + BAR_WIDTH, CHORD_BASE_Y + DELTA_Y_AMOUNT*(bar-1));
+            this.drawLine(ctx, BAR_X, CHORD_BASE_Y, BAR_X + BAR_WIDTH, CHORD_BASE_Y);
+
+            if (bar !== 1){
+              ctx.font = `${Math.floor(0.06 * this.width)}px Verdana`;
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = '#FDFFFC';
+
+              ctx.fillText(String(bar)+'fr', BAR_X + BAR_WIDTH + (this.width * 0.125), CHORD_BASE_Y);
+            }
         }
 
         fingerPositions.forEach(fretBoardNote => {

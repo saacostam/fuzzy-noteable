@@ -1,12 +1,13 @@
 import {useEffect, useId, useState} from "react";
 import { NotaAbleViewer as NAV } from '@noteable/noteable-core';
 import { Tablature } from "@noteable/types";
+import {CanvasHandlerModeParameters} from "@noteable/noteable-core";
 
 type NoteableViewerProps = {
   tablature: Tablature,
-}
+} & CanvasHandlerModeParameters;
 
-export const NoteableViewer = ({ tablature }: NoteableViewerProps) => {
+export const NoteableViewer = ({ tablature, mode }: NoteableViewerProps) => {
   const [NAVHandler, setNAVHandler] = useState<NAV | null>(null)
 
   const canvasId = useId();
@@ -18,6 +19,7 @@ export const NoteableViewer = ({ tablature }: NoteableViewerProps) => {
         canvasId,
         playerId,
         tablature,
+        mode,
       })
 
       setNAVHandler(nvHandler);

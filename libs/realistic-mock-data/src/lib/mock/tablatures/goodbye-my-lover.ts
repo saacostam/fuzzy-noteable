@@ -23,7 +23,7 @@ export const GOODBYE_MY_LOVER_GUITAR_TAB: Tablature = {
     song: GOODBYE_MY_LOVER,
     difficulty: 'beginner',
     tuning: ['E', 'A', 'D', 'G', 'B', 'E'] as unknown as Tuning,
-    transposition: { delta: 4, sign: 'negative' },
+    transposition: 4,
     type: 'guitar',
     musicUnits: [
         {

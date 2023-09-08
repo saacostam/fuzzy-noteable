@@ -36,7 +36,7 @@ model Tablature {
   transposition Int
   source        String
   type          String
-  musicUnits    String
+  musicUnits    Json
   songID        String @db.ObjectId
   song          Song   @relation(fields: [songID], references: [id])
   userID        String @db.ObjectId
