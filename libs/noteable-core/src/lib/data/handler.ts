@@ -25,25 +25,25 @@ export class DataHandler{
 
         const { musicUnits } = tablature;
 
-        if (!musicUnits[0].bpm || !musicUnits[0].syncPoint || !musicUnits[0].timeSignature) throw new DataError('The given tablature has incomplete initial data. Please check: bpm, time signtaure or initial sync point.');
+        if (!musicUnits[0].bpm || !musicUnits[0].syncPnt || !musicUnits[0].timeSig) throw new DataError('The given tablature has incomplete initial data. Please check: bpm, time signtaure or initial sync point.');
 
         let bpm = musicUnits[0].bpm;
-        let currentTime = musicUnits[0].syncPoint;
+        let currentTime = musicUnits[0].syncPnt;
 
         // TODO: Consider time signature for scheduling. Default now is 4/4
 
         for (const mUnit of musicUnits){
             bpm = mUnit.bpm ? mUnit.bpm : bpm;
-            currentTime = mUnit.syncPoint ? mUnit.syncPoint : currentTime;
+            currentTime = mUnit.syncPnt ? mUnit.syncPnt : currentTime;
 
-            if (mUnit.type === 'chord'){
+            if (mUnit.type === 'ch'){
               const chord = CHORDS.find(CH => CH.name === mUnit.self);
 
               if (!chord) throw this.undefinedChordError(mUnit.self);
 
               const newlySyncedUnit: SyncMusicUnit = {
                 type: mUnit.type,
-                beatDuration: mUnit.beatDuration,
+                dur: mUnit.dur,
                 syncPoint: currentTime,
                 bpm: bpm,
                 id: uuid(),
@@ -53,7 +53,7 @@ export class DataHandler{
               syncedMusicUnits.push(newlySyncedUnit);
             }
 
-            currentTime = new Date( currentTime.getTime() + mUnit.beatDuration*(60000/bpm) );
+            currentTime = new Date( currentTime.getTime() + mUnit.dur*(60000/bpm) );
         }
 
         return syncedMusicUnits;
@@ -122,7 +122,7 @@ export class DataHandler{
     this.tablature.transposition = (this.tablature.transposition + ( up ? 1 : -1) + SortedNotes.length) % SortedNotes.length as Transposition;
     this.schedule.forEach(
       SMU => {
-        if (SMU.type === 'chord'){
+        if (SMU.type === 'ch'){
           const { note, suffix } = parseChord(SMU.self.name);
           const newNoteIndex = (SortedNotes.findIndex(val => val === note) + ( !up ? 1 : -1) + SortedNotes.length) % SortedNotes.length;
           const newNote = SortedNotes[newNoteIndex];

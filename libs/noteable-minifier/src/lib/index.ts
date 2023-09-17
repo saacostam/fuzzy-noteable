@@ -6,11 +6,11 @@ export const minifyTab = (tab: Tablature): MinifiedTablature => {
   musicUnits.forEach(
     musicUnit => {
       switch (musicUnit.type){
-        case "chord":
+        case "ch":
           break;
-        case "fret-note":
+        case "fret":
           break;
-        case "key-note":
+        case "key":
           break;
         default:
           throw new Error('Trying to minify a undefined music unit!');

@@ -57,10 +57,10 @@ export type MinifiedTablature = Omit<Tablature, 'musicUnits'> & { musicUnits: st
 export type SourceType = 'youtube';
 
 export interface MusicUnitBase{
-  beatDuration: number;
-  syncPoint?: Date;
+  dur: number;
+  syncPnt?: Date;
   bpm?: number;
-  timeSignature?: TimeSignature;
+  timeSig?: TimeSignature;
 }
 
 export interface TimeSignature{
@@ -69,7 +69,7 @@ export interface TimeSignature{
 }
 
 export type MusicUnitFretBoardNote = MusicUnitBase & {
-  type: 'fret-note';
+  type: 'fret';
   self: FretBoardNote
 }
 
@@ -79,7 +79,7 @@ export type FretBoardNote = {
 }
 
 export type MusicUnitKeyNote = MusicUnitBase & {
-  type: 'key-note',
+  type: 'key',
   self: KeyNote
 }
 
@@ -103,7 +103,7 @@ export interface GuitarChordDefinition extends IChordDefinition{
 export type ChordDefinition = GuitarChordDefinition;
 
 export type MusicUnitChord = MusicUnitBase & {
-  type: 'chord';
+  type: 'ch';
   self: ChordName;
 }
 

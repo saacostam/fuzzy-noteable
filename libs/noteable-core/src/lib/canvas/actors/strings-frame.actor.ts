@@ -94,7 +94,7 @@ export class StringsFrameActor extends Actor{
             ctx.fillStyle = '#FDFFFC';
 
             const currUnit = this.musicUnitQueue[i];
-            if (currUnit.type === 'chord'){
+            if (currUnit.type === 'ch'){
                 const CHORD = currUnit.self.name;
                 ctx.fillText(
                     CHORD,
