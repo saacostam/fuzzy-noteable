@@ -2,12 +2,12 @@ import {Param, Controller, Get} from '@nestjs/common';
 
 import { TabService } from "./tab.service";
 
-@Controller('music-unit')
+@Controller('tab')
 export class TabController {
   constructor(private readonly tabService: TabService){}
 
   @Get(':id')
-  getData(@Param('id') userId: string) {
-    return this.tabService.getTabById(userId);
+  getData(@Param('id') tabId: string) {
+    return this.tabService.getTabById(tabId);
   }
 }

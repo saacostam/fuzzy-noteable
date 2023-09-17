@@ -1,9 +1,8 @@
-import {PrismaClient} from "@prisma/client";
-import {GOODBYE_MY_LOVER_GUITAR_TAB, LOVE_STORY_GUITAR_TAB} from "../../libs/realistic-mock-data/src";
+import {GOODBYE_MY_LOVER_GUITAR_TAB, LOVE_STORY_GUITAR_TAB} from '@noteable/realistic-mock-data';
+import { Injectable } from '@nestjs/common';
+import {PrismaService} from "@noteable/be-common";
 
-const prisma = new PrismaClient();
-
-async function addArtists(){
+async function addArtists(prisma){
   const jamesBlunt = await prisma.artist.upsert({
     where: {
       id: '650690ddd6eecbe2075f8bcc',
@@ -40,16 +39,17 @@ async function addArtists(){
   }
 }
 
-async function addUsers(){
+async function addUsers(prisma){
   const admin_user = await prisma.user.upsert({
     where: {
+      id: '6506a5d7faa9ffef6466cc73',
       username: 'admin',
     },
     update: {},
     create: {
+      id: '6506a5d7faa9ffef6466cc73',
       username: 'admin',
       role: 'admin',
-      id: ''
     },
     select: {
       id: true,
@@ -61,9 +61,9 @@ async function addUsers(){
   }
 }
 
-async function main(){
-  const { jamesBlunt, taylorSwift } = await addArtists();
-  const { admin_user } = await addUsers();
+async function main(prisma){
+  const { jamesBlunt, taylorSwift } = await addArtists(prisma);
+  const { admin_user } = await addUsers(prisma);
 
   // Add Songs
   const goodByMyLover = await prisma.song.upsert({
@@ -91,8 +91,9 @@ async function main(){
     },
     update: {},
     create: {
-      id: '6506945126f8409df582c6d8',
       ...GOODBYE_MY_LOVER_GUITAR_TAB,
+      id: '6506945126f8409df582c6d8',
+      song: undefined,
       songID: goodByMyLover.id,
       userID: admin_user.id,
     }
@@ -123,10 +124,20 @@ async function main(){
     },
     update: {},
     create: {
-      id: '650696cafcd5f4e223131440',
       ...LOVE_STORY_GUITAR_TAB,
+      id: '650696cafcd5f4e223131440',
+      song: undefined,
       songID: loveStory.id,
       userID: admin_user.id,
     }
   });
+}
+
+@Injectable()
+export class SeedService {
+  constructor(private readonly prismaService: PrismaService) {}
+
+  async seed(){
+    await main(this.prismaService)
+  }
 }
