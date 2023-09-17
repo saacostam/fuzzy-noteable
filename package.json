@@ -2,7 +2,9 @@
   "name": "@noteable/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prisma:seed": "ts-node prisma/seed/index.ts"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",

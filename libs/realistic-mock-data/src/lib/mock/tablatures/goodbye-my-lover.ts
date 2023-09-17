@@ -1,7 +1,7 @@
 import {Song, Tablature, Tuning } from '@noteable/types';
 import { v4 as uuid } from 'uuid';
 
-const GOODBYE_MY_LOVER : Song = {
+export const GOODBYE_MY_LOVER : Song = {
   id: uuid(),
   artists: [
     {
@@ -10,10 +10,7 @@ const GOODBYE_MY_LOVER : Song = {
     }
   ],
   name: 'Goodbye My Lover',
-  key: {
-    note: 'E',
-    type: 'major',
-  },
+  key: 'E major',
   bpm: [90],
 }
 
@@ -22,7 +19,7 @@ export const GOODBYE_MY_LOVER_GUITAR_TAB: Tablature = {
     source: 'wVyggTKDcOE',
     song: GOODBYE_MY_LOVER,
     difficulty: 'beginner',
-    tuning: ['E', 'A', 'D', 'G', 'B', 'E'] as unknown as Tuning,
+    tuning: 'E A D G B E',
     transposition: 4,
     type: 'guitar',
     musicUnits: [

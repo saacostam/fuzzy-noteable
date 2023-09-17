@@ -1,4 +1,4 @@
-import { Song, Tablature, Tuning} from '@noteable/types';
+import { Song, Tablature} from '@noteable/types';
 import { v4 as uuid } from 'uuid';
 
 const LOVE_STORY : Song = {
@@ -10,10 +10,7 @@ const LOVE_STORY : Song = {
     }
   ],
   name: 'Love Story',
-  key: {
-    note: 'D',
-    type: 'major',
-  },
+  key: 'D major',
   bpm: [119],
 }
 
@@ -23,7 +20,7 @@ export const LOVE_STORY_GUITAR_TAB: Tablature = {
     source: '8xg3vE8Ie_E',
     song: LOVE_STORY,
     difficulty: 'beginner',
-    tuning: ['E', 'A', 'D', 'G', 'B', 'E'] as unknown as Tuning,
+    tuning: 'E A D G B E',
     transposition: 2,
     type: 'guitar',
     musicUnits: [
