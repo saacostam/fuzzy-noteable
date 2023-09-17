@@ -174,7 +174,7 @@ export class CanvasHandler{
             let DURATION;
             if (this.previewQueueHandlerCurrent && next) DURATION = next.syncPoint.getTime() - this.previewQueueHandlerCurrent.syncPoint.getTime();
 
-            if (this.previewQueueHandlerCurrent?.type === 'chord'){
+            if (this.previewQueueHandlerCurrent?.type === 'ch'){
                 this.add(
                     new ChordPreviewActor({
                         xRatio: 0.35,
@@ -187,7 +187,7 @@ export class CanvasHandler{
                 )
             }
 
-            if (next?.type === 'chord'){
+            if (next?.type === 'ch'){
                 this.add(
                     new ChordPreviewActor({
                         xRatio: 0.6575,
@@ -199,7 +199,7 @@ export class CanvasHandler{
                 )
             }
 
-            if (this.previewQueueHandlerDone && this.previewQueueHandlerDone?.type === 'chord'){
+            if (this.previewQueueHandlerDone && this.previewQueueHandlerDone?.type === 'ch'){
                 const actor = new ChordPreviewActor({
                     xRatio: 0.13,
                     yRatio: 0.24,

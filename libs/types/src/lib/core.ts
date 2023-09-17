@@ -12,9 +12,7 @@ export type Decade = '1940' | '1950' | '1960' | '1970' | '1980' | '1990' | '2000
 export type Genre = string;
 
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
-export type GuitarTuning = Note[6];
-export type Tuning = GuitarTuning;
-export type Sign = 'positive' | 'negative';
+export type Tuning = string;
 
 export type TablatureType = 'guitar';
 
@@ -23,10 +21,7 @@ export interface Artist{
   name: string;
 }
 
-export interface Key{
-  note: Note;
-  type: ScaleType;
-}
+export type Key = `${Note} ${ScaleType}`
 
 export interface Song{
   id: string;
@@ -57,10 +52,10 @@ export type MinifiedTablature = Omit<Tablature, 'musicUnits'> & { musicUnits: st
 export type SourceType = 'youtube';
 
 export interface MusicUnitBase{
-  beatDuration: number;
-  syncPoint?: Date;
+  dur: number;
+  syncPnt?: Date;
   bpm?: number;
-  timeSignature?: TimeSignature;
+  timeSig?: TimeSignature;
 }
 
 export interface TimeSignature{
@@ -69,7 +64,7 @@ export interface TimeSignature{
 }
 
 export type MusicUnitFretBoardNote = MusicUnitBase & {
-  type: 'fret-note';
+  type: 'fret';
   self: FretBoardNote
 }
 
@@ -79,7 +74,7 @@ export type FretBoardNote = {
 }
 
 export type MusicUnitKeyNote = MusicUnitBase & {
-  type: 'key-note',
+  type: 'key',
   self: KeyNote
 }
 
@@ -103,7 +98,7 @@ export interface GuitarChordDefinition extends IChordDefinition{
 export type ChordDefinition = GuitarChordDefinition;
 
 export type MusicUnitChord = MusicUnitBase & {
-  type: 'chord';
+  type: 'ch';
   self: ChordName;
 }
 

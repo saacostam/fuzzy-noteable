@@ -32,7 +32,7 @@ model Song {
 model Tablature {
   id            String @id @default(auto()) @map("_id") @db.ObjectId
   difficulty    String
-  tunning       String
+  tuning        String
   transposition Int
   source        String
   type          String
