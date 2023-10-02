@@ -1,14 +1,7 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { NoteableViewer } from "@noteable/react-components";
-import {LOVE_STORY_GUITAR_TAB} from "@noteable/realistic-mock-data";
+import {Route, Routes} from 'react-router-dom';
 import {ResponsiveAppBar} from "../components";
-
-const HomeView = () => {
-  return (
-    <NoteableViewer tablature={LOVE_STORY_GUITAR_TAB} mode={'interactive'}/>
-  )
-}
+import {HomeView} from "../views";
 
 export function App() {
   return (
@@ -17,7 +10,7 @@ export function App() {
       <div className={'max-w-[80em] mx-auto bg-neutral-100 rounded-xl p-4 my-4'}>
         <Routes>
           <Route
-            path="/"
+            path="/tab/:id"
             element={<HomeView/>}
           />
         </Routes>
