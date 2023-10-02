@@ -28,7 +28,6 @@ export const NoteableViewer = ({ tablature, mode }: NoteableViewerProps) => {
 
   return (
     <main>
-      <h2 className={"text-neutral-900 font-bold text-xl mb-4 text-center"}>Goodbye My Lover - James Blunt</h2>
       <div className={"w-100 mx-auto flex"}>
         <div className={'flex items-center bg-black w-1/3'}>
           <div id={playerId} className="w-100"></div>

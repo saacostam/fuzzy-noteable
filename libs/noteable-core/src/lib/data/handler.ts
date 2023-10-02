@@ -28,13 +28,13 @@ export class DataHandler{
         if (!musicUnits[0].bpm || !musicUnits[0].syncPnt || !musicUnits[0].timeSig) throw new DataError('The given tablature has incomplete initial data. Please check: bpm, time signtaure or initial sync point.');
 
         let bpm = musicUnits[0].bpm;
-        let currentTime = musicUnits[0].syncPnt;
+        let currentTime = new Date(musicUnits[0].syncPnt);
 
         // TODO: Consider time signature for scheduling. Default now is 4/4
 
         for (const mUnit of musicUnits){
             bpm = mUnit.bpm ? mUnit.bpm : bpm;
-            currentTime = mUnit.syncPnt ? mUnit.syncPnt : currentTime;
+            currentTime = mUnit.syncPnt ? new Date(mUnit.syncPnt) : currentTime;
 
             if (mUnit.type === 'ch'){
               const chord = CHORDS.find(CH => CH.name === mUnit.self);

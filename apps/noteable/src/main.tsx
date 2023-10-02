@@ -10,6 +10,10 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './app/app';
 import { createTheme, ThemeProvider } from "@mui/material";
 
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -38,12 +42,15 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </QueryClientProvider>
     </ThemeProvider>
   </StrictMode>
 );
