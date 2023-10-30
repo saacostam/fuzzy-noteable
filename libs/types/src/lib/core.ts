@@ -21,6 +21,8 @@ export interface Artist{
   name: string;
 }
 
+export type LeanArtist = Omit<Artist, 'id'>;
+
 export type Key = `${Note} ${ScaleType}`
 
 export interface Song{
@@ -32,6 +34,9 @@ export interface Song{
   decade?: Decade;
   genre?: Genre;
 }
+
+export type LonelySong = Omit<Song, 'artists'>;
+export type LeanSong = Omit<Song, 'artists' | 'id'>;
 
 export type Tablature = {
   id: string;

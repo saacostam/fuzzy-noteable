@@ -1,4 +1,4 @@
-import {Song, Tablature, Tuning } from '@noteable/types';
+import {Song, Tablature } from '@noteable/types';
 import { v4 as uuid } from 'uuid';
 
 export const GOODBYE_MY_LOVER : Song = {

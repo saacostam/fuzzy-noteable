@@ -5,33 +5,37 @@ import {PrismaService} from "@noteable/be-common";
 export class TabService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  private readonly selectAllTab = {
+    id: true,
+    source: true,
+    difficulty: true,
+    tuning: true,
+    transposition: true,
+    type: true,
+    musicUnits: true,
+    song: {
+      select: {
+        id: true,
+        name: true,
+        key: true,
+        bpm: true,
+        artists: {
+          select: {
+            name: true,
+            id: true,
+          }
+        }
+      }
+    }
+  }
+
   async getTabById(id: string){
     return this.prismaService.tablature.findUnique({
       where: {
         id,
       },
       select: {
-        id: true,
-        source: true,
-        difficulty: true,
-        tuning: true,
-        transposition: true,
-        type: true,
-        musicUnits: true,
-        song: {
-          select: {
-            id: true,
-            name: true,
-            key: true,
-            bpm: true,
-            artists: {
-              select: {
-                name: true,
-                id: true,
-              }
-            }
-          }
-        }
+        ...this.selectAllTab,
       }
     })
   }
