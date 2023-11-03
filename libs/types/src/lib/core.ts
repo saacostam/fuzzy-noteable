@@ -8,8 +8,13 @@ export type Note = 'C'| 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' 
 export const SortedNotes: Note[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] as Note[];
 
 export type ScaleType = 'major' | 'minor';
+export const SortedScaleTypes: ScaleType[] = ['major', 'minor'] as ScaleType[];
+
 export type Decade = '1940' | '1950' | '1960' | '1970' | '1980' | '1990' | '2000' | '2010' | '2020';
-export type Genre = string;
+export const SortedDecades: Decade[] = ['1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'] as Decade[];
+
+export type Genre = 'Pop';
+export const AllGenres: Genre[] = ['Pop'] as Genre[];
 
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 export type Tuning = string;
@@ -23,7 +28,7 @@ export interface Artist{
 
 export type LeanArtist = Omit<Artist, 'id'>;
 
-export type Key = `${Note} ${ScaleType}`
+export type Key = `${Note} ${ScaleType}`;
 
 export interface Song{
   id: string;
