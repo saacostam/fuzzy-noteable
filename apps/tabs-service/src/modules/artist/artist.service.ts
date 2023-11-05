@@ -18,7 +18,7 @@ export class ArtistService {
   async getArtistSongsById(id: string){
     return this.prismaService.artist.findUnique({
       where: {
-        id,
+        id: id,
       },
       include: {
         ...this.includeArtistWithMinimalSongs,

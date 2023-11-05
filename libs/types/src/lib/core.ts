@@ -55,20 +55,23 @@ export type Tablature = {
   musicUnits: (MusicUnitChord | MusicUnitKeyNote | MusicUnitFretBoardNote)[];
 }
 
+export type LeanTablature = Omit<Tablature, 'id' | 'song'>;
+export type LonelyTablature = Omit<Tablature, 'song'>;
+
 export type Transposition = IntRange<0, 12>;
 
 export type MinifiedTablature = Omit<Tablature, 'musicUnits'> & { musicUnits: string }
 
 export type SourceType = 'youtube';
 
-export interface MusicUnitBase{
+export type MusicUnitBase = {
   dur: number;
-  syncPnt?: Date;
+  syncPnt?: string;
   bpm?: number;
   timeSig?: TimeSignature;
 }
 
-export interface TimeSignature{
+export type TimeSignature = {
   top: IntRange<1, 64>;
   bottom: IntRange<1, 64>;
 }
@@ -111,6 +114,8 @@ export type MusicUnitChord = MusicUnitBase & {
   type: 'ch';
   self: ChordName;
 }
+
+export type MusicUnitChordWithId = MusicUnitChord & {id: number};
 
 export type Chord = {
   name: ChordName;

@@ -6,6 +6,14 @@ import {LeanSong} from "@noteable/types";
 export class SongService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  private readonly includeSongWithMinimalTabs = {
+    tablatures: {
+      select: {
+        id: true,
+      }
+    }
+  }
+
   async createSong(song: LeanSong, artistsIDs: string[]){
     return this.prismaService.song.create({
       data: {
@@ -15,6 +23,17 @@ export class SongService {
             id: id,
           })),
         }
+      }
+    })
+  }
+
+  async getSongTabsById(id: string){
+    return this.prismaService.song.findUnique({
+      where: {
+        id: id,
+      },
+      include: {
+        ...this.includeSongWithMinimalTabs,
       }
     })
   }

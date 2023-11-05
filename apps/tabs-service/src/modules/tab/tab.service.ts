@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import {PrismaService} from "@noteable/be-common";
+import {LeanTablature} from "@noteable/types";
+import {ADMIN_USER_DB_ID} from "../../constants-paremeters";
+import {Prisma} from "@prisma/client";
 
 @Injectable()
 export class TabService {
@@ -36,6 +39,25 @@ export class TabService {
       },
       select: {
         ...this.selectAllTab,
+      }
+    })
+  }
+
+  async createTab(tab: LeanTablature, songID: string){
+    return this.prismaService.tablature.create({
+      data: {
+        ...tab,
+        musicUnits: (tab.musicUnits as Prisma.JsonValue),
+        user: {
+          connect: {
+            id: ADMIN_USER_DB_ID,
+          },
+        },
+        song: {
+          connect: {
+            id: songID,
+          }
+        }
       }
     })
   }

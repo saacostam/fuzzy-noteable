@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Routes} from 'react-router-dom'
 
 import {ResponsiveAppBar} from "../components";
-import {AdminArtistById, AdminArtistsView, HomeView} from "../views";
+import {AdminArtistById, AdminArtistsView, AdminSongById, HomeView} from "../views";
 
 export function App() {
   return (
@@ -21,6 +21,10 @@ export function App() {
           <Route
             path={"/admin/artist/:id"}
             element={<AdminArtistById/>}
+          />
+          <Route
+            path={"/admin/song/:id"}
+            element={<AdminSongById/>}
           />
         </Routes>
       </div>

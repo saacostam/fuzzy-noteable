@@ -27,7 +27,7 @@ export const GOODBYE_MY_LOVER_GUITAR_TAB: Tablature = {
             type: 'ch',
             dur: 4,
             self: 'C',
-            syncPnt: new Date(600),
+            syncPnt: new Date(600).toString(),
             bpm: 95,
             timeSig: {
                 top: 4,
