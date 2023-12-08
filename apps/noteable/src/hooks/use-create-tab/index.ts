@@ -10,7 +10,7 @@ export function useCreateTab(){
 
   return useMemo(() => {
     return {
-      createdTab: data,
+      createdTab: data as {id: string},
       isSuccess: isSuccess,
       isLoading: isLoading,
       isError: isError,

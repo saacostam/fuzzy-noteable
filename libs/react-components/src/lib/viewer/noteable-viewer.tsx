@@ -28,6 +28,12 @@ export const NoteableViewer = ({ tablature, mode }: NoteableViewerProps) => {
     }
   }, [])
 
+  useEffect(() => {
+    if (NAVHandler && tablature){
+      NAVHandler.updateTablature(tablature);
+    }
+  }, [tablature]);
+
   return (
     <main>
       <div className={"w-100 mx-auto flex flex-col md:flex-row"}>

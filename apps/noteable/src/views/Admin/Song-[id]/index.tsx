@@ -1,48 +1,9 @@
+import React from "react";
+import {Button, Divider, Stack} from "@mui/material";
+import {NoteableViewer} from "@noteable/react-components";
+
 import {useAdminSongById} from "./hook";
-import {Box, Button, Divider, Stack, Typography} from "@mui/material";
-import {ChordName, MusicUnitChordWithId} from "@noteable/types";
-
-type CreateTabSectionProps = {
-  createTabIsLoading: boolean;
-  musicUnits: MusicUnitChordWithId[];
-  doCreateTab: () => void;
-  handleAddNewMusicUnit: () => void;
-  handleRemoveNewMusicUnit: (id: number) => void;
-  handleMusicUnitChange: (id: number, self: ChordName, dur: number) => void;
-};
-
-export function CreateTabSection(
-  {
-    musicUnits,
-    handleAddNewMusicUnit,
-    doCreateTab,
-    createTabIsLoading,
-  }: CreateTabSectionProps){
-  return (
-    <Box sx={{p: 2}}>
-      <Typography variant={'h5'} className={'text-center'} sx={{mb:2}}>Admin: Create Tab</Typography>
-      {
-        musicUnits.map(mu => (<div key={mu.id}>{mu.id}</div>))
-      }
-
-      <Stack direction={'row'} spacing={1} sx={{mt:2}}>
-        <Button
-          variant={"contained"}
-          onClick={handleAddNewMusicUnit}
-        >
-          New
-        </Button>
-        <Button
-          variant={"contained"}
-          onClick={doCreateTab}
-          disabled={createTabIsLoading}
-        >
-          Create
-        </Button>
-      </Stack>
-    </Box>
-  )
-}
+import {CreateTabMetaDataSection, CreateMusicUnitsSection} from "./components";
 
 export function AdminSongById(){
   const {
@@ -53,6 +14,20 @@ export function AdminSongById(){
     handleAddNewMusicUnit,
     handleRemoveMusicUnit,
     handleMusicUnitChange,
+    startPoint,
+    handleChangeStartPoint,
+    bpm,
+    handleChangeBpm,
+    source,
+    handleChangeSource,
+    difficulty,
+    handleChangeDifficulty,
+    transposition,
+    handleChangeTransposition,
+    tablature,
+    handleTestCreateTab,
+    handleSaveInLocalStorage,
+    handleLoadFromLocalStorage,
   } = useAdminSongById();
 
   return(
@@ -63,14 +38,47 @@ export function AdminSongById(){
             <div>Loading...</div>
           ):(
           <>
-            <CreateTabSection
-              createTabIsLoading={createTabIsLoading}
+            <CreateTabMetaDataSection
+              startPoint={startPoint}
+              handleChangeStartPoint={handleChangeStartPoint}
+              bpm={bpm}
+              handleChangeBpm={handleChangeBpm}
+              source={source}
+              handleChangeSource={handleChangeSource}
+              difficulty={difficulty}
+              handleChangeDifficulty={handleChangeDifficulty}
+              transposition={transposition}
+              handleChangeTransposition={handleChangeTransposition}
+            />
+            <CreateMusicUnitsSection
               musicUnits={musicUnits}
-              doCreateTab={doCreateTab}
               handleAddNewMusicUnit={handleAddNewMusicUnit}
               handleRemoveNewMusicUnit={handleRemoveMusicUnit}
               handleMusicUnitChange={handleMusicUnitChange}
+              handleSaveInLocalStorage={handleSaveInLocalStorage}
+              handleLoadFromLocalStorage={handleLoadFromLocalStorage}
             />
+            {
+              tablature && (
+                <NoteableViewer tablature={tablature} mode={'interactive'}/>
+              )
+            }
+            <Stack direction={'row-reverse'} spacing={1} sx={{mt:2}}>
+              <Button
+                variant={"contained"}
+                onClick={doCreateTab}
+                disabled={createTabIsLoading}
+              >
+                Create
+              </Button>
+              <Button
+                variant={"outlined"}
+                onClick={handleTestCreateTab}
+                disabled={false}
+              >
+                Test
+              </Button>
+            </Stack>
             <Divider variant={"middle"}/>
           </>
         )

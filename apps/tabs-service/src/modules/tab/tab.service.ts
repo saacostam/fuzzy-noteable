@@ -58,6 +58,9 @@ export class TabService {
             id: songID,
           }
         }
+      },
+      select: {
+        id: true,
       }
     })
   }
