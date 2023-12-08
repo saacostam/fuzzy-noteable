@@ -1,4 +1,4 @@
-import {Song, Tablature, Tuning } from '@noteable/types';
+import {Song, Tablature } from '@noteable/types';
 import { v4 as uuid } from 'uuid';
 
 export const GOODBYE_MY_LOVER : Song = {
@@ -27,7 +27,7 @@ export const GOODBYE_MY_LOVER_GUITAR_TAB: Tablature = {
             type: 'ch',
             dur: 4,
             self: 'C',
-            syncPnt: new Date(600),
+            syncPnt: new Date(600).toString(),
             bpm: 95,
             timeSig: {
                 top: 4,

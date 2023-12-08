@@ -22,7 +22,7 @@ model Song {
   name       String
   key        String?
   bpm        Int[]
-  decade     Int?
+  decade     String?
   genre      String?
   tablatures Tablature[]
   artistsIDs String[]    @db.ObjectId

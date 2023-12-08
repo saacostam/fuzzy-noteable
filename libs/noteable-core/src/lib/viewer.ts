@@ -1,3 +1,5 @@
+import {Tablature} from "@noteable/types";
+
 import {DomHandler, DomHandlerParameters} from "./dom";
 import {DataHandler, DataHandlerParameters} from "./data";
 import {SourceHandler} from "./source";
@@ -26,5 +28,11 @@ export class NotaAbleViewer{
             ctx: ctx,
             mode: mode,
         });
+    }
+
+    public updateTablature(tablature: Tablature){
+      this.dataHandler.updateTablature(tablature);
+      const source = this.dataHandler.source;
+      this.sourceHandler.updateVideoId(source);
     }
 }

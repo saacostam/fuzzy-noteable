@@ -1,7 +1,8 @@
 import React from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom'
+
 import {ResponsiveAppBar} from "../components";
-import {HomeView} from "../views";
+import {AdminArtistById, AdminArtistsView, AdminSongById, HomeView} from "../views";
 
 export function App() {
   return (
@@ -10,8 +11,20 @@ export function App() {
       <div className={'max-w-[80em] mx-auto bg-neutral-100 rounded-xl p-4 my-4'}>
         <Routes>
           <Route
-            path="/tab/:id"
+            path={"/tab/:id"}
             element={<HomeView/>}
+          />
+          <Route
+            path={"/admin/artists"}
+            element={<AdminArtistsView/>}
+          />
+          <Route
+            path={"/admin/artist/:id"}
+            element={<AdminArtistById/>}
+          />
+          <Route
+            path={"/admin/song/:id"}
+            element={<AdminSongById/>}
           />
         </Routes>
       </div>

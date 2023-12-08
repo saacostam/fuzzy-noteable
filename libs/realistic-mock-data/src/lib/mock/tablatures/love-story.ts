@@ -28,7 +28,7 @@ export const LOVE_STORY_GUITAR_TAB: Tablature = {
             type: 'ch',
             dur: 8,
             self: 'C',
-            syncPnt: new Date(700),
+            syncPnt: new Date(700).toString(),
             bpm: 119,
             timeSig: {
                 top: 4,

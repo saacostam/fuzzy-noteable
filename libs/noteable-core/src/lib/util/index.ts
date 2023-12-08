@@ -1,6 +1,11 @@
-import {DataError, Note} from "@noteable/types";
+import {ChordSuffix, DataError, Note} from "@noteable/types";
 
-export function parseChord(chord: string) : {note: Note, suffix: string}{
+type ParseChordResponse = {
+  note: Note,
+  suffix: ChordSuffix,
+}
+
+export function parseChord(chord: string) : ParseChordResponse{
   let state: 'init' | 'second'= 'init' as const;
   let j = 0;
 
@@ -33,6 +38,6 @@ export function parseChord(chord: string) : {note: Note, suffix: string}{
 
   return {
     note: chord.substring(0, j) as Note,
-    suffix: chord.substring(j),
+    suffix: (chord.substring(j) as ChordSuffix),
   }
 }

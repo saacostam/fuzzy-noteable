@@ -1,3 +1,5 @@
+import {Tablature} from "@noteable/types";
+
 export async function getTabById(id: string) {
   let data;
   try {
@@ -14,5 +16,5 @@ export async function getTabById(id: string) {
     throw new Error('The query was unsuccessful!');
   }
 
-  return await data.json();
+  return (await data.json()) as Tablature;
 }

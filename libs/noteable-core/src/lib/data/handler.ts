@@ -1,7 +1,8 @@
 import {Chord, DataError, SortedNotes, SyncMusicUnit, Tablature, Transposition} from "@noteable/types";
-import {v4 as uuid} from 'uuid';
 import {CHORDS} from "@noteable/realistic-mock-data";
-import {parseChord} from "./chord.util";
+import {v4 as uuid} from 'uuid';
+
+import {parseChord} from "../util";
 
 export interface DataHandlerParameters{
     tablature: Tablature;
@@ -10,10 +11,16 @@ export interface DataHandlerParameters{
 export class DataHandler{
     tablature: Tablature;
     schedule: SyncMusicUnit[];
+    countUpdates = 0;
 
     constructor({tablature}: DataHandlerParameters) {
-        this.tablature = tablature;
-        this.schedule = this.buildSchedule(this.tablature);
+        this.updateTablature(tablature);
+    }
+
+    public updateTablature(tablature: Tablature){
+      this.countUpdates = this.countUpdates+1;
+      this.tablature = tablature;
+      this.schedule = this.buildSchedule(this.tablature);
     }
 
     private undefinedChordError(chord?: Chord | string){

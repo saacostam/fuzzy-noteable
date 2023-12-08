@@ -8,10 +8,17 @@ export type Note = 'C'| 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' 
 export const SortedNotes: Note[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] as Note[];
 
 export type ScaleType = 'major' | 'minor';
+export const SortedScaleTypes: ScaleType[] = ['major', 'minor'] as ScaleType[];
+
 export type Decade = '1940' | '1950' | '1960' | '1970' | '1980' | '1990' | '2000' | '2010' | '2020';
-export type Genre = string;
+export const SortedDecades: Decade[] = ['1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'] as Decade[];
+
+export type Genre = 'Pop' | 'Rock' | 'Grunge' | 'Folk Rock' | 'R&B';
+export const AllGenres: Genre[] = ['Pop', 'Rock', 'Grunge',  'Folk Rock', 'R&B'] as Genre[];
 
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
+export const AllDifficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced'] as Difficulty[];
+
 export type Tuning = string;
 
 export type TablatureType = 'guitar';
@@ -21,7 +28,9 @@ export interface Artist{
   name: string;
 }
 
-export type Key = `${Note} ${ScaleType}`
+export type LeanArtist = Omit<Artist, 'id'>;
+
+export type Key = `${Note} ${ScaleType}`;
 
 export interface Song{
   id: string;
@@ -32,6 +41,9 @@ export interface Song{
   decade?: Decade;
   genre?: Genre;
 }
+
+export type LonelySong = Omit<Song, 'artists'>;
+export type LeanSong = Omit<Song, 'artists' | 'id'>;
 
 export type Tablature = {
   id: string;
@@ -45,20 +57,23 @@ export type Tablature = {
   musicUnits: (MusicUnitChord | MusicUnitKeyNote | MusicUnitFretBoardNote)[];
 }
 
-export type Transposition = IntRange<0, 12>;
+export type LeanTablature = Omit<Tablature, 'id' | 'song'>;
+export type LonelyTablature = Omit<Tablature, 'song'>;
+
+export type Transposition = IntRange<0, 24>;
 
 export type MinifiedTablature = Omit<Tablature, 'musicUnits'> & { musicUnits: string }
 
 export type SourceType = 'youtube';
 
-export interface MusicUnitBase{
+export type MusicUnitBase = {
   dur: number;
-  syncPnt?: Date;
+  syncPnt?: string;
   bpm?: number;
   timeSig?: TimeSignature;
 }
 
-export interface TimeSignature{
+export type TimeSignature = {
   top: IntRange<1, 64>;
   bottom: IntRange<1, 64>;
 }
@@ -84,6 +99,8 @@ export type KeyNote = {
 }
 
 export type ChordSuffix = '' | 'm';
+export const AllChordSuffixes: ChordSuffix[] = ['', 'm'] as ChordSuffix[];
+
 export type ChordName = `${Note}${ChordSuffix}`;
 
 interface IChordDefinition{
@@ -101,6 +118,8 @@ export type MusicUnitChord = MusicUnitBase & {
   type: 'ch';
   self: ChordName;
 }
+
+export type MusicUnitChordWithId = MusicUnitChord & {id: number};
 
 export type Chord = {
   name: ChordName;

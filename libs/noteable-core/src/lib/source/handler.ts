@@ -26,11 +26,15 @@ export class SourceHandler{
         this.init();
     }
 
-    async init(){
+    private async init(){
         await this.youTubePlayer.cueVideoByUrl(this.source);
     }
 
-    async getCurrentTime(): Promise<number> {
+    public async getCurrentTime(): Promise<number> {
         return this.youTubePlayer.getCurrentTime();
+    }
+
+    public async updateVideoId(newVideoId: string){
+      this.youTubePlayer.cueVideoById(newVideoId);
     }
 }
