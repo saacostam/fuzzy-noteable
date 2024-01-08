@@ -1,11 +1,6 @@
-import {LeanSong} from "@noteable/types";
+import {CreateSongDto} from "@noteable/interfaces";
 
-type CreateSongPayload = {
-  song: LeanSong;
-  artistsIDs: string[];
-}
-
-export async function createSong(payload: CreateSongPayload) {
+export async function createSong(createSongDto: CreateSongDto) {
   const ERROR_MESSAGE = 'Was unable to create a new song!';
 
   let data;
@@ -15,10 +10,7 @@ export async function createSong(payload: CreateSongPayload) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        song: payload.song,
-        artistsIDs: payload.artistsIDs,
-      }),
+      body: JSON.stringify(createSongDto),
     });
   } catch (error) {
     throw new Error(ERROR_MESSAGE);

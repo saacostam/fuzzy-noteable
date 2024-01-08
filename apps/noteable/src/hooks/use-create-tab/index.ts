@@ -1,5 +1,8 @@
 import {useMemo} from "react";
 import {useMutation} from "react-query";
+
+import {OnlyIdDto} from "@noteable/interfaces";
+
 import {createTab} from "../../mutation";
 
 export function useCreateTab(){
@@ -10,7 +13,7 @@ export function useCreateTab(){
 
   return useMemo(() => {
     return {
-      createdTab: data as {id: string},
+      createdTab: data as OnlyIdDto,
       isSuccess: isSuccess,
       isLoading: isLoading,
       isError: isError,

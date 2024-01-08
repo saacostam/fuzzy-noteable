@@ -1,6 +1,6 @@
-import {LeanArtist} from "@noteable/types";
+import {CreateArtistDto} from "@noteable/interfaces";
 
-export async function createArtist(artist: LeanArtist) {
+export async function createArtist(createArtistDto: CreateArtistDto) {
   const ERROR_MESSAGE = 'Was unable to create a new artist!';
 
   let data;
@@ -10,9 +10,7 @@ export async function createArtist(artist: LeanArtist) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        artist: artist,
-      }),
+      body: JSON.stringify(createArtistDto),
     });
   } catch (error) {
     throw new Error(ERROR_MESSAGE);
