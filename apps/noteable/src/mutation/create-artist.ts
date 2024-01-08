@@ -5,7 +5,7 @@ export async function createArtist(artist: LeanArtist) {
 
   let data;
   try {
-    data = await fetch(`http://localhost:3000/api/artist`, {
+    data = await fetch(`${process.env.NX_REACT_APP_TAB_URL}/artist`, {
       method: 'post',
       headers: {
         "Content-Type": "application/json",

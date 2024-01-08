@@ -3,7 +3,7 @@ import {Tablature} from "@noteable/types";
 export async function getTabById(id: string) {
   let data;
   try {
-    data = await fetch(`http://localhost:3000/api/tab/${id}`);
+    data = await fetch(`${process.env.NX_REACT_APP_TAB_URL}/tab/${id}`);
   } catch (error) {
     throw new Error('Something went wrong')
   }

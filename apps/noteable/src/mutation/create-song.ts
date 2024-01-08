@@ -10,7 +10,7 @@ export async function createSong(payload: CreateSongPayload) {
 
   let data;
   try {
-    data = await fetch(`http://localhost:3000/api/song`, {
+    data = await fetch(`${process.env.NX_REACT_APP_TAB_URL}/song`, {
       method: 'post',
       headers: {
         "Content-Type": "application/json",

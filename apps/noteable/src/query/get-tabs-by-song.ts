@@ -5,7 +5,7 @@ export async function getTabsBySong(id: string) {
 
   let data;
   try {
-    data = await fetch(`http://localhost:3000/api/song/${id}/tabs`);
+    data = await fetch(`${process.env.NX_REACT_APP_TAB_URL}/song/${id}/tabs`);
   } catch (error) {
     throw new Error(ERROR_MESSAGE)
   }

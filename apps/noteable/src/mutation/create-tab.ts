@@ -10,7 +10,7 @@ export async function createTab(payload: CreateTabPayload){
 
   let data;
   try {
-    data = await fetch(`http://localhost:3000/api/tab`, {
+    data = await fetch(`${process.env.NX_REACT_APP_TAB_URL}/tab`, {
       method: 'post',
       headers: {
         "Content-Type": "application/json",

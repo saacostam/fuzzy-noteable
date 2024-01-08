@@ -5,7 +5,7 @@ export async function getSongsByArtist(id: string) {
 
   let data;
   try {
-    data = await fetch(`http://localhost:3000/api/artist/${id}/songs`);
+    data = await fetch(`${process.env.NX_REACT_APP_TAB_URL}/artist/${id}/songs`);
   } catch (error) {
     throw new Error(ERROR_MESSAGE)
   }
