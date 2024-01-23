@@ -6,7 +6,7 @@ export async function createSong(createSongDto: CreateSongDto) {
 
   let data;
   try {
-    data = await fetcher.post(`${process.env.NX_REACT_APP_TAB_URL}/song`, createSongDto);
+    data = await fetcher.post(`/song`, createSongDto);
   } catch (error) {
     throw new Error(ERROR_MESSAGE);
   }

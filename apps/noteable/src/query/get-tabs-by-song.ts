@@ -6,7 +6,7 @@ export async function getTabsBySong(id: string) {
 
   let data;
   try {
-    data = await fetcher.get(`${process.env.NX_REACT_APP_TAB_URL}/song/${id}/tabs`);
+    data = await fetcher.get(`/song/${id}/tabs`);
   } catch (error) {
     throw new Error(ERROR_MESSAGE)
   }

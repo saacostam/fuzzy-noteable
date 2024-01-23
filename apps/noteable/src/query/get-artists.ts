@@ -6,7 +6,7 @@ export async function getArtists() {
 
   let data;
   try {
-    data = await fetcher.get(`${process.env.NX_REACT_APP_TAB_URL}/artist`);
+    data = await fetcher.get(`/artist`);
   } catch (error) {
     throw new Error(ERROR_MESSAGE)
   }

@@ -6,7 +6,7 @@ export async function createTab(createTabDto: CreateTabDto){
 
   let data;
   try {
-    data = await fetcher.post(`${process.env.NX_REACT_APP_TAB_URL}/tab`, createTabDto);
+    data = await fetcher.post(`/tab`, createTabDto);
   } catch (error) {
     throw new Error(ERROR_MESSAGE);
   }

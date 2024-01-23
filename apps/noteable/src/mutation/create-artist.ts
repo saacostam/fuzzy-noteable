@@ -6,7 +6,7 @@ export async function createArtist(createArtistDto: CreateArtistDto) {
 
   let data;
   try {
-    data = await fetcher.post(`${process.env.NX_REACT_APP_TAB_URL}/artist`, createArtistDto);
+    data = await fetcher.post(`/artist`, createArtistDto);
   } catch (error) {
     throw new Error(ERROR_MESSAGE);
   }

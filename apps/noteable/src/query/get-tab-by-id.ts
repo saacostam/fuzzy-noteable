@@ -4,7 +4,7 @@ import {fetcher} from "../fetcher";
 export async function getTabById(id: string) {
   let data;
   try {
-    data = await fetcher.get(`${process.env.NX_REACT_APP_TAB_URL}/tab/${id}`);
+    data = await fetcher.get(`/tab/${id}`);
   } catch (error) {
     throw new Error('Something went wrong')
   }

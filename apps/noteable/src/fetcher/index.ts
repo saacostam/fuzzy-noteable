@@ -1,6 +1,8 @@
+import {TAB_URL} from "./url.constants";
+
 export const fetcher = {
-  async post(url: string, payload: unknown){
-    return fetch(url, {
+  async post(url_suffix: string, payload: unknown){
+    return fetch(`${TAB_URL}${url_suffix}`, {
       method: 'post',
       headers: {
         "Content-Type": "application/json",
@@ -8,7 +10,7 @@ export const fetcher = {
       body: JSON.stringify(payload),
     });
   },
-  get(url: string){
-    return fetch(url);
+  get(url_suffix: string){
+    return fetch(`${TAB_URL}${url_suffix}`);
   }
 }
