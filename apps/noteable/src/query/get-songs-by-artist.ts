@@ -1,11 +1,12 @@
 import {Artist, LonelySong} from "@noteable/types";
+import {fetcher} from "../fetcher";
 
 export async function getSongsByArtist(id: string) {
   const ERROR_MESSAGE = 'Something went wrong! Could not fetch artist data!';
 
   let data;
   try {
-    data = await fetch(`${process.env.NX_REACT_APP_TAB_URL}/artist/${id}/songs`);
+    data = await fetcher.get(`/artist/${id}/songs`);
   } catch (error) {
     throw new Error(ERROR_MESSAGE)
   }
