@@ -85,17 +85,28 @@ export class ChordPreviewActor extends Actor{
             this.drawLine(ctx, FRAME_X + DELTA_X_AMOUNT*delta, FRAME_Y, FRAME_X + DELTA_X_AMOUNT*delta, FRAME_Y + FRAME_HEIGHT);
         }
 
-        const { fingerPositions , bar} = chord.definitions[0];
+        const { fingerPositions , bar, barHeight} = chord.definitions[0];
         const CHORD_BASE_Y = FRAME_Y + 0.0685*this.height;
 
         if (bar){
             ctx.lineWidth = 0.0685*this.height;
             ctx.lineCap = 'round';
 
-            const EXTENSION = (0.05 * this.width);
+            const EXTENSION = (0.04 * this.width);
             const BAR_X = FRAME_X - (EXTENSION/2);
-            const BAR_WIDTH = FRAME_WIDTH + EXTENSION;
-            this.drawLine(ctx, BAR_X, CHORD_BASE_Y, BAR_X + BAR_WIDTH, CHORD_BASE_Y);
+
+            let BASE_WIDTH = FRAME_WIDTH;
+            let BAR_X_OFFSET = 0;
+
+            if (barHeight) {
+              const NEW_BASE_WIDTH = BASE_WIDTH * (barHeight-1) / 5;
+              BAR_X_OFFSET = BASE_WIDTH - NEW_BASE_WIDTH;
+              BASE_WIDTH = NEW_BASE_WIDTH;
+            }
+
+            const BAR_WIDTH = (BASE_WIDTH + EXTENSION);
+
+            this.drawLine(ctx, BAR_X_OFFSET+BAR_X, CHORD_BASE_Y, BAR_X_OFFSET+BAR_X + BAR_WIDTH, CHORD_BASE_Y);
 
             if (bar !== 1){
               ctx.font = `${Math.floor(0.06 * this.width)}px Verdana`;
@@ -103,7 +114,7 @@ export class ChordPreviewActor extends Actor{
               ctx.textBaseline = 'middle';
               ctx.fillStyle = '#FDFFFC';
 
-              ctx.fillText(String(bar)+'fr', BAR_X + BAR_WIDTH + (this.width * 0.125), CHORD_BASE_Y);
+              ctx.fillText(String(bar)+'fr', BAR_X + FRAME_WIDTH + (this.width * 0.125), CHORD_BASE_Y);
             }
         }
 
