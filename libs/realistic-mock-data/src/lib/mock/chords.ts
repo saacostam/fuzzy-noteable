@@ -18,6 +18,7 @@ const C:Chord = {
 
 const Cs_DEF: GuitarChordDefinition = {
   bar: 4,
+  barHeight: 5,
   fingerPositions: [
     { string: 2, fret: 3 },
     { string: 3, fret: 3 },
@@ -149,6 +150,7 @@ const A: Chord = {
 
 const As_DEF: GuitarChordDefinition = {
   bar: 1,
+  barHeight: 5,
   fingerPositions: [
     { string: 2, fret: 3 },
     { string: 3, fret: 3 },
@@ -164,6 +166,7 @@ const As: Chord = {
 
 const B_DEF: GuitarChordDefinition = {
   bar: 2,
+  barHeight: 5,
   fingerPositions: [
     { string: 2, fret: 3 },
     { string: 3, fret: 3 },
@@ -181,6 +184,7 @@ const B: Chord = {
 
 const Cm_DEF: GuitarChordDefinition = {
   bar: 3,
+  barHeight: 5,
   fingerPositions: [
     {string: 2, fret: 2},
     {string: 3, fret: 3},
@@ -196,6 +200,7 @@ const Cm: Chord = {
 
 const Csm_DEF: GuitarChordDefinition = {
   bar: 4,
+  barHeight: 5,
   fingerPositions: [
     {string: 2, fret: 2},
     {string: 3, fret: 3},
@@ -323,6 +328,7 @@ const Am: Chord = {
 
 const Asm_DEF: GuitarChordDefinition = {
   bar: 1,
+  barHeight: 5,
   fingerPositions: [
     { string: 2, fret: 2 },
     { string: 3, fret: 3 },
@@ -338,6 +344,7 @@ const Asm: Chord = {
 
 const Bm_DEF: GuitarChordDefinition = {
     bar: 2,
+    barHeight: 5,
     fingerPositions: [
         { string: 2, fret: 2 },
         { string: 3, fret: 3 },
