@@ -1,7 +1,7 @@
 import {Param, Controller, Get, Body, Post} from '@nestjs/common';
 
 import { ArtistService } from "./artist.service";
-import {CreateArtistDto} from "./dto";
+import {CreateArtistDto} from "@noteable/interfaces";
 
 @Controller('artist')
 export class ArtistController {

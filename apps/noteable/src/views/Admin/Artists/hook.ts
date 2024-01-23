@@ -29,7 +29,9 @@ export function useAdminArtists(){
   const handleCreateArtist = useCallback(() => {
     const { name } = getValuesCreateArtistForm();
     doCreateArtist({
-      name: name
+      artist: {
+        name: name
+      }
     });
     resetFieldCreateArtistForm('name');
   }, [getValuesCreateArtistForm, doCreateArtist, resetFieldCreateArtistForm]);

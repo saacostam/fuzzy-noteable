@@ -1,7 +1,8 @@
 import {Param, Controller, Get, Post, Body} from '@nestjs/common';
 
+import {CreateTabDto} from "@noteable/interfaces";
+
 import { TabService } from "./tab.service";
-import {CreateTabDto} from "./dto";
 
 @Controller('tab')
 export class TabController {

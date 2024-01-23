@@ -1,1 +1,1 @@
-export * from './get-by-id';
+export * from './only-id.dto';

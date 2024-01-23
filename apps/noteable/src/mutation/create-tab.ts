@@ -1,11 +1,6 @@
-import {LeanTablature} from "@noteable/types";
+import {CreateTabDto} from "@noteable/interfaces";
 
-type CreateTabPayload = {
-  tab: LeanTablature;
-  songID: string;
-}
-
-export async function createTab(payload: CreateTabPayload){
+export async function createTab(createTabDto: CreateTabDto){
   const ERROR_MESSAGE = 'Was unable to create a new tab!';
 
   let data;
@@ -15,10 +10,7 @@ export async function createTab(payload: CreateTabPayload){
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        tab: payload.tab,
-        songID: payload.songID,
-      }),
+      body: JSON.stringify(createTabDto),
     });
   } catch (error) {
     throw new Error(ERROR_MESSAGE);
