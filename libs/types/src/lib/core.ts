@@ -109,6 +109,7 @@ interface IChordDefinition{
 
 export interface GuitarChordDefinition extends IChordDefinition{
   bar?: IntRange<1, 24>;
+  initialFret?: IntRange<1, 24>;
   barHeight?: IntRange<1, 6>;
   mutedStrings?: IntRange<1, 7>[];
   fingerPositions: FretBoardNote[];
