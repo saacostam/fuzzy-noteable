@@ -85,9 +85,10 @@ export class ChordPreviewActor extends Actor{
             this.drawLine(ctx, FRAME_X + DELTA_X_AMOUNT*delta, FRAME_Y, FRAME_X + DELTA_X_AMOUNT*delta, FRAME_Y + FRAME_HEIGHT);
         }
 
-        const { fingerPositions , bar, barHeight} = chord.definitions[0];
+        const { fingerPositions , bar, barHeight, mutedStrings} = chord.definitions[0];
         const CHORD_BASE_Y = FRAME_Y + 0.0685*this.height;
 
+        // Bar
         if (bar){
             ctx.lineWidth = 0.0685*this.height;
             ctx.lineCap = 'round';
@@ -118,6 +119,7 @@ export class ChordPreviewActor extends Actor{
             }
         }
 
+        // Finger Positions
         fingerPositions.forEach(fretBoardNote => {
             ctx.lineCap = 'round';
             ctx.fillStyle = '#FDFFFC';
@@ -128,7 +130,22 @@ export class ChordPreviewActor extends Actor{
             const R = 0.03333333333 * this.width;
 
             this.drawCircle(ctx, X, Y, R);
-        })
+        });
+
+        // Muted String
+        if (mutedStrings) {
+            mutedStrings.forEach(mutedString => {
+              ctx.lineCap = 'round';
+              ctx.strokeStyle = '#FDFFFC';
+              ctx.lineWidth = this.width*0.008;
+
+              const X = FRAME_X + FRAME_WIDTH - ((mutedString-1)*DELTA_X_AMOUNT);
+              const Y = FRAME_Y - (this.height * 0.05);
+              const LEN = this.width*0.03;
+
+              this.drawStringXCross(ctx, X, Y, LEN);
+            });
+        }
     }
 
     private drawProgress(ctx: CanvasRenderingContext2D){

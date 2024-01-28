@@ -8,6 +8,7 @@ const C_DEF: GuitarChordDefinition = {
         { string: 4, fret: 2 },
         { string: 5, fret: 3 },
     ],
+    mutedStrings: [6],
     usability: 0,
 };
 
@@ -24,6 +25,7 @@ const Cs_DEF: GuitarChordDefinition = {
     { string: 3, fret: 3 },
     { string: 4, fret: 3 },
   ],
+  mutedStrings: [6],
   usability: 0,
 };
 
@@ -38,6 +40,7 @@ const D_DEF: GuitarChordDefinition = {
     { string: 2, fret: 3 },
     { string: 3, fret: 2 },
   ],
+  mutedStrings: [6, 5],
   usability: 0,
 }
 
@@ -53,6 +56,7 @@ const Ds_DEF: GuitarChordDefinition = {
     { string: 3, fret: 3 },
     { string: 4, fret: 1 },
   ],
+  mutedStrings: [6, 5],
   usability: 0,
 }
 
@@ -140,6 +144,7 @@ const A_DEF: GuitarChordDefinition = {
     { string: 3, fret: 2 },
     { string: 4, fret: 2 },
   ],
+  mutedStrings: [6],
   usability: 0,
 }
 
@@ -156,6 +161,7 @@ const As_DEF: GuitarChordDefinition = {
     { string: 3, fret: 3 },
     { string: 4, fret: 3 },
   ],
+  mutedStrings: [6],
   usability: 0,
 }
 
@@ -172,6 +178,7 @@ const B_DEF: GuitarChordDefinition = {
     { string: 3, fret: 3 },
     { string: 4, fret: 3 },
   ],
+  mutedStrings: [6],
   usability: 0,
 }
 
@@ -190,6 +197,7 @@ const Cm_DEF: GuitarChordDefinition = {
     {string: 3, fret: 3},
     {string: 4, fret: 3},
   ],
+  mutedStrings: [6],
   usability: 0,
 }
 
@@ -206,6 +214,7 @@ const Csm_DEF: GuitarChordDefinition = {
     {string: 3, fret: 3},
     {string: 4, fret: 3},
   ],
+  mutedStrings: [6],
   usability: 0,
 }
 
@@ -220,6 +229,7 @@ const Dm_DEF: GuitarChordDefinition = {
     {string: 2, fret: 3},
     {string: 3, fret: 2},
   ],
+  mutedStrings: [6, 5],
   usability: 0,
 }
 
@@ -235,6 +245,7 @@ const Dsm_DEF: GuitarChordDefinition = {
     {string: 3, fret: 3},
     {string: 4, fret: 1},
   ],
+  mutedStrings: [6, 5],
   usability: 0,
 }
 
@@ -318,6 +329,7 @@ const Am_DEF: GuitarChordDefinition = {
         { string: 3, fret: 2 },
         { string: 4, fret: 2 },
     ],
+  mutedStrings: [6],
     usability: 0,
 }
 
@@ -334,6 +346,7 @@ const Asm_DEF: GuitarChordDefinition = {
     { string: 3, fret: 3 },
     { string: 4, fret: 3 },
   ],
+  mutedStrings: [6],
   usability: 0,
 }
 
@@ -350,6 +363,7 @@ const Bm_DEF: GuitarChordDefinition = {
         { string: 3, fret: 3 },
         { string: 4, fret: 3 },
     ],
+    mutedStrings: [6],
     usability: 0,
 }
 
