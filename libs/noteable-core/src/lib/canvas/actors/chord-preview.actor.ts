@@ -85,7 +85,13 @@ export class ChordPreviewActor extends Actor{
             this.drawLine(ctx, FRAME_X + DELTA_X_AMOUNT*delta, FRAME_Y, FRAME_X + DELTA_X_AMOUNT*delta, FRAME_Y + FRAME_HEIGHT);
         }
 
-        const { fingerPositions , bar, barHeight, mutedStrings} = chord.definitions[0];
+        const {
+          fingerPositions ,
+          bar,
+          barHeight,
+          mutedStrings,
+          initialFret,
+        } = chord.definitions[0];
         const CHORD_BASE_Y = FRAME_Y + 0.0685*this.height;
 
         // Bar
@@ -115,8 +121,15 @@ export class ChordPreviewActor extends Actor{
               ctx.textBaseline = 'middle';
               ctx.fillStyle = '#FDFFFC';
 
-              ctx.fillText(String(bar)+'fr', BAR_X + FRAME_WIDTH + (this.width * 0.125), CHORD_BASE_Y);
+              ctx.fillText(String(bar)+'fr', FRAME_X + FRAME_WIDTH + (this.width * 0.125), CHORD_BASE_Y);
             }
+        }else if (initialFret){
+          ctx.textBaseline = 'middle';
+          ctx.textAlign = 'center';
+          ctx.font = `${Math.floor(0.06 * this.width)}px Verdana`;
+          ctx.fillStyle = '#FDFFFC';
+
+          ctx.fillText(String(initialFret)+'fr', FRAME_X + FRAME_WIDTH + (this.width * 0.125), CHORD_BASE_Y);
         }
 
         // Finger Positions
