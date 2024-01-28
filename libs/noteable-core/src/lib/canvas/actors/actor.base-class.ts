@@ -69,4 +69,9 @@ export class Actor{
         ctx.arc(x, y, r, 0, 2 * Math.PI);
         ctx.fill();
     }
+
+  drawStringXCross(ctx: CanvasRenderingContext2D, x: number, y: number, len: number) {
+        this.drawLine(ctx, x - len/2, y - len/2, x + len/2, y +len/2);
+        this.drawLine(ctx, x - len/2, y + len/2, x + len/2, y - len/2);
+    }
 }
