@@ -372,6 +372,70 @@ const Bm: Chord = {
     definitions: [ Bm_DEF ],
 }
 
+// MAJOR 7 CHORDS
+
+const C7_DEF: GuitarChordDefinition = {
+  fingerPositions: [
+    { string: 2, fret: 1},
+    { string: 3, fret: 3},
+    { string: 4, fret: 2},
+    { string: 5, fret: 3},
+  ],
+  mutedStrings: [6],
+  usability: 0,
+}
+
+const C7: Chord = {
+  name: 'C7',
+  definitions: [ C7_DEF ],
+}
+
+const Cs7_DEF: GuitarChordDefinition = {
+  fingerPositions: [
+    { string: 1, fret: 2},
+    { string: 3, fret: 2},
+    { string: 4, fret: 1},
+    { string: 5, fret: 2},
+  ],
+  mutedStrings: [6],
+  usability: 0,
+}
+
+const Cs7: Chord = {
+  name: 'C#7',
+  definitions: [ Cs7_DEF ],
+}
+
+const D7_DEF: GuitarChordDefinition = {
+  fingerPositions: [
+    { string: 1, fret: 2},
+    { string: 2, fret: 1},
+    { string: 3, fret: 2},
+  ],
+  mutedStrings: [6, 5],
+  usability: 0,
+}
+
+const D7: Chord = {
+  name: 'D7',
+  definitions: [D7_DEF],
+}
+
+const Ds7_DEF: GuitarChordDefinition = {
+  fingerPositions: [
+    {string: 1, fret: 3},
+    {string: 2, fret: 2},
+    {string: 4, fret: 1},
+  ],
+  mutedStrings: [6, 5],
+  usability: 0,
+}
+
+const Ds7: Chord = {
+  name: 'D#7',
+  definitions: [Ds7_DEF],
+}
+
 export const CHORDS = [
   C,
   Cs,
