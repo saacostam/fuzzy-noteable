@@ -397,6 +397,7 @@ const Cs7_DEF: GuitarChordDefinition = {
     { string: 4, fret: 1},
     { string: 5, fret: 2},
   ],
+  initialFret: 3,
   mutedStrings: [6],
   usability: 0,
 }
@@ -433,7 +434,122 @@ const Ds7_DEF: GuitarChordDefinition = {
 
 const Ds7: Chord = {
   name: 'D#7',
-  definitions: [Ds7_DEF],
+  definitions: [ Ds7_DEF ],
+}
+
+const E7_DEF: GuitarChordDefinition = {
+  fingerPositions: [
+    { string: 3, fret: 1},
+    { string: 5, fret: 2},
+  ],
+  usability: 0,
+}
+
+const E7: Chord = {
+  name: 'E7',
+  definitions: [ E7_DEF ],
+}
+
+const F7_DEF: GuitarChordDefinition = {
+  bar: 1,
+  fingerPositions: [
+    { string: 3, fret: 2},
+    { string: 5, fret: 3},
+  ],
+  usability: 0,
+}
+
+const F7: Chord = {
+  name: 'F7',
+  definitions: [ F7_DEF ],
+}
+
+const Fs7_DEF: GuitarChordDefinition = {
+  bar: 2,
+  fingerPositions: [
+    { string: 3, fret: 2},
+    { string: 5, fret: 3},
+  ],
+  usability: 0,
+}
+
+const Fs7: Chord = {
+  name: 'F#7',
+  definitions: [ Fs7_DEF ],
+}
+
+const G7_DEF: GuitarChordDefinition = {
+  fingerPositions: [
+    { string: 1, fret: 1},
+    { string: 5, fret: 2},
+    { string: 6, fret: 3},
+  ],
+  usability: 0,
+}
+
+const G7: Chord = {
+  name: 'G7',
+  definitions: [ G7_DEF ],
+}
+
+const Gs7_DEF: GuitarChordDefinition = {
+  bar: 4,
+  fingerPositions: [
+    { string: 3, fret: 2},
+    { string: 5, fret: 3},
+  ],
+  usability: 0,
+}
+
+const Gs7: Chord = {
+  name: 'G#7',
+  definitions: [ Gs7_DEF ],
+}
+
+const A7_DEF: GuitarChordDefinition = {
+  fingerPositions: [
+    { string: 2, fret: 2},
+    { string: 4, fret: 2},
+  ],
+  mutedStrings: [6],
+  usability: 0,
+}
+
+const A7: Chord = {
+  name: 'A7',
+  definitions: [ A7_DEF ],
+}
+
+const As7_DEF: GuitarChordDefinition = {
+  bar: 1,
+  barHeight: 5,
+  fingerPositions: [
+    { string: 2, fret: 3},
+    { string: 4, fret: 3},
+  ],
+  mutedStrings: [6],
+  usability: 0,
+}
+
+const As7: Chord = {
+  name: 'A#7',
+  definitions: [ As7_DEF ],
+}
+
+const B7_DEF: GuitarChordDefinition = {
+  fingerPositions: [
+    { string: 1, fret: 2},
+    { string: 3, fret: 2},
+    { string: 4, fret: 1},
+    { string: 5, fret: 2},
+  ],
+  mutedStrings: [6],
+  usability: 0,
+}
+
+const B7: Chord = {
+  name: 'B7',
+  definitions: [ B7_DEF ],
 }
 
 export const CHORDS = [
@@ -462,4 +578,17 @@ export const CHORDS = [
   Am,
   Asm,
   Bm,
+
+  C7,
+  Cs7,
+  D7,
+  Ds7,
+  E7,
+  F7,
+  Fs7,
+  G7,
+  Gs7,
+  A7,
+  As7,
+  B7,
 ]
