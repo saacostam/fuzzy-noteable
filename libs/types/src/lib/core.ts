@@ -98,8 +98,8 @@ export type KeyNote = {
   note: Note;
 }
 
-export type ChordSuffix = '' | 'm' | '7';
-export const AllChordSuffixes: ChordSuffix[] = ['', 'm', '7'] as ChordSuffix[];
+export type ChordSuffix = '' | 'm' | '7' | 'm7';
+export const AllChordSuffixes: ChordSuffix[] = ['', 'm', '7', 'm7'] as ChordSuffix[];
 
 export type ChordName = `${Note}${ChordSuffix}`;
 
