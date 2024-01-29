@@ -1,4 +1,4 @@
-import {Chord, DataError, SortedNotes, SyncMusicUnit, Tablature, Transposition} from "@noteable/types";
+import {Chord, DataError, SortedNotes, SyncMusicUnit, Tablature, Transposition, SILENCE_CHORD_NAME} from "@noteable/types";
 import {CHORDS} from "@noteable/realistic-mock-data";
 import {v4 as uuid} from 'uuid';
 
@@ -44,7 +44,10 @@ export class DataHandler{
             currentTime = mUnit.syncPnt ? new Date(mUnit.syncPnt) : currentTime;
 
             if (mUnit.type === 'ch'){
-              const chord = CHORDS.find(CH => CH.name === mUnit.self);
+              const chord =
+                mUnit.self.includes(SILENCE_CHORD_NAME)
+                  ? CHORDS.find(CH => CH.name.includes(SILENCE_CHORD_NAME))
+                  : CHORDS.find(CH => CH.name === mUnit.self);
 
               if (!chord) throw this.undefinedChordError(mUnit.self);
 

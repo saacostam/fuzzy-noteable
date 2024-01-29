@@ -1,4 +1,4 @@
-import {ChordSuffix, DataError, Note} from "@noteable/types";
+import {ChordSuffix, DataError, Note, SILENCE_CHORD_NAME} from "@noteable/types";
 
 type ParseChordResponse = {
   note: Note,
@@ -6,6 +6,11 @@ type ParseChordResponse = {
 }
 
 export function parseChord(chord: string) : ParseChordResponse{
+  if (chord.includes(SILENCE_CHORD_NAME)) return {
+    note: 'SILENCE',
+    suffix: '',
+  }
+
   let state: 'init' | 'second'= 'init' as const;
   let j = 0;
 

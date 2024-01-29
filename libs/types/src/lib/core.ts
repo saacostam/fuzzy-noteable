@@ -4,8 +4,9 @@ export type Enumerate<N extends number, Acc extends number[] = []> = Acc['length
 
 export type IntRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>
 
-export type Note = 'C'| 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' | 'A#' | 'B';
-export const SortedNotes: Note[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] as Note[];
+export type Note = 'C'| 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' | 'A#' | 'B' | 'SILENCE';
+export const SILENCE_CHORD_NAME: Note = 'SILENCE';
+export const SortedNotes: Note[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', SILENCE_CHORD_NAME] as Note[];
 
 export type ScaleType = 'major' | 'minor';
 export const SortedScaleTypes: ScaleType[] = ['major', 'minor'] as ScaleType[];
