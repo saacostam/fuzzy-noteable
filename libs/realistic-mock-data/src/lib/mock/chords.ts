@@ -1,5 +1,17 @@
 import {Chord, GuitarChordDefinition} from "@noteable/types";
 
+// SILENT CHORD
+
+const SILENCE_DEF: GuitarChordDefinition = {
+  fingerPositions: [],
+  usability: 0,
+}
+
+const SILENCE: Chord = {
+  name: 'SILENCE',
+  definitions: [ SILENCE_DEF ],
+}
+
 // MAJOR CHORDS
 
 const C_DEF: GuitarChordDefinition = {
@@ -553,6 +565,8 @@ const B7: Chord = {
 }
 
 export const CHORDS = [
+  SILENCE,
+
   C,
   Cs,
   D,
