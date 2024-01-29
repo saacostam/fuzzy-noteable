@@ -14,8 +14,8 @@ export const SortedScaleTypes: ScaleType[] = ['major', 'minor'] as ScaleType[];
 export type Decade = '1940' | '1950' | '1960' | '1970' | '1980' | '1990' | '2000' | '2010' | '2020';
 export const SortedDecades: Decade[] = ['1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'] as Decade[];
 
-export type Genre = 'Pop' | 'Rock' | 'Grunge' | 'Folk Rock' | 'R&B' | 'Folk Pop';
-export const AllGenres: Genre[] = ['Pop', 'Rock', 'Grunge',  'Folk Rock', 'R&B', 'Folk Pop'] as Genre[];
+export type Genre = 'Pop' | 'Rock' | 'Grunge' | 'Folk Rock' | 'R&B' | 'Folk Pop' | 'Country';
+export const AllGenres: Genre[] = ['Pop', 'Rock', 'Grunge',  'Folk Rock', 'R&B', 'Folk Pop', 'Country'] as Genre[];
 
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 export const AllDifficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced'] as Difficulty[];

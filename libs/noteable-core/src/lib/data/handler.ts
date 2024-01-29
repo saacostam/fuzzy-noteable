@@ -129,13 +129,18 @@ export class DataHandler{
   }
 
   private transpose(up?: boolean){
-    this.tablature.transposition = (this.tablature.transposition + ( up ? 1 : -1) + SortedNotes.length) % SortedNotes.length as Transposition;
+    const notesToTranspose = SortedNotes.slice(0, -1);
+    console.log(notesToTranspose);
+    this.tablature.transposition = (this.tablature.transposition + ( up ? 1 : -1) + notesToTranspose.length) % notesToTranspose.length as Transposition;
     this.schedule.forEach(
       SMU => {
         if (SMU.type === 'ch'){
           const { note, suffix } = parseChord(SMU.self.name);
-          const newNoteIndex = (SortedNotes.findIndex(val => val === note) + ( !up ? 1 : -1) + SortedNotes.length) % SortedNotes.length;
-          const newNote = SortedNotes[newNoteIndex];
+
+          if (note === 'SILENCE') return;
+
+          const newNoteIndex = (notesToTranspose.findIndex(val => val === note) + ( !up ? 1 : -1) + notesToTranspose.length) % notesToTranspose.length;
+          const newNote = notesToTranspose[newNoteIndex];
 
           const newChord = CHORDS.find(CH => CH.name === `${newNote}${suffix}`);
 
