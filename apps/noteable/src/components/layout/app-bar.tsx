@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem} from '@mui/material';
+import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, MenuItem} from '@mui/material';
 import { Menu as MenuIcon, MusicNote as MusicNoteIcon } from '@mui/icons-material';
-
-const pages = ['Discover', 'Top 100', 'Blog'];
+import {Link} from "react-router-dom";
 
 export const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -67,11 +66,12 @@ export const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Link to={'admin/tabs'} className="text-primary">All Tabs</Link>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Link to={'admin/artists'} className="text-primary">All Artists</Link>
+              </MenuItem>
             </Menu>
           </Box>
           <MusicNoteIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -94,15 +94,8 @@ export const ResponsiveAppBar = () => {
             NOTEABLE
           </Typography>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, ml: 'auto' }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'inherit', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Link to={'admin/tabs'} className="text-white mx-2 font-bold">All Tabs</Link>
+            <Link to={'admin/artists'} className="text-white mx-2 font-bold">All Artists</Link>
           </Box>
         </Toolbar>
       </Container>
