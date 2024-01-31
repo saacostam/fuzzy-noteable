@@ -1,12 +1,43 @@
 import React from "react";
-import {Button, Divider, Stack} from "@mui/material";
+import {Link} from "react-router-dom";
+import {Button, Divider, List, ListItemButton, ListItemIcon, ListItemText, Stack} from "@mui/material";
+import {LibraryMusic} from "@mui/icons-material";
+
 import {NoteableViewer} from "@noteable/react-components";
 
 import {useAdminSongById} from "./hook";
 import {CreateTabMetaDataSection, CreateMusicUnitsSection} from "./components";
 
+type TabListItemProps = {
+  id: string;
+  songName: string;
+}
+
+export function TabListItem({id, songName}: TabListItemProps){
+  return (
+    <Link
+      to={`/tab/${id}`}
+    >
+      <ListItemButton>
+        <ListItemIcon>
+          <LibraryMusic
+            fontSize={'large'}
+            color={"secondary"}
+          />
+        </ListItemIcon>
+        <ListItemText
+          primary={songName}
+          secondary={id}
+        />
+      </ListItemButton>
+    </Link>
+  )
+}
+
 export function AdminSongById(){
   const {
+    songName,
+    songTabs,
     getTabsBySongIsLoading,
     doCreateTab,
     createTabIsLoading,
@@ -80,6 +111,18 @@ export function AdminSongById(){
               </Button>
             </Stack>
             <Divider variant={"middle"}/>
+            <List
+              dense={true}
+            >
+              {
+                songTabs.map(songTab => (
+                  <TabListItem
+                    id={songTab.id}
+                    songName={songName}
+                  />
+                ))
+              }
+            </List>
           </>
         )
       }
