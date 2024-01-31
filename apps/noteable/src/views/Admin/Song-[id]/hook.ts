@@ -147,6 +147,7 @@ export function useAdminSongById(){
 
   return useMemo(() => {
     return {
+      songName: songTabs?.name || 'NO_NAME',
       songTabs: songTabs?.tablatures || [],
       getTabsBySongIsLoading: getTabsBySongIsLoading,
       getTabsBySongIsError: getTabsBySongIsError,

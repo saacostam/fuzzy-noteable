@@ -1,6 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable, NotFoundException} from '@nestjs/common';
+
 import {PrismaService} from "@noteable/be-common";
-import {LeanSong} from "@noteable/types";
+import {GetSongTabsByIdDto} from "@noteable/interfaces";
+import {Decade, Genre, Key, LeanSong} from "@noteable/types";
 
 @Injectable()
 export class SongService {
@@ -27,8 +29,8 @@ export class SongService {
     })
   }
 
-  async getSongTabsById(id: string){
-    return this.prismaService.song.findUnique({
+  async getSongTabsById(id: string): Promise<GetSongTabsByIdDto> {
+    const dbSong = await this.prismaService.song.findUnique({
       where: {
         id: id,
       },
@@ -36,5 +38,14 @@ export class SongService {
         ...this.includeSongWithMinimalTabs,
       }
     })
+
+    if (!dbSong) throw new NotFoundException(`Song with ${id} not found`);
+
+    return {
+      ...dbSong,
+      key: dbSong.key as Key,
+      decade: dbSong.decade as Decade,
+      genre: dbSong.genre as Genre,
+    }
   }
 }
