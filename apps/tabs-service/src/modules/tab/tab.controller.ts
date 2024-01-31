@@ -13,6 +13,11 @@ export class TabController {
     return this.tabService.getTabById(tabId);
   }
 
+  @Get('/')
+  getAllTabs(){
+    return this.tabService.getAllTabs();
+  }
+
   @Post('/')
   createTab(@Body() createTabDto: CreateTabDto){
     return this.tabService.createTab(createTabDto.tab, createTabDto.songID);

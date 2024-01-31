@@ -3,6 +3,7 @@ import {PrismaService} from "@noteable/be-common";
 import {LeanTablature} from "@noteable/types";
 import {ADMIN_USER_DB_ID} from "../../constants-paremeters";
 import {Prisma} from "@prisma/client";
+import {GetAllTabsDto} from "@noteable/interfaces";
 
 @Injectable()
 export class TabService {
@@ -26,6 +27,22 @@ export class TabService {
           select: {
             name: true,
             id: true,
+          }
+        }
+      }
+    }
+  }
+
+  private readonly selectMinimalTab = {
+    id: true,
+    song: {
+      select: {
+        id: true,
+        name: true,
+        artists: {
+          select: {
+            id: true,
+            name: true,
           }
         }
       }
@@ -64,5 +81,16 @@ export class TabService {
       }
     })
   }
-}
 
+  async getAllTabs(): Promise<GetAllTabsDto>{
+    const tablatures = await this.prismaService.tablature.findMany({
+      select: {
+        ...this.selectMinimalTab,
+      }
+    });
+
+    return {
+      tablatures: tablatures,
+    }
+  }
+}

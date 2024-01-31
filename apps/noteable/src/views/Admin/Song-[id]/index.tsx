@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Button, Divider, List, ListItemButton, ListItemIcon, ListItemText, Stack} from "@mui/material";
+import {Button, Divider, List, ListItemButton, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
 import {LibraryMusic} from "@mui/icons-material";
 
 import {NoteableViewer} from "@noteable/react-components";
@@ -94,7 +94,7 @@ export function AdminSongById(){
                 <NoteableViewer tablature={tablature} mode={'interactive'}/>
               )
             }
-            <Stack direction={'row-reverse'} spacing={1} sx={{mt:2}}>
+            <Stack direction={'row-reverse'} spacing={1} sx={{mt:2, mb: 2}}>
               <Button
                 variant={"contained"}
                 onClick={doCreateTab}
@@ -111,6 +111,7 @@ export function AdminSongById(){
               </Button>
             </Stack>
             <Divider variant={"middle"}/>
+            <Typography variant={'h5'} className={'text-center'} sx={{mt:2}}>Uploaded Tabs</Typography>
             <List
               dense={true}
             >
@@ -118,6 +119,7 @@ export function AdminSongById(){
                 songTabs.map(songTab => (
                   <TabListItem
                     id={songTab.id}
+                    key={songTab.id}
                     songName={songName}
                   />
                 ))
