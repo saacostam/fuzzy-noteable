@@ -737,7 +737,7 @@ const Bm7: Chord = {
   definitions: [ Bm7_DEF ],
 }
 
-export const CHORDS = [
+export const CHORDS_SILENCE_MAJOR_MINOR_MAJOR7TH_MINOR7TH = [
   SILENCE,
 
   C,

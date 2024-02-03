@@ -59,14 +59,24 @@ export class ChordPreviewActor extends Actor{
     }
 
     private drawChord(ctx: CanvasRenderingContext2D, chord: Chord){
+        const {
+            fingerPositions ,
+            bar,
+            barHeight,
+            mutedStrings,
+            initialFret,
+        } = chord.definitions[0];
+
+        const hasMutedStrings = !!((mutedStrings?.length || 0) > 0);
+
         // Frame
         const FRAME_WIDTH = this.width * 0.45;
-        const FRAME_HEIGHT = this.height * 0.55;
+        const FRAME_HEIGHT = this.height * (hasMutedStrings ? 0.52: 0.56);
         const FRAME_X = this.x + (this.width - FRAME_WIDTH)/2;
-        const FRAME_Y = this.y + this.height * 0.3;
+        const FRAME_Y = this.y + (this.height * (hasMutedStrings ? 0.33 : 0.29));
 
-        const DELTA_Y_AMOUNT = (0.1377 * this.height);
-        const DELTA_X_AMOUNT = (0.09 * this.width);
+        const DELTA_Y_AMOUNT = (FRAME_HEIGHT/4);
+        const DELTA_X_AMOUNT = (FRAME_WIDTH/5);
 
         // Frame: Horizontal Lines
         ctx.strokeStyle = '#FDFFFC';
@@ -76,7 +86,7 @@ export class ChordPreviewActor extends Actor{
 
         ctx.lineWidth = 0.004166666667 * this.height;
         for (let delta = 1; delta <= 4; delta++){
-            this.drawLine(ctx, FRAME_X, FRAME_Y + DELTA_Y_AMOUNT*delta, FRAME_X + FRAME_WIDTH, FRAME_Y + DELTA_Y_AMOUNT*delta);
+            this.drawLine(ctx, FRAME_X, FRAME_Y + (DELTA_Y_AMOUNT*delta), FRAME_X + FRAME_WIDTH, FRAME_Y + (DELTA_Y_AMOUNT*delta));
         }
 
         // Frame: Vertical Lines
@@ -85,13 +95,6 @@ export class ChordPreviewActor extends Actor{
             this.drawLine(ctx, FRAME_X + DELTA_X_AMOUNT*delta, FRAME_Y, FRAME_X + DELTA_X_AMOUNT*delta, FRAME_Y + FRAME_HEIGHT);
         }
 
-        const {
-          fingerPositions ,
-          bar,
-          barHeight,
-          mutedStrings,
-          initialFret,
-        } = chord.definitions[0];
         const CHORD_BASE_Y = FRAME_Y + 0.0685*this.height;
 
         // Bar
@@ -153,7 +156,7 @@ export class ChordPreviewActor extends Actor{
               ctx.lineWidth = this.width*0.008;
 
               const X = FRAME_X + FRAME_WIDTH - ((mutedString-1)*DELTA_X_AMOUNT);
-              const Y = FRAME_Y - (this.height * 0.05);
+              const Y = FRAME_Y - (this.height * 0.06);
               const LEN = this.width*0.03;
 
               this.drawStringXCross(ctx, X, Y, LEN);
@@ -165,16 +168,22 @@ export class ChordPreviewActor extends Actor{
         if (this.duration){
             const PROGRESS_PERCENTAGE = Math.min(this.deltaTime/this.duration + 0.05, 1);
 
-            const PROGRESS_X = this.x + 0.045 * this.width;
-            const PROGRESS_Y = this.y + 0.9333333333 * this.height;
-            const PROGRESS_WIDTH = 0.9166666667 * this.width;
+            const PROGRESS_X = this.x + (0.5 * this.width);
+            const PROGRESS_Y = this.y + (0.925 * this.height);
+            const PROGRESS_WIDTH = 0.84 * this.width;
 
             ctx.lineWidth = 0.034 * this.height;
             ctx.strokeStyle = '#FDFFFC';
-            this.drawLine(ctx, PROGRESS_X, PROGRESS_Y, PROGRESS_X + PROGRESS_WIDTH, PROGRESS_Y);
+            this.drawLine(ctx, PROGRESS_X - PROGRESS_WIDTH/2, PROGRESS_Y, PROGRESS_X + PROGRESS_WIDTH/2, PROGRESS_Y);
 
             ctx.strokeStyle = ChordPreviewActor.COLOR.CHECKED;
-            this.drawLine(ctx, PROGRESS_X, PROGRESS_Y, PROGRESS_X + PROGRESS_WIDTH * PROGRESS_PERCENTAGE, PROGRESS_Y);
+            this.drawLine(
+                ctx, 
+                PROGRESS_X - PROGRESS_WIDTH/2, 
+                PROGRESS_Y, 
+                (PROGRESS_X - PROGRESS_WIDTH/2) + (PROGRESS_PERCENTAGE * PROGRESS_WIDTH), 
+                PROGRESS_Y
+            );
         }
     }
 }
