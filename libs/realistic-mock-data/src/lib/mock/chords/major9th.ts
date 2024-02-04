@@ -178,7 +178,7 @@ const B9: Chord = {
     definitions: [B9_DEF],
 }
 
-export const CHORDS_MAJOR9TH_MINOR9TH = [
+export const CHORDS_MAJOR9TH = [
     C9,
     Cs9,
     D9,
