@@ -1,5 +1,4 @@
 import { Chord, GuitarChordDefinition } from '@noteable/types';
-import { freemem } from 'os';
 
 // 7 SUS 4
 
