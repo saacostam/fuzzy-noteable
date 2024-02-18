@@ -1,23 +1,26 @@
-import {useCallback, useEffect, useMemo, useState} from "react";
-import {useParams, useNavigate} from "react-router-dom";
-import {ChordName, Difficulty, MusicUnitChordWithId, Tablature, Transposition} from "@noteable/types";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import {
+  ChordName,
+  Difficulty,
+  MusicUnitChordWithId,
+  Tablature,
+  Transposition,
+} from '@noteable/types';
 
-import {useCreateTab, useGetTabsBySong} from "../../../hooks";
-import {buildLeanTablatureUtil, mockChordTabCreationUtil} from "./utils";
+import { useCreateTab, useGetTabsBySong } from '../../../hooks';
+import { buildLeanTablatureUtil, mockChordTabCreationUtil } from './utils';
 
 const LOCAL_STORAGE_KEY = 'sve-editor';
 
-export function useAdminSongById(){
+export function useAdminSongById() {
   const nagivate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
   if (!id) throw new Error('No Id was found. Please check the current URL!');
 
   const [tablature, setTablature] = useState<Tablature | undefined>(undefined);
 
-  const [
-    musicUnits,
-    setMusicUnits
-  ] = useState<MusicUnitChordWithId[]>([]);
+  const [musicUnits, setMusicUnits] = useState<MusicUnitChordWithId[]>([]);
   const [startPoint, setStartPoint] = useState(0);
   const [bpm, setBpm] = useState(120);
   const [source, setSource] = useState('');
@@ -26,45 +29,34 @@ export function useAdminSongById(){
 
   const handleAddNewMusicUnit = useCallback(() => {
     const len = musicUnits.length;
-    const newId = len > 0 ? musicUnits[len-1].id+1 : 1;
+    const newId = len > 0 ? musicUnits[len - 1].id + 1 : 1;
 
     const newMusicUnit: MusicUnitChordWithId = {
       id: newId,
       dur: 0,
-      type: "ch",
+      type: 'ch',
       self: 'C',
     };
 
-    setMusicUnits([
-      ...musicUnits,
-      newMusicUnit,
-    ])
-  }, [
-    musicUnits,
-    setMusicUnits,
-  ]);
+    setMusicUnits([...musicUnits, newMusicUnit]);
+  }, [musicUnits, setMusicUnits]);
 
-  const handleRemoveMusicUnit = useCallback((id: number) => {
-    setMusicUnits(musicUnits.filter(mu => mu.id !== id));
-  }, [
-    musicUnits,
-    setMusicUnits,
-  ]);
+  const handleRemoveMusicUnit = useCallback(
+    (id: number) => {
+      setMusicUnits(musicUnits.filter((mu) => mu.id !== id));
+    },
+    [musicUnits, setMusicUnits]
+  );
 
   const handleMusicUnitChange = useCallback(
-    (
-      id: number,
-      self: ChordName,
-      dur: number,
-    ) => {
-    const updatedMusicUnits = musicUnits.map(
-      mu => (mu.id === id ? {...mu, self, dur} : mu)
-    );
-    setMusicUnits(updatedMusicUnits);
-  }, [
-    musicUnits,
-    setMusicUnits,
-  ]);
+    (id: number, self: ChordName, dur: number) => {
+      const updatedMusicUnits = musicUnits.map((mu) =>
+        mu.id === id ? { ...mu, self, dur } : mu
+      );
+      setMusicUnits(updatedMusicUnits);
+    },
+    [musicUnits, setMusicUnits]
+  );
 
   const handleTestCreateTab = useCallback(() => {
     const leanTab = buildLeanTablatureUtil({
@@ -77,7 +69,15 @@ export function useAdminSongById(){
     });
     const mockTab = mockChordTabCreationUtil(leanTab);
     setTablature(mockTab);
-  }, [bpm, source, difficulty, startPoint, transposition, musicUnits, setTablature]);
+  }, [
+    bpm,
+    source,
+    difficulty,
+    startPoint,
+    transposition,
+    musicUnits,
+    setTablature,
+  ]);
 
   const {
     songTabs,
@@ -105,7 +105,7 @@ export function useAdminSongById(){
     doCreateTab({
       tab: leanTab,
       songID: id,
-    })
+    });
   }, [
     bpm,
     source,
@@ -118,32 +118,24 @@ export function useAdminSongById(){
   ]);
 
   useEffect(() => {
-    if (createTabIsSuccess && createdTab && createdTab.id){
+    if (createTabIsSuccess && createdTab && createdTab.id) {
       nagivate(`/tab/${createdTab.id}`);
     }
-  }, [
-    createTabIsSuccess,
-    createdTab,
-    nagivate,
-  ])
+  }, [createTabIsSuccess, createdTab, nagivate]);
 
   const handleSaveInLocalStorage = useCallback(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(musicUnits));
-  }, [
-    musicUnits,
-  ]);
+  }, [musicUnits]);
 
   const handleLoadFromLocalStorage = useCallback(() => {
     let payload;
     try {
-      payload = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || "[]");
-    } catch (_){
+      payload = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+    } catch (_) {
       payload = [];
     }
     setMusicUnits(payload);
-  }, [
-    setMusicUnits,
-  ])
+  }, [setMusicUnits]);
 
   return useMemo(() => {
     return {
@@ -172,7 +164,7 @@ export function useAdminSongById(){
       handleTestCreateTab: handleTestCreateTab,
       handleSaveInLocalStorage: handleSaveInLocalStorage,
       handleLoadFromLocalStorage: handleLoadFromLocalStorage,
-    }
+    };
   }, [
     songTabs,
     getTabsBySongIsLoading,
@@ -198,5 +190,5 @@ export function useAdminSongById(){
     handleTestCreateTab,
     handleSaveInLocalStorage,
     handleLoadFromLocalStorage,
-  ])
+  ]);
 }

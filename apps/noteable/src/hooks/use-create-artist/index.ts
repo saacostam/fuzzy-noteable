@@ -1,12 +1,12 @@
-import {useMemo} from "react";
-import {useMutation} from "react-query";
-import {createArtist} from "../../mutation";
+import { useMemo } from 'react';
+import { useMutation } from 'react-query';
+import { createArtist } from '../../mutation';
 
-export function useCreateArtist(){
-  const {data, isSuccess, isLoading, isError,error, mutate} = useMutation({
+export function useCreateArtist() {
+  const { data, isSuccess, isLoading, isError, error, mutate } = useMutation({
     mutationFn: createArtist,
     mutationKey: ['create-artist'],
-  })
+  });
 
   return useMemo(() => {
     return {
@@ -16,6 +16,6 @@ export function useCreateArtist(){
       isError: isError,
       error: error,
       doCreateArtist: mutate,
-    }
+    };
   }, [data, isLoading, isError, isSuccess, error, mutate]);
 }

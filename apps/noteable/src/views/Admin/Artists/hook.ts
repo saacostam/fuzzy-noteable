@@ -1,8 +1,8 @@
-import {useCallback, useMemo} from "react";
-import {useCreateArtist, useGetArtists} from "../../../hooks";
-import {useForm} from "react-hook-form";
+import { useCallback, useMemo } from 'react';
+import { useCreateArtist, useGetArtists } from '../../../hooks';
+import { useForm } from 'react-hook-form';
 
-export function useAdminArtists(){
+export function useAdminArtists() {
   const {
     doCreateArtist,
     createdArtist,
@@ -30,8 +30,8 @@ export function useAdminArtists(){
     const { name } = getValuesCreateArtistForm();
     doCreateArtist({
       artist: {
-        name: name
-      }
+        name: name,
+      },
     });
     resetFieldCreateArtistForm('name');
   }, [getValuesCreateArtistForm, doCreateArtist, resetFieldCreateArtistForm]);
@@ -50,7 +50,7 @@ export function useAdminArtists(){
       getArtistsIsLoading: getArtistsIsLoading,
       getArtistsError: getArtistsError,
       registerCreateArtistForm: registerCreateArtistForm,
-    }
+    };
   }, [
     handleCreateArtist,
     createdArtist,

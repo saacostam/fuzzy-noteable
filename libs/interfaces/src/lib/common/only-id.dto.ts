@@ -1,3 +1,3 @@
-export class OnlyIdDto{
+export class OnlyIdDto {
   id: string;
 }

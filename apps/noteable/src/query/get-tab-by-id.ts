@@ -1,19 +1,19 @@
-import {Tablature} from "@noteable/types";
-import {fetcher} from "../fetcher";
+import { Tablature } from '@noteable/types';
+import { fetcher } from '../fetcher';
 
 export async function getTabById(id: string) {
   let data;
   try {
     data = await fetcher.get(`/tab/${id}`);
   } catch (error) {
-    throw new Error('Something went wrong')
+    throw new Error('Something went wrong');
   }
 
-  if(!data) {
+  if (!data) {
     throw new Error('No tab found with the given id!');
   }
 
-  if(!data.ok){
+  if (!data.ok) {
     throw new Error('The query was unsuccessful!');
   }
 

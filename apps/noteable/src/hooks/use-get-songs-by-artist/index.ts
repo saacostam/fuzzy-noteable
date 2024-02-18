@@ -1,10 +1,13 @@
-import {useMemo} from "react";
-import {useQuery} from "react-query";
+import { useMemo } from 'react';
+import { useQuery } from 'react-query';
 
-import {getSongsByArtist} from "../../query";
+import { getSongsByArtist } from '../../query';
 
-export function useGetSongsByArtist(id: string){
-  const { data , isLoading, isSuccess, isError, error} = useQuery(['artist-songs', id], () => getSongsByArtist(id));
+export function useGetSongsByArtist(id: string) {
+  const { data, isLoading, isSuccess, isError, error } = useQuery(
+    ['artist-songs', id],
+    () => getSongsByArtist(id)
+  );
 
   return useMemo(() => {
     return {
@@ -13,12 +16,6 @@ export function useGetSongsByArtist(id: string){
       isSuccess: isSuccess,
       isError: isError,
       error: error,
-    }
-  }, [
-    data,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  ])
+    };
+  }, [data, isLoading, isSuccess, isError, error]);
 }

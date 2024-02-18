@@ -1,6 +1,6 @@
-import {LeanTablature} from "@noteable/types";
+import { LeanTablature } from '@noteable/types';
 
-export class CreateTabDto{
+export class CreateTabDto {
   tab: LeanTablature;
   songID: string;
 }

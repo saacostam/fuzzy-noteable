@@ -3,6 +3,7 @@
 A music learning platform that gamifies music learning, by using a similar UI to Guitar Hero!
 
 # Nx
+
 ## Development server
 
 Run `nx serve user-service` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.

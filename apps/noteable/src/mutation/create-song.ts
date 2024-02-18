@@ -1,5 +1,5 @@
-import {CreateSongDto} from "@noteable/interfaces";
-import {fetcher} from "../fetcher";
+import { CreateSongDto } from '@noteable/interfaces';
+import { fetcher } from '../fetcher';
 
 export async function createSong(createSongDto: CreateSongDto) {
   const ERROR_MESSAGE = 'Was unable to create a new song!';
@@ -11,9 +11,9 @@ export async function createSong(createSongDto: CreateSongDto) {
     throw new Error(ERROR_MESSAGE);
   }
 
-  if(!data || !data.ok){
+  if (!data || !data.ok) {
     throw new Error(ERROR_MESSAGE);
   }
 
-  return (await data.json());
+  return await data.json();
 }

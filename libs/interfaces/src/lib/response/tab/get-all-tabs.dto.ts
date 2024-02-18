@@ -1,19 +1,19 @@
-class SongDto{
+class SongDto {
   id: string;
   name: string;
   artists: Array<ArtistDto>;
 }
 
-class ArtistDto{
+class ArtistDto {
   id: string;
   name: string;
 }
 
-class TabDto{
+class TabDto {
   id: string;
   song: SongDto;
 }
 
-export class GetAllTabsDto{
+export class GetAllTabsDto {
   tablatures: Array<TabDto>;
 }

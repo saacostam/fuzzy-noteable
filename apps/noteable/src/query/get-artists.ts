@@ -1,5 +1,5 @@
-import {Artist} from "@noteable/types";
-import {fetcher} from "../fetcher";
+import { Artist } from '@noteable/types';
+import { fetcher } from '../fetcher';
 
 export async function getArtists() {
   const ERROR_MESSAGE = 'Something went wrong! Could not fetch all artists!';
@@ -8,10 +8,10 @@ export async function getArtists() {
   try {
     data = await fetcher.get(`/artist`);
   } catch (error) {
-    throw new Error(ERROR_MESSAGE)
+    throw new Error(ERROR_MESSAGE);
   }
 
-  if(!data || !data.ok){
+  if (!data || !data.ok) {
     throw new Error(ERROR_MESSAGE);
   }
 

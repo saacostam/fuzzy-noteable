@@ -1,11 +1,17 @@
-import {useCallback, useMemo} from "react";
-import {useForm} from "react-hook-form";
-import {useParams} from "react-router-dom";
-import {AllGenres, Key, SortedDecades, SortedNotes, SortedScaleTypes} from "@noteable/types";
+import { useCallback, useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import {
+  AllGenres,
+  Key,
+  SortedDecades,
+  SortedNotes,
+  SortedScaleTypes,
+} from '@noteable/types';
 
-import {useGetSongsByArtist, useCreateSong} from "../../../hooks";
+import { useGetSongsByArtist, useCreateSong } from '../../../hooks';
 
-export function useAdminArtistById(){
+export function useAdminArtistById() {
   const { id } = useParams();
   if (!id) throw new Error('No Id was found. Please check the current URL!');
 
@@ -28,16 +34,10 @@ export function useAdminArtistById(){
   } = useForm();
 
   const handleCreateSong = useCallback(() => {
-    const {
-      name,
-      bpm,
-      keyNote,
-      keyScaleType,
-      decade,
-      genre,
-    } = getValuesCreateSongForm();
+    const { name, bpm, keyNote, keyScaleType, decade, genre } =
+      getValuesCreateSongForm();
 
-    const key = (`${keyNote} ${keyScaleType}` as Key);
+    const key = `${keyNote} ${keyScaleType}` as Key;
 
     doCreateSong({
       song: {
@@ -47,20 +47,13 @@ export function useAdminArtistById(){
         decade: decade,
         genre: genre,
       },
-      artistsIDs: [
-        id,
-      ]
+      artistsIDs: [id],
     });
 
     ['name', 'bpm', 'keyNote', 'keyScaleType', 'decade', 'genre'].forEach(
-      inputFieldName => (resetFieldCreateSongForm(inputFieldName))
-    )
-  }, [
-    getValuesCreateSongForm,
-    resetFieldCreateSongForm,
-    doCreateSong,
-    id,
-  ]);
+      (inputFieldName) => resetFieldCreateSongForm(inputFieldName)
+    );
+  }, [getValuesCreateSongForm, resetFieldCreateSongForm, doCreateSong, id]);
 
   return useMemo(() => {
     return {
@@ -76,7 +69,7 @@ export function useAdminArtistById(){
       doCreateSong: handleCreateSong,
       createdSong: createdSong,
       createSongIsLoading: createSongIsLoading,
-    }
+    };
   }, [
     artistsSongs,
     getSongsByArtistsIsLoading,
