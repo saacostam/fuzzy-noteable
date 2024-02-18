@@ -1,10 +1,24 @@
 import * as React from 'react';
-import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, MenuItem} from '@mui/material';
-import { Menu as MenuIcon, MusicNote as MusicNoteIcon } from '@mui/icons-material';
-import {Link} from "react-router-dom";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  MenuItem,
+} from '@mui/material';
+import {
+  Menu as MenuIcon,
+  MusicNote as MusicNoteIcon,
+} from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 export const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -67,10 +81,14 @@ export const ResponsiveAppBar = () => {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link to={'admin/tabs'} className="text-primary">All Tabs</Link>
+                <Link to={'admin/tabs'} className="text-primary">
+                  All Tabs
+                </Link>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link to={'admin/artists'} className="text-primary">All Artists</Link>
+                <Link to={'admin/artists'} className="text-primary">
+                  All Artists
+                </Link>
               </MenuItem>
             </Menu>
           </Box>
@@ -94,11 +112,15 @@ export const ResponsiveAppBar = () => {
             NOTEABLE
           </Typography>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, ml: 'auto' }}>
-            <Link to={'admin/tabs'} className="text-white mx-2 font-bold">All Tabs</Link>
-            <Link to={'admin/artists'} className="text-white mx-2 font-bold">All Artists</Link>
+            <Link to={'admin/tabs'} className="text-white mx-2 font-bold">
+              All Tabs
+            </Link>
+            <Link to={'admin/artists'} className="text-white mx-2 font-bold">
+              All Artists
+            </Link>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
-}
+};

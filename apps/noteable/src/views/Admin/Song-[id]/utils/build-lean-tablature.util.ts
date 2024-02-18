@@ -1,4 +1,9 @@
-import {Difficulty, LeanTablature, MusicUnitChordWithId, Transposition} from "@noteable/types";
+import {
+  Difficulty,
+  LeanTablature,
+  MusicUnitChordWithId,
+  Transposition,
+} from '@noteable/types';
 
 type buildLeanTablatureInput = {
   musicUnitsChordWithId: MusicUnitChordWithId[];
@@ -7,19 +12,19 @@ type buildLeanTablatureInput = {
   transposition: Transposition;
   startPoint: number;
   bpm: number;
-}
+};
 
 export function buildLeanTablatureUtil({
-    bpm,
-    source,
-    difficulty,
-    startPoint,
-    transposition,
-    musicUnitsChordWithId,
-  }: buildLeanTablatureInput): LeanTablature{
-  if (musicUnitsChordWithId.length > 0){
+  bpm,
+  source,
+  difficulty,
+  startPoint,
+  transposition,
+  musicUnitsChordWithId,
+}: buildLeanTablatureInput): LeanTablature {
+  if (musicUnitsChordWithId.length > 0) {
     musicUnitsChordWithId[0].bpm = bpm;
-    musicUnitsChordWithId[0].syncPnt = (new Date(startPoint)).toISOString();
+    musicUnitsChordWithId[0].syncPnt = new Date(startPoint).toISOString();
     musicUnitsChordWithId[0].timeSig = {
       top: 4,
       bottom: 4,
@@ -32,8 +37,6 @@ export function buildLeanTablatureUtil({
     transposition: transposition,
     source: source,
     type: 'guitar',
-    musicUnits: [
-      ...musicUnitsChordWithId,
-    ]
-  }
+    musicUnits: [...musicUnitsChordWithId],
+  };
 }

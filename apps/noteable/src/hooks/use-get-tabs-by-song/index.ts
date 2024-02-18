@@ -1,10 +1,13 @@
-import {useMemo} from "react";
-import {useQuery} from "react-query";
+import { useMemo } from 'react';
+import { useQuery } from 'react-query';
 
-import {getTabsBySong} from "../../query";
+import { getTabsBySong } from '../../query';
 
-export function useGetTabsBySong(id: string){
-  const { data , isLoading, isSuccess, isError, error} = useQuery(['song-tabs', id], () => getTabsBySong(id));
+export function useGetTabsBySong(id: string) {
+  const { data, isLoading, isSuccess, isError, error } = useQuery(
+    ['song-tabs', id],
+    () => getTabsBySong(id)
+  );
 
   return useMemo(() => {
     return {
@@ -13,12 +16,6 @@ export function useGetTabsBySong(id: string){
       isSuccess: isSuccess,
       isError: isError,
       error: error,
-    }
-  }, [
-    data,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  ])
+    };
+  }, [data, isLoading, isSuccess, isError, error]);
 }

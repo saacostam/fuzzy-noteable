@@ -1,5 +1,5 @@
-import {LeanArtist} from "@noteable/types";
+import { LeanArtist } from '@noteable/types';
 
-export class CreateArtistDto{
+export class CreateArtistDto {
   artist: LeanArtist;
 }

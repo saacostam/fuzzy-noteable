@@ -1,5 +1,5 @@
-import {GetAllTabsDto} from "@noteable/interfaces";
-import {fetcher} from "../fetcher";
+import { GetAllTabsDto } from '@noteable/interfaces';
+import { fetcher } from '../fetcher';
 
 export async function getAllTabs() {
   const ERROR_MESSAGE = 'Something went wrong! Could not fetch all tabs!';
@@ -8,10 +8,10 @@ export async function getAllTabs() {
   try {
     data = await fetcher.get(`/tab`);
   } catch (error) {
-    throw new Error(ERROR_MESSAGE)
+    throw new Error(ERROR_MESSAGE);
   }
 
-  if(!data || !data.ok){
+  if (!data || !data.ok) {
     throw new Error(ERROR_MESSAGE);
   }
 

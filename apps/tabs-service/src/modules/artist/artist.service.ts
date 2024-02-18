@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import {PrismaService} from "@noteable/be-common";
-import {LeanArtist} from "@noteable/types";
+import { PrismaService } from '@noteable/be-common';
+import { LeanArtist } from '@noteable/types';
 
 @Injectable()
 export class ArtistService {
@@ -11,35 +11,35 @@ export class ArtistService {
       select: {
         id: true,
         name: true,
-      }
-    }
-  }
+      },
+    },
+  };
 
-  async getArtistSongsById(id: string){
+  async getArtistSongsById(id: string) {
     return this.prismaService.artist.findUnique({
       where: {
         id: id,
       },
       include: {
         ...this.includeArtistWithMinimalSongs,
-      }
-    })
+      },
+    });
   }
 
-  async getArtists(){
+  async getArtists() {
     return this.prismaService.artist.findMany({
       select: {
         id: true,
         name: true,
-      }
+      },
     });
   }
 
-  async createArtist(artist: LeanArtist){
+  async createArtist(artist: LeanArtist) {
     return this.prismaService.artist.create({
       data: {
         ...artist,
       },
-    })
+    });
   }
 }

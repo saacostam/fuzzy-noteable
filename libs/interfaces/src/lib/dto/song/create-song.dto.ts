@@ -1,6 +1,6 @@
-import {LeanSong} from "@noteable/types";
+import { LeanSong } from '@noteable/types';
 
-export class CreateSongDto{
+export class CreateSongDto {
   song: LeanSong;
   artistsIDs: string[];
 }

@@ -1,7 +1,7 @@
-import {CreateTabDto} from "@noteable/interfaces";
-import {fetcher} from "../fetcher";
+import { CreateTabDto } from '@noteable/interfaces';
+import { fetcher } from '../fetcher';
 
-export async function createTab(createTabDto: CreateTabDto){
+export async function createTab(createTabDto: CreateTabDto) {
   const ERROR_MESSAGE = 'Was unable to create a new tab!';
 
   let data;
@@ -11,9 +11,9 @@ export async function createTab(createTabDto: CreateTabDto){
     throw new Error(ERROR_MESSAGE);
   }
 
-  if(!data || !data.ok){
+  if (!data || !data.ok) {
     throw new Error(ERROR_MESSAGE);
   }
 
-  return (await data.json());
+  return await data.json();
 }

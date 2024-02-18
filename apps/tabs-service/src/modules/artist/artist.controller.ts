@@ -1,14 +1,14 @@
-import {Param, Controller, Get, Body, Post} from '@nestjs/common';
+import { Param, Controller, Get, Body, Post } from '@nestjs/common';
 
-import { ArtistService } from "./artist.service";
-import {CreateArtistDto} from "@noteable/interfaces";
+import { ArtistService } from './artist.service';
+import { CreateArtistDto } from '@noteable/interfaces';
 
 @Controller('artist')
 export class ArtistController {
-  constructor(private readonly artistService: ArtistService){}
+  constructor(private readonly artistService: ArtistService) {}
 
   @Get('/')
-  getAllArtists(){
+  getAllArtists() {
     return this.artistService.getArtists();
   }
 

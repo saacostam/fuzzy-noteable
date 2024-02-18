@@ -8,7 +8,10 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/react-components/**/*.ts", "libs/react-components/**/*.tsx"]
+        "lintFilePatterns": [
+          "libs/react-components/**/*.ts",
+          "libs/react-components/**/*.tsx"
+        ]
       }
     },
     "test": {

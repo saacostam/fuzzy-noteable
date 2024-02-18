@@ -1,8 +1,8 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
-import {PrismaService} from "@noteable/be-common";
-import {GetSongTabsByIdDto} from "@noteable/interfaces";
-import {Decade, Genre, Key, LeanSong} from "@noteable/types";
+import { PrismaService } from '@noteable/be-common';
+import { GetSongTabsByIdDto } from '@noteable/interfaces';
+import { Decade, Genre, Key, LeanSong } from '@noteable/types';
 
 @Injectable()
 export class SongService {
@@ -12,11 +12,11 @@ export class SongService {
     tablatures: {
       select: {
         id: true,
-      }
-    }
-  }
+      },
+    },
+  };
 
-  async createSong(song: LeanSong, artistsIDs: string[]){
+  async createSong(song: LeanSong, artistsIDs: string[]) {
     return this.prismaService.song.create({
       data: {
         ...song,
@@ -24,9 +24,9 @@ export class SongService {
           connect: artistsIDs.map((id) => ({
             id: id,
           })),
-        }
-      }
-    })
+        },
+      },
+    });
   }
 
   async getSongTabsById(id: string): Promise<GetSongTabsByIdDto> {
@@ -36,8 +36,8 @@ export class SongService {
       },
       include: {
         ...this.includeSongWithMinimalTabs,
-      }
-    })
+      },
+    });
 
     if (!dbSong) throw new NotFoundException(`Song with ${id} not found`);
 
@@ -46,6 +46,6 @@ export class SongService {
       key: dbSong.key as Key,
       decade: dbSong.decade as Decade,
       genre: dbSong.genre as Genre,
-    }
+    };
   }
 }

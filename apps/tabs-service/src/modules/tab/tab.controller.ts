@@ -1,12 +1,12 @@
-import {Param, Controller, Get, Post, Body} from '@nestjs/common';
+import { Param, Controller, Get, Post, Body } from '@nestjs/common';
 
-import {CreateTabDto} from "@noteable/interfaces";
+import { CreateTabDto } from '@noteable/interfaces';
 
-import { TabService } from "./tab.service";
+import { TabService } from './tab.service';
 
 @Controller('tab')
 export class TabController {
-  constructor(private readonly tabService: TabService){}
+  constructor(private readonly tabService: TabService) {}
 
   @Get(':id')
   getData(@Param('id') tabId: string) {
@@ -14,12 +14,12 @@ export class TabController {
   }
 
   @Get('/')
-  getAllTabs(){
+  getAllTabs() {
     return this.tabService.getAllTabs();
   }
 
   @Post('/')
-  createTab(@Body() createTabDto: CreateTabDto){
+  createTab(@Body() createTabDto: CreateTabDto) {
     return this.tabService.createTab(createTabDto.tab, createTabDto.songID);
   }
 }

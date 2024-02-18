@@ -1,15 +1,15 @@
-import {useMemo} from "react";
-import {useMutation} from "react-query";
+import { useMemo } from 'react';
+import { useMutation } from 'react-query';
 
-import {OnlyIdDto} from "@noteable/interfaces";
+import { OnlyIdDto } from '@noteable/interfaces';
 
-import {createTab} from "../../mutation";
+import { createTab } from '../../mutation';
 
-export function useCreateTab(){
-  const {data, isSuccess, isLoading, isError, error, mutate} = useMutation({
+export function useCreateTab() {
+  const { data, isSuccess, isLoading, isError, error, mutate } = useMutation({
     mutationFn: createTab,
     mutationKey: 'create-tab',
-  })
+  });
 
   return useMemo(() => {
     return {
@@ -19,6 +19,6 @@ export function useCreateTab(){
       isError: isError,
       error: error,
       doCreateTab: mutate,
-    }
+    };
   }, [data, isLoading, isError, isSuccess, error, mutate]);
 }
