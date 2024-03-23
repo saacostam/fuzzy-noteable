@@ -19,6 +19,7 @@
     "paths": {
       "@noteable/be-common": ["libs/be-common/src/index.ts"],
       "@noteable/be-utils": ["libs/be-utils/src/index.ts"],
+      "@noteable/errors-messages": ["libs/errors-messages/src/index.ts"],
       "@noteable/interfaces": ["libs/interfaces/src/index.ts"],
       "@noteable/noteable-core": ["libs/noteable-core/src/index.ts"],
       "@noteable/noteable-minifier": ["libs/noteable-minifier/src/index.ts"],

@@ -1,26 +1,27 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { hash } from 'bcrypt'
 
 import { PrismaService } from '@noteable/be-common';
-import { AuthService } from '../auth';
-import { AUTH_CONFIG } from '../../config';
+import { CONFLICT_ERROR_MESSAGE } from '@noteable/errors-messages'
 import { BaseUser } from '@noteable/types';
+
+import { AuthService } from '../auth';
 
 @Injectable()
 export class UserService {
     constructor(
-        private prismaService: PrismaService,
-        private authService: AuthService,
+        private readonly prismaService: PrismaService,
+        private readonly authService: AuthService,
     ){}
 
-    async registerUser(newUser: {username: string, email: string, password: string}): Promise<BaseUser>{
-        const userThatMightAlreadyExists = this.getByUsernameOrEmail({username: newUser.username, email: newUser.email});
+    async registerUser(newUser: {username: string, email: string, plaintTextPassword: string}): Promise<BaseUser>{
+        const userThatMightAlreadyExists = await this.getByUsernameOrEmail({username: newUser.username, email: newUser.email});
 
         if (userThatMightAlreadyExists){
-            throw new ConflictException('Email is already in use');
+            if (userThatMightAlreadyExists.email === newUser.email) throw new ConflictException(CONFLICT_ERROR_MESSAGE.EMAIL_ALREADY_IN_USE);
+            if (userThatMightAlreadyExists.username === newUser.username) throw new ConflictException(CONFLICT_ERROR_MESSAGE.USERNAME_ALREADY_IN_USE);
         }
 
-        const hashedPassword = await hash(newUser.password, AUTH_CONFIG.SALT_ROUNDS);
+        const hashedPassword = await this.authService.hashPasword(newUser.plaintTextPassword);
 
         const newlyCreatedUser = await this.create({
             username: newUser.username,
