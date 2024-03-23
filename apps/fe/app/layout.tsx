@@ -1,5 +1,5 @@
 import './global.css';
-import { Footer, Navbar } from '../components/common'
+import { Footer, Navbar } from '../components/common';
 
 export const metadata = {
   title: 'ChordHub',
@@ -14,10 +14,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar/>
+        <Navbar />
         {children}
-        <Footer/>
-        </body>
+        <Footer />
+      </body>
     </html>
   );
 }

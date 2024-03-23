@@ -5,10 +5,12 @@ A music learning platform that gamifies music learning, by using a similar UI to
 # Nx
 
 ## Development Notes
+
 - Node version: 18.19.1
 - Package manager: npm
 
 ### Tailwind CSS Setup
+
 - Used the following [reference](https://blog.nrwl.io/setup-react-and-tailwind-the-easy-way-15592eebf4bc)
 
 ## Development server

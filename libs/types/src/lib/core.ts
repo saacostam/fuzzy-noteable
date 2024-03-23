@@ -226,8 +226,8 @@ export type BaseUser = {
   username: string;
   email: string;
   role: string;
-}
+};
 
 export type LeanUser = BaseUser & {
   id: string;
-}
+};
