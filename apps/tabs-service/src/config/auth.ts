@@ -1,3 +1,12 @@
 export const AUTH_CONFIG = {
+    // BCRYPT
     SALT_ROUNDS: 10,
+
+    // ACCESS_TOKEN
+    ACCCESS_TOKEN_EXPIRES_IN: '1h',
+    ACCCESS_TOKEN_SECRET: 'secret',
+
+    // REFRESH_TOKEN
+    REFRESH_TOKEN_EXPIRES_IN: '7d',
+    REFRESH_TOKEN_SECRET: 'secret',
 }

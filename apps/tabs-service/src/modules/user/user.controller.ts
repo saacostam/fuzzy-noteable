@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { UserService } from './user.service';
-import { RegisterUserDto } from '@noteable/interfaces';
+import { RegisterUserDto, LoginUserDto } from '@noteable/interfaces';
 
 @Controller('user')
 export class UserController {
@@ -12,6 +12,14 @@ export class UserController {
             username: registerUserDto.username,
             email: registerUserDto.email,
             plaintTextPassword: registerUserDto.password,
+        })
+    }
+
+    @Post('/login')
+    loginUser(@Body() loginUserDto: LoginUserDto){
+        return this.userService.loginUser({
+            username: loginUserDto.username,
+            password: loginUserDto.password,
         })
     }
 }

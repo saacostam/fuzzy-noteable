@@ -1,5 +1,5 @@
-import { BaseUser } from "@noteable/types";
+import { LoginUserDto } from "./login-user.dto";
 
-export type RegisterUserDto = Omit<BaseUser, 'role'> & {
-    password: string;
+export interface RegisterUserDto extends LoginUserDto{
+    email: string;
 }
