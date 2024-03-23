@@ -1,11 +1,10 @@
-import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 
 import { PrismaService } from '@noteable/be-common';
 import { CONFLICT_ERROR_MESSAGE, UNAUTHORIZED_ERROR_MESSAGE } from '@noteable/errors-messages'
 import { BaseUser } from '@noteable/types';
 
 import { AuthService } from '../auth';
-import { AuthTokensDto } from '@noteable/interfaces';
 
 @Injectable()
 export class UserService {
@@ -65,27 +64,7 @@ export class UserService {
         })
     }
 
-    async loginUser(credentials: {username: string, password: string}): Promise<AuthTokensDto>{
-        const matchingUserWithPassword = await this.getByUsername({username: credentials.username}, {includePassword: true});
-
-        if (!matchingUserWithPassword) throw new UnauthorizedException(UNAUTHORIZED_ERROR_MESSAGE.USER_BY_USERNAME_NOT_FOUND)
-
-        if (!this.authService.isValidPasswordHash(credentials.password, matchingUserWithPassword.password))
-            throw new UnauthorizedException(UNAUTHORIZED_ERROR_MESSAGE.INCORRECT_LOGIN_CREDENTIALS)
-
-        const tokenPayload = {
-            username: matchingUserWithPassword.username,
-            email: matchingUserWithPassword.email,
-            role: matchingUserWithPassword.role,
-        }
-
-        return {
-            access_token: await this.authService.getAccessTokenJwt(tokenPayload),
-            refresh_token: await this.authService.getRefreshTokenJwt(tokenPayload),
-        }
-    }
-
-    async getByUsername(query: {username: string }, options: {includePassword: boolean}){
+    public async getByUsername(query: {username: string }, options: {includePassword: boolean}){
         return this.prismaService.user.findFirst({
             where: {
                 username: query.username,
@@ -99,5 +78,5 @@ export class UserService {
                 } : undefined,
             }
         })
-    }
+    } 
 }

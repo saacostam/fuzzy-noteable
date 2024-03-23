@@ -1,4 +1,4 @@
-import { hash, compare } from 'bcrypt';
+import { hash, compare } from 'bcryptjs';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
@@ -31,5 +31,15 @@ export class AuthService {
             expiresIn: AUTH_CONFIG.REFRESH_TOKEN_EXPIRES_IN,
             secret: AUTH_CONFIG.REFRESH_TOKEN_SECRET,
         })
+    }
+
+    async isValidRefreshToken(refreshToken: string){
+        this.jwtService.verifyAsync(refreshToken, {
+            secret: AUTH_CONFIG.REFRESH_TOKEN_SECRET,
+        })
+    }
+
+    async getRefreshTokenContent(refreshToken: string): Promise<AuthTokenPayload>{
+        return this.jwtService.decode(refreshToken)
     }
 }

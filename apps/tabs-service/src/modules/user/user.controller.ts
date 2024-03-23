@@ -1,10 +1,13 @@
 import { Body, Controller, Post } from '@nestjs/common';
+
+import { RegisterUserDto, LoginUserDto, RefreshTokenDto } from '@noteable/interfaces';
+
 import { UserService } from './user.service';
-import { RegisterUserDto, LoginUserDto } from '@noteable/interfaces';
+import { UserAuthService } from './user-auth.service';
 
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService){}
+    constructor(private readonly userService: UserService, private readonly userAuthService: UserAuthService){}
 
     @Post('/register')
     registerUser(@Body() registerUserDto: RegisterUserDto){
@@ -17,9 +20,14 @@ export class UserController {
 
     @Post('/login')
     loginUser(@Body() loginUserDto: LoginUserDto){
-        return this.userService.loginUser({
+        return this.userAuthService.loginUser({
             username: loginUserDto.username,
             password: loginUserDto.password,
         })
+    }
+
+    @Post('/refresh-token')
+    refreshToken(@Body() refreshTokenDto: RefreshTokenDto){
+        return this.userAuthService.handleUserRefreshTokenProcess(refreshTokenDto.refreshToken);
     }
 }
