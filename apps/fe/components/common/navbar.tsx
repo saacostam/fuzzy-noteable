@@ -1,4 +1,11 @@
+"use client"
+
+import Link from 'next/link';
+import { useSession, signOut } from 'next-auth/react';
+
 import { Logo } from './logo';
+import { Loader } from './loader';
+import { ROUTES } from '../../lib/constants';
 
 interface NavbarLinks {
   label: string;
@@ -8,15 +15,19 @@ interface NavbarLinks {
 const NAVBAR_LINKS: NavbarLinks[] = [
   {
     label: 'Pricing',
-    href: '/',
+    href: ROUTES.LANDING,
   },
   {
     label: 'FAQ',
-    href: '/',
+    href: ROUTES.LANDING,
   },
 ];
 
 export function Navbar() {
+  const {
+    status,
+  } = useSession();
+
   return (
     <div className="navbar bg-neutral text-neutral-content">
       <div className="navbar-start">
@@ -42,28 +53,33 @@ export function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-neutral rounded-box w-52"
           >
             {NAVBAR_LINKS.map(({ label }) => (
-              <li>
+              <li key={label}>
                 <a>{label}</a>
               </li>
             ))}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl hover:text-accent">
+        <Link className="btn btn-ghost text-xl hover:text-accent" href="/">
           <Logo />
           ChordHub
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           {NAVBAR_LINKS.map(({ label }) => (
-            <li>
+            <li key={label}>
               <a>{label}</a>
             </li>
           ))}
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn btn-accent">Login</a>
+      <div className="navbar-end flex">
+        { status === 'authenticated' ? (<>
+          <button className="btn btn-accent mx-2" onClick={() => signOut()}>Logout</button>
+        </>) : status === 'unauthenticated' ? (<>
+          <Link className="btn btn-accent mx-2" href={ROUTES.SIGN_IN}>Sign In</Link>
+          <Link className="btn btn-secondary" href={ROUTES.SIGN_UP}>Sign Up</Link>
+        </>) : <div className='mx-8'><Loader size="md"/></div> }
       </div>
     </div>
   );

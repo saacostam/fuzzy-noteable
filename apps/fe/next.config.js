@@ -12,6 +12,9 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  env: {
+    NX_NEXT_PUBLIC_APP_TAB_URL: process.env.NX_NEXT_PUBLIC_APP_TAB_URL || '',
+  }
 };
 
 const plugins = [

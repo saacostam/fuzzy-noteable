@@ -22,8 +22,8 @@ export class AuthService {
 
   async getAccessTokenJwt(payload: AuthTokenPayload) {
     return this.jwtService.signAsync(payload, {
-      expiresIn: AUTH_CONFIG.ACCCESS_TOKEN_EXPIRES_IN,
-      secret: AUTH_CONFIG.ACCCESS_TOKEN_SECRET,
+      expiresIn: AUTH_CONFIG.ACCESS_TOKEN_EXPIRES_IN,
+      secret: AUTH_CONFIG.ACCESS_TOKEN_SECRET,
     });
   }
 
