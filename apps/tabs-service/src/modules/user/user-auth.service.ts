@@ -5,6 +5,7 @@ import { AuthTokensDto } from '@noteable/interfaces';
 
 import { AuthService } from '../auth';
 import { UserService } from './user.service';
+import { AUTH_CONFIG } from '../../config';
 
 @Injectable()
 export class UserAuthService {
@@ -27,12 +28,12 @@ export class UserAuthService {
         UNAUTHORIZED_ERROR_MESSAGE.USER_BY_USERNAME_NOT_FOUND
       );
 
-    if (
-      !this.authService.isValidPasswordHash(
-        credentials.password,
-        matchingUserWithPassword.password
-      )
-    )
+    const isValidPassword = await this.authService.isValidPasswordHash(
+      credentials.password,
+      matchingUserWithPassword.password
+    );
+
+    if (!isValidPassword)
       throw new UnauthorizedException(
         UNAUTHORIZED_ERROR_MESSAGE.INCORRECT_LOGIN_CREDENTIALS
       );
@@ -44,8 +45,18 @@ export class UserAuthService {
     };
 
     return {
-      access_token: await this.authService.getAccessTokenJwt(tokenPayload),
-      refresh_token: await this.authService.getRefreshTokenJwt(tokenPayload),
+      user: {
+        email: matchingUserWithPassword.email,
+        username: matchingUserWithPassword.username,
+        id: matchingUserWithPassword.id,
+      },
+      backendTokens: {
+        expiresIn: new Date().setTime(
+          new Date().getTime() + AUTH_CONFIG.ACCESS_T0KEN_TTL
+        ),
+        accessToken: await this.authService.getAccessTokenJwt(tokenPayload),
+        refreshToken: await this.authService.getRefreshTokenJwt(tokenPayload),
+      },
     };
   }
 
@@ -83,8 +94,20 @@ export class UserAuthService {
     };
 
     return {
-      access_token: await this.authService.getAccessTokenJwt(newTokenPayload),
-      refresh_token: await this.authService.getRefreshTokenJwt(newTokenPayload),
+      user: {
+        email: user.email,
+        username: user.username,
+        id: user.id,
+      },
+      backendTokens: {
+        expiresIn: new Date().setTime(
+          new Date().getTime() + AUTH_CONFIG.ACCESS_T0KEN_TTL
+        ),
+        accessToken: await this.authService.getAccessTokenJwt(newTokenPayload),
+        refreshToken: await this.authService.getRefreshTokenJwt(
+          newTokenPayload
+        ),
+      },
     };
   }
 }

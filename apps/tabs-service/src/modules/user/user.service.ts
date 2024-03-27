@@ -75,8 +75,14 @@ export class UserService {
   ) {
     return this.prismaService.user.findFirst({
       where: {
-        email: query.email,
-        username: query.username,
+        OR: [
+          {
+            email: query.email,
+          },
+          {
+            username: query.username,
+          },
+        ],
       },
       select: {
         username: true,
@@ -100,6 +106,7 @@ export class UserService {
         username: query.username,
       },
       select: {
+        id: true,
         username: true,
         email: true,
         role: true,

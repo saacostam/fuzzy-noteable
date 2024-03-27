@@ -141,7 +141,6 @@ export class DataHandler {
 
   private transpose(up?: boolean) {
     const notesToTranspose = SortedNotes.slice(0, -1);
-    console.log(notesToTranspose);
     this.tablature.transposition = ((this.tablature.transposition +
       (up ? 1 : -1) +
       notesToTranspose.length) %

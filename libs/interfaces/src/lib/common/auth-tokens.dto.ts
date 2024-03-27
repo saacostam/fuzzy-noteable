@@ -1,4 +1,13 @@
 export interface AuthTokensDto {
-  access_token: string;
-  refresh_token: string;
+  user: {
+    id: string;
+    email: string;
+    username: string;
+  };
+
+  backendTokens: {
+    accessToken: string;
+    refreshToken: string;
+    expiresIn: number;
+  };
 }

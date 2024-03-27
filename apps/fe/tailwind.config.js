@@ -15,8 +15,22 @@ module.exports = {
   },
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['corporate'],
-    darkTheme: 'corporate', // name of one of the included themes for dark mode
+    themes: [
+      {
+        mytheme: {
+          primary: '#3366a1',
+          secondary: '#6d98c9',
+          accent: '#FFC436',
+          neutral: '#222831',
+          'base-100': '#f3f4f6',
+          info: '#93c5fd',
+          success: '#57C357',
+          warning: '#fde047',
+          error: '#FF7381',
+        },
+      },
+    ],
+    darkTheme: 'mytheme', // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes
