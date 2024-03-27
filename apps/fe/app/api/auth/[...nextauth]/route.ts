@@ -75,11 +75,6 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
-
-    async redirect({ baseUrl }) {
-      console.log('Redirect callback is called!');
-      return baseUrl;
-    },
   },
 
   pages: {
