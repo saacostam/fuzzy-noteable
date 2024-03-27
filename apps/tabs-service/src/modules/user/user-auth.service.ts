@@ -51,10 +51,12 @@ export class UserAuthService {
         id: matchingUserWithPassword.id,
       },
       backendTokens: {
-        expiresIn: new Date().setTime(new Date().getTime() + AUTH_CONFIG.ACCESS_T0KEN_TTL),
+        expiresIn: new Date().setTime(
+          new Date().getTime() + AUTH_CONFIG.ACCESS_T0KEN_TTL
+        ),
         accessToken: await this.authService.getAccessTokenJwt(tokenPayload),
         refreshToken: await this.authService.getRefreshTokenJwt(tokenPayload),
-      }
+      },
     };
   }
 
@@ -98,10 +100,14 @@ export class UserAuthService {
         id: user.id,
       },
       backendTokens: {
-        expiresIn: new Date().setTime(new Date().getTime() + AUTH_CONFIG.ACCESS_T0KEN_TTL),
+        expiresIn: new Date().setTime(
+          new Date().getTime() + AUTH_CONFIG.ACCESS_T0KEN_TTL
+        ),
         accessToken: await this.authService.getAccessTokenJwt(newTokenPayload),
-        refreshToken: await this.authService.getRefreshTokenJwt(newTokenPayload),
-      }
+        refreshToken: await this.authService.getRefreshTokenJwt(
+          newTokenPayload
+        ),
+      },
     };
   }
 }

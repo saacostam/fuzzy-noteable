@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 
 import { RegisterUserDto } from '@noteable/interfaces';
 import { fetcher } from '../fetcher';
-import { handleRequestData } from './utils'
+import { handleRequestData } from './utils';
 
 const ERROR_MESSAGE = 'Was unable to register user. Please try again!';
 
@@ -27,7 +27,11 @@ export function useSignUp() {
       isSuccess: isSuccess,
       isLoading: isLoading,
       isError: isError,
-      error: error ? (error instanceof Error) ? error : new Error(ERROR_MESSAGE) : undefined,
+      error: error
+        ? error instanceof Error
+          ? error
+          : new Error(ERROR_MESSAGE)
+        : undefined,
       doSignUpUser: mutate,
     };
   }, [data, isLoading, isError, isSuccess, error, mutate]);

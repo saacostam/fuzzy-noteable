@@ -1,7 +1,7 @@
 import { TAB_URL } from './url.constants';
 
-interface FetcherOptions{
-  headers?: Record<string, string>
+interface FetcherOptions {
+  headers?: Record<string, string>;
 }
 
 export const fetcher = {
@@ -10,7 +10,7 @@ export const fetcher = {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        ...options?.headers ? options.headers : undefined,
+        ...(options?.headers ? options.headers : undefined),
       },
       body: JSON.stringify(payload),
     });

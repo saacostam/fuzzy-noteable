@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
@@ -24,9 +24,7 @@ const NAVBAR_LINKS: NavbarLinks[] = [
 ];
 
 export function Navbar() {
-  const {
-    status,
-  } = useSession();
+  const { status } = useSession();
 
   return (
     <div className="navbar bg-neutral text-neutral-content">
@@ -74,12 +72,26 @@ export function Navbar() {
         </ul>
       </div>
       <div className="navbar-end flex">
-        { status === 'authenticated' ? (<>
-          <button className="btn btn-accent mx-2" onClick={() => signOut()}>Logout</button>
-        </>) : status === 'unauthenticated' ? (<>
-          <Link className="btn btn-accent mx-2" href={ROUTES.SIGN_IN}>Sign In</Link>
-          <Link className="btn btn-secondary" href={ROUTES.SIGN_UP}>Sign Up</Link>
-        </>) : <div className='mx-8'><Loader size="md"/></div> }
+        {status === 'authenticated' ? (
+          <>
+            <button className="btn btn-accent mx-2" onClick={() => signOut()}>
+              Logout
+            </button>
+          </>
+        ) : status === 'unauthenticated' ? (
+          <>
+            <Link className="btn btn-accent mx-2" href={ROUTES.SIGN_IN}>
+              Sign In
+            </Link>
+            <Link className="btn btn-secondary" href={ROUTES.SIGN_UP}>
+              Sign Up
+            </Link>
+          </>
+        ) : (
+          <div className="mx-8">
+            <Loader size="md" />
+          </div>
+        )}
       </div>
     </div>
   );

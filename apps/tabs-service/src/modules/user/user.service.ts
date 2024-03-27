@@ -81,8 +81,8 @@ export class UserService {
           },
           {
             username: query.username,
-          }
-        ]
+          },
+        ],
       },
       select: {
         username: true,

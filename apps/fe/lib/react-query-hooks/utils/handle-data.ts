@@ -1,12 +1,10 @@
-interface HandleRequestOptions{
-    errorMessage: string;
+interface HandleRequestOptions {
+  errorMessage: string;
 }
 
 export const handleRequestData = async (
-    data: Response, 
-    { 
-        errorMessage,
-    }: HandleRequestOptions
+  data: Response,
+  { errorMessage }: HandleRequestOptions
 ) => {
   if (!data || !data.ok) {
     let payload;
@@ -21,4 +19,4 @@ export const handleRequestData = async (
   }
 
   return await data.json();
-}
+};
