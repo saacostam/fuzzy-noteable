@@ -1,5 +1,5 @@
 export const ROUTES = {
   LANDING: '/',
-  SIGN_IN: '/signin',
-  SIGN_UP: '/signup',
+  SIGN_IN: '/auth/signin',
+  SIGN_UP: '/auth/signup',
 };

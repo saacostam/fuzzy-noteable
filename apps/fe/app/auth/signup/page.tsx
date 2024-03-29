@@ -4,10 +4,10 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { InputField, IUser, IMail, IKey, Alert } from '../../components';
+import { InputField, IUser, IMail, IKey, Alert } from '../../../components';
 import { useCallback, useEffect } from 'react';
-import { useSignUp } from '../../lib/react-query-hooks';
-import { ROUTES } from '../../lib/constants';
+import { useSignUp } from '../../../lib/react-query-hooks';
+import { ROUTES } from '../../../lib/constants';
 
 interface SignUpForm {
   username: string;

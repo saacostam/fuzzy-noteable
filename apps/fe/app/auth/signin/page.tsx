@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { InputField, IUser, IKey, Alert } from '../../components';
-import { ROUTES } from '../../lib/constants';
+import { InputField, IUser, IKey, Alert } from '../../../components';
+import { ROUTES } from '../../../lib/constants';
 
 interface SignInForm {
   username: string;
