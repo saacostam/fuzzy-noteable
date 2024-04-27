@@ -1,4 +1,3 @@
-export * from './use-create-artist';
 export * from './use-create-song';
 export * from './use-create-tab';
 export * from './use-get-all-tabs';
