@@ -1,19 +1,30 @@
 import { Artist, LonelySong } from '@noteable/types';
-import { fetcher } from '../fetcher';
+import { MOCK_DATA } from '../mock-data';
 
 export async function getSongsByArtist(id: string) {
-  const ERROR_MESSAGE = 'Something went wrong! Could not fetch artist data!';
+  const songsAndArtists = MOCK_DATA.tablatures.map((tab) => {
+    const song: LonelySong = {
+      ...tab.song,
+    } as LonelySong;
 
-  let data;
-  try {
-    data = await fetcher.get(`/artist/${id}/songs`);
-  } catch (error) {
-    throw new Error(ERROR_MESSAGE);
-  }
+    return {
+      song: song,
+      artist: tab.song.artists[0],
+    };
+  });
 
-  if (!data || !data.ok) {
-    throw new Error(ERROR_MESSAGE);
-  }
+  const index = songsAndArtists.findIndex((saa) => saa.artist.id === id);
+  const artist = songsAndArtists[index].artist;
 
-  return (await data.json()) as Artist & { songs: LonelySong[] };
+  const songs = songsAndArtists.reduce(
+    (songs: LonelySong[], curr) =>
+      curr.artist.id === artist.id ? [...songs, curr.song] : songs,
+    []
+  );
+
+  return {
+    id: artist.id,
+    name: artist.name,
+    songs: songs,
+  } as Artist & { songs: LonelySong[] };
 }
