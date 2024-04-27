@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { ResponsiveAppBar } from '../components';
-import { AdminTabsView, HomeView } from '../views';
+import { HomeView } from '../views';
 
 export function App() {
   return (
@@ -12,7 +12,6 @@ export function App() {
       >
         <Routes>
           <Route path={'/tab/:id'} element={<HomeView />} />
-          <Route path={'/admin/tabs'} element={<AdminTabsView />} />
         </Routes>
       </div>
     </>
