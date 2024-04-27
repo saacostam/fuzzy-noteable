@@ -1,21 +1,8 @@
 import { Tablature } from '@noteable/types';
-import { fetcher } from '../fetcher';
+import { MOCK_DATA } from '../mock-data';
 
 export async function getTabById(id: string) {
-  let data;
-  try {
-    data = await fetcher.get(`/tab/${id}`);
-  } catch (error) {
-    throw new Error('Something went wrong');
-  }
+  const tab = MOCK_DATA.tablatures.find((tab) => tab.id === id);
 
-  if (!data) {
-    throw new Error('No tab found with the given id!');
-  }
-
-  if (!data.ok) {
-    throw new Error('The query was unsuccessful!');
-  }
-
-  return (await data.json()) as Tablature;
+  return tab as Tablature;
 }
