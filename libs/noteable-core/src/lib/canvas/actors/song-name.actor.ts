@@ -22,7 +22,7 @@ export class SongNameActor extends Actor {
     const CANVAS_WIDTH = ctx.canvas.width;
     const ROUNDED_CORNER_RATIO = 0.00625;
 
-    ctx.fillStyle = 'rgba(1,22,39,0.7)';
+    ctx.fillStyle = 'rgba(42,50,60,0.5)';
     ctx.beginPath();
     ctx.roundRect(
       this.x,
@@ -33,7 +33,7 @@ export class SongNameActor extends Actor {
     );
     ctx.fill();
 
-    ctx.font = `${Math.floor(0.5 * this.height)}px Verdana`;
+    ctx.font = `${Math.floor(0.5 * this.height)}px Fira Sans`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#FDFFFC';

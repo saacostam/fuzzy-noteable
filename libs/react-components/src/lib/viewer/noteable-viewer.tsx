@@ -41,8 +41,7 @@ export const NoteableViewer = ({ tablature, mode }: NoteableViewerProps) => {
           id={canvasId}
           width={1600}
           height={900}
-          style={{ backgroundColor: '#3E78B2' }}
-          className="w-full md:w-2/3"
+          className="w-full md:w-2/3 bg-base-100"
         />
         <div
           className={
