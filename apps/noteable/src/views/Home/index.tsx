@@ -26,9 +26,7 @@ export function HomeView() {
             <h2 className="text-2xl text-center mb-4 font-semibold">
               No results found!
             </h2>
-            <span className="text-secondary">
-              <MagnigyingGlassIcon />
-            </span>
+            <MagnigyingGlassIcon />
             <span className="text-center mt-4">
               Try adjusting your filter to find what you're looking for
             </span>

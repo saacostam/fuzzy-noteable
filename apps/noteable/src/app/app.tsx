@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { ResponsiveAppBar } from '../components';
-import { TabView, HomeView } from '../views';
+import { TabView, HomeView, NotFound404 } from '../views';
 
 export function App() {
   return (
@@ -11,6 +11,7 @@ export function App() {
         <Routes>
           <Route path={'/'} element={<HomeView />} />
           <Route path={'/tab/:id'} element={<TabView />} />
+          <Route path={'*'} element={<NotFound404 />} />
         </Routes>
       </div>
     </>
