@@ -2,3 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 nx format:write
+npm run deploy
+git add docs/.
