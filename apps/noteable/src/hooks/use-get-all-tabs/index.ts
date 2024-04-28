@@ -10,7 +10,7 @@ export function useGetAllTabs() {
 
   return useMemo(
     () => ({
-      tablatures: data?.tablatures || [],
+      tablatures: data || [],
       isSuccess: isSuccess,
       isLoading: isLoading,
       isError: isError,
