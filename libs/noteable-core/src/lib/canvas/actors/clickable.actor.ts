@@ -26,8 +26,8 @@ export class Clickable extends Actor {
     super(properties);
     this.drawContent = properties.drawContent;
     this.onClick = properties.onClick;
-    this.backgroundColor = properties.backgroundColor || 'rgba(251,177,60,0.8)';
-    this.color = properties.color || 'rgba(1,22,39,0.7)';
+    this.backgroundColor = properties.backgroundColor || 'rgba(42,50,60,1)';
+    this.color = properties.color || '#ff71cf';
   }
 
   update(canvasHandler: CanvasHandler, delta: number) {

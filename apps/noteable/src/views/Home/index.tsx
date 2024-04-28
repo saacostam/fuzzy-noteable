@@ -1,53 +1,38 @@
-import { NoteableViewer } from '@noteable/react-components';
-import React from 'react';
-import { Skeleton } from '@mui/material';
-import { LibraryMusicRounded } from '@mui/icons-material';
-import { useHome } from './hook';
+import { MagnigyingGlassIcon } from '../../components';
+import { useFilterTabs, useGetAllTabs } from '../../hooks';
+import { Filter, Tab } from './components';
 
 export function HomeView() {
-  const { tablature, isLoading, isSuccess, error } = useHome();
+  const { tablatures } = useGetAllTabs();
 
-  return isLoading ? (
+  const { filteredTablatures, filterHandler, allArtists } = useFilterTabs({
+    tablatures: tablatures,
+  });
+
+  return (
     <>
-      <div className={'flex flex-row mb-4'}>
-        <Skeleton
-          variant={'rounded'}
-          height={60}
-          width={60}
-          className={'mr-3'}
-        />
-        <div className={'flex flex-col flex-grow'}>
-          <Skeleton variant={'text'} />
-          <Skeleton variant={'text'} />
-        </div>
-      </div>
-      <div className="flex flex-row">
-        <Skeleton variant="rounded" className={'w-2/3 mr-4'} height={480} />
-        <Skeleton variant="rounded" className={'w-1/3'} height={480} />
+      <h1 className="text-white text-xl font-bold m-6">
+        All Guitar Tabs{' '}
+        <span className="text-secondary">({filteredTablatures.length})</span>
+      </h1>
+      <Filter filterHandler={filterHandler} allArtists={allArtists} />
+      <div className="flex flex-wrap justify-around">
+        {filteredTablatures.length > 0 ? (
+          filteredTablatures.map((tab) => (
+            <Tab {...tab} filterHandler={filterHandler} key={tab.id} />
+          ))
+        ) : (
+          <div className="flex flex-col items-center my-16">
+            <h2 className="text-2xl text-center mb-4 font-semibold">
+              No results found!
+            </h2>
+            <MagnigyingGlassIcon />
+            <span className="text-center mt-4">
+              Try adjusting your filter to find what you're looking for
+            </span>
+          </div>
+        )}
       </div>
     </>
-  ) : isSuccess && tablature ? (
-    <>
-      <div className={'mb-4 flex flex-row'}>
-        <div
-          className={
-            'bg-blue-500 w-[60px] h-[60px] flex items-center justify-center rounded-lg mr-3'
-          }
-        >
-          <LibraryMusicRounded className={'text-white'} />
-        </div>
-        <div className={'flex flex-col'}>
-          <h3 className={'text-2xl'}>{tablature.song.name}</h3>
-          <a href={`/artist/${tablature.song.artists[0].id}`}>
-            <h6 className={'text-sm text-blue-500 font-semibold underline'}>
-              {tablature.song.artists[0].name}
-            </h6>
-          </a>
-        </div>
-      </div>
-      <NoteableViewer tablature={tablature} mode={'interactive'} />
-    </>
-  ) : (
-    <span>{error?.toString()}</span>
   );
 }

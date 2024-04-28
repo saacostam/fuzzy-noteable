@@ -51,8 +51,8 @@ export class StringsFrameActor extends Actor {
 
     // Fade-Out
     const fadeOutGrd = ctx.createLinearGradient(0, 0, 200, 0);
-    fadeOutGrd.addColorStop(0, '#3E78B2');
-    fadeOutGrd.addColorStop(1, 'rgba(62,120,178,0)');
+    fadeOutGrd.addColorStop(0, '#1d2229');
+    fadeOutGrd.addColorStop(1, 'transparent');
     ctx.fillStyle = fadeOutGrd;
     ctx.fillRect(
       0,
@@ -63,8 +63,8 @@ export class StringsFrameActor extends Actor {
 
     // Fade-In
     const fadeInGrd = ctx.createLinearGradient(0, 0, 200, 0);
-    fadeInGrd.addColorStop(0, 'rgba(62,120,178,0)');
-    fadeInGrd.addColorStop(1, '#3E78B2');
+    fadeInGrd.addColorStop(0, 'transparent');
+    fadeInGrd.addColorStop(1, '#1d2229');
     ctx.fillStyle = fadeInGrd;
     ctx.fillRect(
       this.x + this.width,
@@ -75,7 +75,7 @@ export class StringsFrameActor extends Actor {
 
     // Current Time Indicator
     ctx.lineWidth = 0.0112 * CANVAS_HEIGHT;
-    ctx.strokeStyle = 'rgba(218,44,56,0.7)';
+    ctx.strokeStyle = '#ff59cb';
     ctx.lineCap = 'round';
     this.drawLine(
       ctx,
@@ -109,7 +109,7 @@ export class StringsFrameActor extends Actor {
       const WIDTH_PROPORTION =
         (rightTime - leftTime) / StringsFrameActor.SYNC_DELTA_TIME;
 
-      ctx.fillStyle = 'rgba(1,22,39,0.7)';
+      ctx.fillStyle = 'rgba(42,50,60,0.7)';
 
       ctx.beginPath();
       ctx.roundRect(
@@ -121,7 +121,7 @@ export class StringsFrameActor extends Actor {
       );
       ctx.fill();
 
-      ctx.font = `bold ${0.045 * CANVAS_WIDTH}px Verdana`;
+      ctx.font = `bold ${0.045 * CANVAS_WIDTH}px Fira Sans`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = '#FDFFFC';
