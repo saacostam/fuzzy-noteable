@@ -3,4 +3,3 @@
 
 nx format:write
 npm run deploy
-git add docs/.
