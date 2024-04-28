@@ -2,6 +2,8 @@
 
 A music learning platform that gamifies music learning, by using a similar UI to Guitar Hero!
 
+> Currently the FE uses mock data to simulate requests to the BE.
+
 # Nx
 
 ## Development Notes
