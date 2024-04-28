@@ -121,7 +121,7 @@ export class StringsFrameActor extends Actor {
       );
       ctx.fill();
 
-      ctx.font = `bold ${0.045 * CANVAS_WIDTH}px Fira Sans`;
+      ctx.font = `bold ${0.045 * CANVAS_WIDTH}px Fira Sans, Verdana`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = '#FDFFFC';

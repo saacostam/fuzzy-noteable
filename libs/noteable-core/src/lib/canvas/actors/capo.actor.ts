@@ -30,13 +30,13 @@ export class CapoActor extends Actor {
     );
     ctx.fill();
 
-    ctx.font = `bold ${Math.floor(0.3125 * this.width)}px Fira Sans`;
+    ctx.font = `bold ${Math.floor(0.3125 * this.width)}px Fira Sans, Verdana`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = 'white';
 
     ctx.fillText('CAPO', this.x + this.width / 2, this.y + this.height / 3);
-    ctx.font = `${Math.floor(0.3125 * this.width)}px Fira Sans`;
+    ctx.font = `${Math.floor(0.3125 * this.width)}px Fira Sans, Verdana`;
     ctx.fillText(
       String(this.capo),
       this.x + this.width / 2,

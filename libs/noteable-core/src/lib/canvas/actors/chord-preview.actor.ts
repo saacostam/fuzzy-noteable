@@ -54,7 +54,7 @@ export class ChordPreviewActor extends Actor {
 
     this.drawChord(ctx, this.chord);
 
-    ctx.font = `bold ${Math.floor(0.15 * this.width)}px Fira Sans`;
+    ctx.font = `bold ${Math.floor(0.15 * this.width)}px Fira Sans, Verdana`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#FDFFFC';
@@ -140,7 +140,7 @@ export class ChordPreviewActor extends Actor {
       );
 
       if (bar !== 1) {
-        ctx.font = `${Math.floor(0.06 * this.width)}px Fira Sans`;
+        ctx.font = `${Math.floor(0.06 * this.width)}px Fira Sans, Verdana`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = '#FDFFFC';
@@ -154,7 +154,7 @@ export class ChordPreviewActor extends Actor {
     } else if (initialFret) {
       ctx.textBaseline = 'middle';
       ctx.textAlign = 'center';
-      ctx.font = `${Math.floor(0.06 * this.width)}px Fira Sans`;
+      ctx.font = `${Math.floor(0.06 * this.width)}px Fira Sans, Verdana`;
       ctx.fillStyle = '#FDFFFC';
 
       ctx.fillText(

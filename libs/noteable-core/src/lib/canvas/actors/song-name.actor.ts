@@ -33,7 +33,7 @@ export class SongNameActor extends Actor {
     );
     ctx.fill();
 
-    ctx.font = `${Math.floor(0.5 * this.height)}px Fira Sans`;
+    ctx.font = `${Math.floor(0.5 * this.height)}px Fira Sans, Verdana`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#FDFFFC';
