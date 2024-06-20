@@ -35,16 +35,16 @@ export const Tab = ({
   }, [filterHandler.getLink, filterHandler.currentFilterState, genre]);
 
   return (
-    <div className="card bg-base-100 w-96 shadow mb-4">
+    <div className="card w-96 shadow mb-4">
       <div className="card-body p-4">
         <Link
-          className="card-title text-white hover:text-secondary hover:ease-in transition duration-100 mb-2"
+          className="card-title hover:text-secondary hover:ease-in transition duration-100 mb-2"
           to={'/tab/' + id}
         >
           {name} <ChevronRightIcon />
         </Link>
 
-        <div className="stats stats horizontal shadow bg-neutral">
+        <div className="stats stats horizontal shadow">
           <div className="stat place-items-center">
             <div className="stat-title">Artist</div>
             <div className="stat-value text-xl mb-1">{artist.name}</div>

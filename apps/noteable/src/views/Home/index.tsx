@@ -11,7 +11,7 @@ export function HomeView() {
 
   return (
     <>
-      <h1 className="text-white text-xl font-bold m-6">
+      <h1 className="text-xl font-bold m-6">
         All Guitar Tabs{' '}
         <span className="text-secondary">({filteredTablatures.length})</span>
       </h1>

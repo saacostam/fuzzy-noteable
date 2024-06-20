@@ -42,6 +42,7 @@ export const NoteableViewer = ({ tablature, mode }: NoteableViewerProps) => {
           width={1600}
           height={900}
           className="w-full md:w-2/3 bg-base-100"
+          style={{ backgroundColor: 'oklch(0.253267 0.015896 252.418)' }}
         />
         <div
           className={
