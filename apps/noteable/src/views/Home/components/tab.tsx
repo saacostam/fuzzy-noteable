@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Tablature } from '@noteable/types';
-import { FilterIcon, ChevronRightIcon } from '../../../components';
+import { FilterIcon, ClickIcon, ChevronRightIcon } from '../../../components';
 import { FilterHandler } from '../../../hooks';
 
 interface TabProps extends Tablature {
@@ -35,21 +35,21 @@ export const Tab = ({
   }, [filterHandler.getLink, filterHandler.currentFilterState, genre]);
 
   return (
-    <div className="card w-96 shadow mb-4">
+    <div className="card w-96 shadow mb-4 bg-base-200">
       <div className="card-body p-4">
         <Link
-          className="card-title hover:text-secondary hover:ease-in transition duration-100 mb-2"
+          className="card-title hover:text-secondary hover:ease-in transition duration-100 mb-2 btn btn-secondary btn-outline bg-base-100"
           to={'/tab/' + id}
         >
-          {name} <ChevronRightIcon />
+          <ClickIcon /> {name} <ChevronRightIcon />
         </Link>
 
         <div className="stats stats horizontal shadow">
           <div className="stat place-items-center">
             <div className="stat-title">Artist</div>
-            <div className="stat-value text-xl mb-1">{artist.name}</div>
+            <div className="stat-value text-lg mb-1">{artist.name}</div>
             <Link
-              className="stat-desc text-secondary flex"
+              className="stat-desc flex btn btn-xs btn-outline btn-secondary"
               to={addArtistsToFilterUrl}
             >
               <FilterIcon /> <span className="ml-1">Add to Filter</span>
@@ -58,9 +58,9 @@ export const Tab = ({
 
           <div className="stat place-items-center">
             <div className="stat-title">Genre</div>
-            <div className="stat-value text-xl mb-1">{genre}</div>
+            <div className="stat-value text-lg mb-1">{genre}</div>
             <Link
-              className="stat-desc text-secondary flex"
+              className="stat-desc flex btn btn-xs btn-outline btn-secondary"
               to={addGenreToFilterUrl}
             >
               <FilterIcon /> <span className="ml-1">Add to Filter</span>
