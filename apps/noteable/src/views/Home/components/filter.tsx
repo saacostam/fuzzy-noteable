@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { XCircleIcon } from '../../../components';
 import { FilterHandler } from '../../../hooks';
@@ -10,7 +10,6 @@ import {
   Decade,
   Difficulty,
   Genre,
-  SortedDecades,
 } from '@noteable/types';
 import { ChangeEvent } from 'react';
 
@@ -26,7 +25,7 @@ export const Filter = ({ filterHandler, allArtists }: FilterProps) => {
 
   const navigate = useNavigate();
 
-  let allFilters: CurrentFilterOptionState[] = buildFilterOptions(
+  const allFilters: CurrentFilterOptionState[] = buildFilterOptions(
     currentFilterState
   ).sort((a, b) => a.value.localeCompare(b.value));
 
@@ -62,7 +61,7 @@ export const Filter = ({ filterHandler, allArtists }: FilterProps) => {
     <>
       <div className="flex flex-wrap m-4">
         <select
-          className="select mr-2 mb-2"
+          className="select mr-2 mb-2 bg-base-200"
           onChange={getSelectOnChangeHandler('artist')}
         >
           <option value={EMPTY} defaultChecked>
@@ -74,7 +73,7 @@ export const Filter = ({ filterHandler, allArtists }: FilterProps) => {
         </select>
 
         <select
-          className="select mr-2 mb-2"
+          className="select mr-2 mb-2 bg-base-200"
           onChange={getSelectOnChangeHandler('difficulty')}
         >
           <option value={EMPTY} defaultChecked>
@@ -86,7 +85,7 @@ export const Filter = ({ filterHandler, allArtists }: FilterProps) => {
         </select>
 
         <select
-          className="select mr-2 mb-2"
+          className="select mr-2 mb-2 bg-base-200"
           onChange={getSelectOnChangeHandler('genre')}
         >
           <option value={EMPTY} defaultChecked>
