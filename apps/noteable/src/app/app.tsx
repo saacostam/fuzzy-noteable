@@ -5,7 +5,7 @@ import { TabView, HomeView, NotFound404 } from '../views';
 
 export function App() {
   return (
-    <main className="bg-base-200">
+    <main className="bg-base-200 min-h-lvh">
       <ResponsiveAppBar />
       <div
         className={
