@@ -15,6 +15,7 @@ export function App() {
         <Routes>
           <Route path={'/'} element={<HomeView />} />
           <Route path={'/tab/:id'} element={<TabView />} />
+          <Route path={'/not-found'} element={<NotFound404 />} />
           <Route path={'*'} element={<NotFound404 />} />
         </Routes>
       </div>
