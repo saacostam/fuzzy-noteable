@@ -4,6 +4,8 @@ export const MagnigyingGlassIcon = () => (
     viewBox="0 0 24 24"
     fill="currentColor"
     className="w-16 h-16"
+    width={64}
+    height={64}
   >
     <path
       fillRule="evenodd"
