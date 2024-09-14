@@ -25,6 +25,7 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "copy-webpack-plugin": "^12.0.2",
     "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
