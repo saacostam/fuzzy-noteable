@@ -44,12 +44,12 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
 
   const doCleanState = useCallback(
     (state: {
-      difficulty: any;
-      artists: any;
-      decade: any;
-      genre: any;
+      difficulty: unknown;
+      artists: unknown;
+      decade: unknown;
+      genre: unknown;
     }): FilterState => {
-      const handleRawParam = <T>(value: any, possibilities: T[]): T[] => {
+      const handleRawParam = <T>(value: unknown, possibilities: T[]): T[] => {
         let cleanValue = (Array.isArray(value) ? value : []) as T[];
         cleanValue = cleanValue.filter((element) =>
           possibilities.includes(element)
@@ -90,7 +90,7 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
 
       return pathname + '?' + searchParams.toString();
     },
-    [doCleanState]
+    [pathname, doCleanState]
   );
 
   const copyState = useCallback(
@@ -128,11 +128,14 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
     setAllArtists(allArtists);
   }, [tablatures]);
 
-  const filterHandler: FilterHandler = {
-    currentFilterState: currentFilterState,
-    getLink: getLink,
-    copyState: copyState,
-  };
+  const filterHandler: FilterHandler = useMemo(
+    () => ({
+      currentFilterState: currentFilterState,
+      getLink: getLink,
+      copyState: copyState,
+    }),
+    [copyState, currentFilterState, getLink]
+  );
 
   let filteredTablatures = tablatures.sort((tab1, tab2) =>
     tab1.song.name.localeCompare(tab2.song.name)
