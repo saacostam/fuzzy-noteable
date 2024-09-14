@@ -1,7 +1,7 @@
 export function HomeCopy() {
   return (
     <>
-      <h1 className="text-3xl text-center font-bold m-6 text-secondary">
+      <h1 className="text-3xl text-center font-bold m-6 mb-4 text-secondary">
         Master Chords, One Song at a Time!
       </h1>
       <p className="mx-6 mb-4">
@@ -18,12 +18,9 @@ export function HomeCopy() {
         <span className="text-secondary font-semibold">structure</span> but also
         improves your{' '}
         <span className="text-secondary font-semibold">muscle memory</span> and{' '}
-        <span className="text-secondary font-semibold">rhythm skills.</span>
-      </p>
-      <p className="mx-6 mb-4">
-        Hit play on the song you want to learn, and let the music guide you as
-        the chords unfold in real-time—making learning faster, easier, and more
-        enjoyable!
+        <span className="text-secondary font-semibold">rhythm skills.</span> Hit
+        play on the song you want to learn, and follow along as the chords sync
+        with the music!
       </p>
     </>
   );
