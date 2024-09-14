@@ -1,6 +1,5 @@
-import { MagnigyingGlassIcon } from '../../components';
 import { useFilterTabs, useGetAllTabs } from '../../hooks';
-import { Filter, Tab } from './components';
+import { EmptyFilter, Filter, Tab } from './components';
 
 export function HomeView() {
   const { tablatures } = useGetAllTabs();
@@ -16,21 +15,25 @@ export function HomeView() {
         <span className="text-secondary">({filteredTablatures.length})</span>
       </h1>
       <Filter filterHandler={filterHandler} allArtists={allArtists} />
-      <div className="flex flex-wrap justify-around">
+      <div className="p-4">
         {filteredTablatures.length > 0 ? (
-          filteredTablatures.map((tab) => (
-            <Tab {...tab} filterHandler={filterHandler} key={tab.id} />
-          ))
+          <table className="table">
+            <thead className="bg-base-200 text-secondary">
+              <tr>
+                <th>Song</th>
+                <th className="hidden sm:table-cell">Artist</th>
+                <th className="hidden md:table-cell">Genre</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredTablatures.map((tab) => (
+                <Tab {...tab} filterHandler={filterHandler} key={tab.id} />
+              ))}
+            </tbody>
+          </table>
         ) : (
-          <div className="flex flex-col items-center my-16">
-            <h2 className="text-2xl text-center mb-4 font-semibold">
-              No results found!
-            </h2>
-            <MagnigyingGlassIcon />
-            <span className="text-center mt-4">
-              Try adjusting your filter to find what you're looking for
-            </span>
-          </div>
+          <EmptyFilter />
         )}
       </div>
     </>

@@ -97,7 +97,7 @@ export const Filter = ({ filterHandler, allArtists }: FilterProps) => {
         </select>
       </div>
       {allFilters.length > 0 ? (
-        <section className="border border-2 border-secondary flex m-4 p-4 pb-2 rounded-2xl">
+        <section className="border-2 border-secondary flex m-4 p-4 pb-2 rounded-2xl">
           <div className="flex-1 flex flex-wrap">
             {allFilters.map((filterOption) => (
               <FilterOption {...filterOption} filterHandler={filterHandler} />
