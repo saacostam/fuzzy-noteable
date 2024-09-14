@@ -52,7 +52,7 @@ export class StringsFrameActor extends Actor {
 
     // Fade-Out
     const fadeOutGrd = ctx.createLinearGradient(0, 0, 200, 0);
-    fadeOutGrd.addColorStop(0, '#1d2229');
+    fadeOutGrd.addColorStop(0, COLOR.BG_GRAY_RGB);
     fadeOutGrd.addColorStop(1, 'transparent');
     ctx.fillStyle = fadeOutGrd;
     ctx.fillRect(
@@ -65,7 +65,7 @@ export class StringsFrameActor extends Actor {
     // Fade-In
     const fadeInGrd = ctx.createLinearGradient(0, 0, 200, 0);
     fadeInGrd.addColorStop(0, 'transparent');
-    fadeInGrd.addColorStop(1, '#1d2229');
+    fadeInGrd.addColorStop(1, COLOR.BG_GRAY_RGB);
     ctx.fillStyle = fadeInGrd;
     ctx.fillRect(
       this.x + this.width,
