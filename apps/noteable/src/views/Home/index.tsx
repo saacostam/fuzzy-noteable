@@ -8,6 +8,7 @@ import {
   Pagination,
   Tab,
 } from './components';
+import { InfoIcon } from '../../components';
 
 export function HomeView() {
   const { data: tablatures, isSuccess, isLoading } = useGetAllTabs();
@@ -44,6 +45,12 @@ export function HomeView() {
       <div className="divider mx-6"></div>
       <h2 className="text-lg font-bold mx-6 mb-2">
         Browse Our Song Collection{' '}
+        <div
+          className="tooltip"
+          data-tip="Enjoy a selection of some of the most popular songs—perfect for learning and playing along!"
+        >
+          <InfoIcon className="w-6 h-6 inline pb-1" />
+        </div>
       </h2>
       <Filter filterHandler={filterHandler} allArtists={allArtists} />
       <div className="px-4 mb-4">
