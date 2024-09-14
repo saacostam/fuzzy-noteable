@@ -1,6 +1,7 @@
 import { Actor, ActorProperties } from '.';
 import { Chord } from '@noteable/types';
 import { CanvasHandler } from '../handler';
+import { COLOR as COLOR_CONFIG } from '../colors';
 
 export type ChordPreviewActorProperties = ActorProperties & {
   chord: Chord;
@@ -17,8 +18,8 @@ export class ChordPreviewActor extends Actor {
   deltaTime: number;
 
   static COLOR = {
-    NOT_CHECKED: '#2a323c',
-    CHECKED: '#008b7e',
+    NOT_CHECKED: COLOR_CONFIG.STD_GRAY,
+    CHECKED: COLOR_CONFIG.DONE,
   };
 
   constructor(chordPreviewActorProperties: ChordPreviewActorProperties) {
@@ -31,7 +32,7 @@ export class ChordPreviewActor extends Actor {
     this.deltaTime = 0;
   }
 
-  update(engine: CanvasHandler, deltaTime: number) {
+  update(_engine: CanvasHandler, deltaTime: number) {
     this.deltaTime += deltaTime;
   }
 

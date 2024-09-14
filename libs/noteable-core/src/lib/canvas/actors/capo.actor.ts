@@ -1,4 +1,5 @@
 import { Actor, ActorProperties } from '.';
+import { COLOR } from '../colors';
 import { CanvasHandler } from '../handler';
 
 export type CapoActorProperties = ActorProperties;
@@ -19,7 +20,7 @@ export class CapoActor extends Actor {
     const CANVAS_WIDTH = ctx.canvas.width;
     const ROUNDED_CORNER_RATIO = 0.00625;
 
-    ctx.fillStyle = 'rgba(42,50,60,1)';
+    ctx.fillStyle = COLOR.STD_GRAY;
     ctx.beginPath();
     ctx.roundRect(
       this.x,
