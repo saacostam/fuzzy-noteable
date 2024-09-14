@@ -31,7 +31,7 @@ export function TabView() {
           <MusicIcon />
         </div>
         <div className={'flex flex-col'}>
-          <h3 className={'text-3xl'}>{tablature.song.name}</h3>
+          <h3 className={'text-xl font-semibold'}>{tablature.song.name}</h3>
           <Link to={`/?artists=${tablature.song.artists[0].name}`}>
             <h6 className={'text-md text-secondary font-semibold underline'}>
               {tablature.song.artists[0].name}
