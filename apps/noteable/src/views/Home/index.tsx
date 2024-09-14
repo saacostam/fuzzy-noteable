@@ -10,11 +10,11 @@ import {
 } from './components';
 
 export function HomeView() {
-  const { tablatures } = useGetAllTabs();
+  const { data: tablatures, isSuccess, isLoading } = useGetAllTabs();
 
   const { allArtists, filteredTablatures, filterHandler, totalPages } =
     useFilterTabs({
-      tablatures: tablatures,
+      tablatures: tablatures || [],
     });
   const { getLink, copyState, currentFilterState } = filterHandler;
 
@@ -47,7 +47,9 @@ export function HomeView() {
       </h2>
       <Filter filterHandler={filterHandler} allArtists={allArtists} />
       <div className="px-4 mb-4">
-        {filteredTablatures.length > 0 ? (
+        {isLoading ? (
+          <div className="skeleton h-96"></div>
+        ) : isSuccess && filteredTablatures.length > 0 ? (
           <table className="table border border-base-200 w-100">
             <thead className="bg-base-200 text-secondary">
               <tr>
