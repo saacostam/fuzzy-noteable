@@ -1,38 +1,84 @@
-import { MagnigyingGlassIcon } from '../../components';
+import { useMemo } from 'react';
 import { useFilterTabs, useGetAllTabs } from '../../hooks';
-import { Filter, Tab } from './components';
+import {
+  EmptyFilter,
+  Filter,
+  HomeCopy,
+  Page,
+  Pagination,
+  Tab,
+} from './components';
+import { InfoIcon } from '../../components';
 
 export function HomeView() {
-  const { tablatures } = useGetAllTabs();
+  const { data: tablatures, isSuccess, isLoading } = useGetAllTabs();
 
-  const { filteredTablatures, filterHandler, allArtists } = useFilterTabs({
-    tablatures: tablatures,
-  });
+  const { allArtists, filteredTablatures, filterHandler, totalPages } =
+    useFilterTabs({
+      tablatures: tablatures || [],
+    });
+  const { getLink, copyState, currentFilterState } = filterHandler;
+
+  const pages: Page[] = useMemo(() => {
+    const pages: Page[] = [];
+
+    for (let i = 0; i < totalPages; i++) {
+      const pageNumber = i + 1;
+
+      const newState = {
+        ...copyState(currentFilterState),
+        page: pageNumber,
+      };
+
+      pages.push({
+        pageNumber: pageNumber,
+        link: getLink(newState),
+      });
+    }
+
+    return pages;
+  }, [copyState, currentFilterState, getLink, totalPages]);
 
   return (
     <>
-      <h1 className="text-xl font-bold m-6">
-        All Guitar Tabs{' '}
-        <span className="text-secondary">({filteredTablatures.length})</span>
-      </h1>
+      <HomeCopy />
+      <div className="divider mx-6"></div>
+      <h2 className="text-lg font-bold mx-6 mb-2">
+        Browse Our Song Collection{' '}
+        <div
+          className="tooltip"
+          data-tip="Enjoy a selection of some of the most popular songs—perfect for learning and playing along!"
+        >
+          <InfoIcon className="w-6 h-6 inline pb-1" />
+        </div>
+      </h2>
       <Filter filterHandler={filterHandler} allArtists={allArtists} />
-      <div className="flex flex-wrap justify-around">
-        {filteredTablatures.length > 0 ? (
-          filteredTablatures.map((tab) => (
-            <Tab {...tab} filterHandler={filterHandler} key={tab.id} />
-          ))
+      <div className="px-4 mb-4">
+        {isLoading ? (
+          <div className="skeleton h-96"></div>
+        ) : isSuccess && filteredTablatures.length > 0 ? (
+          <table className="table border border-base-200 w-100">
+            <thead className="bg-base-200 text-secondary">
+              <tr>
+                <th className="w-28"></th>
+                <th>Song</th>
+                <th className="hidden sm:table-cell">Artist</th>
+                <th className="hidden md:table-cell">Genre</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredTablatures.map((tab) => (
+                <Tab {...tab} filterHandler={filterHandler} key={tab.id} />
+              ))}
+            </tbody>
+          </table>
         ) : (
-          <div className="flex flex-col items-center my-16">
-            <h2 className="text-2xl text-center mb-4 font-semibold">
-              No results found!
-            </h2>
-            <MagnigyingGlassIcon />
-            <span className="text-center mt-4">
-              Try adjusting your filter to find what you're looking for
-            </span>
-          </div>
+          <EmptyFilter />
         )}
       </div>
+      <section className="mx-4 flex justify-center">
+        <Pagination pages={pages} currentPage={currentFilterState.page} />
+      </section>
     </>
   );
 }

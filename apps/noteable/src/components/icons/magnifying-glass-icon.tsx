@@ -1,9 +1,17 @@
-export const MagnigyingGlassIcon = () => (
+import { twMerge } from 'tailwind-merge';
+
+interface MagnigyingGlassIconProps {
+  className?: string;
+}
+
+export const MagnigyingGlassIcon = ({
+  className,
+}: MagnigyingGlassIconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="currentColor"
-    className="w-16 h-16"
+    className={twMerge('w-16 h-16', className)}
   >
     <path
       fillRule="evenodd"

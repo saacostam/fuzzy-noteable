@@ -1,7 +1,7 @@
 import { NoteableViewer } from '@noteable/react-components';
 import { useHome } from './hook';
 import { MusicIcon } from '../../components';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 export function TabView() {
   const { tablature, isLoading, isSuccess, error } = useHome();
@@ -41,6 +41,8 @@ export function TabView() {
       </div>
       <NoteableViewer tablature={tablature} mode={'interactive'} />
     </>
+  ) : isSuccess && !tablature ? (
+    <Navigate to="/not-found" />
   ) : (
     <span>{error?.toString()}</span>
   );

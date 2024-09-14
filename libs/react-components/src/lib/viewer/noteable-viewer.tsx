@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { NotaAbleViewer as NAV } from '@noteable/noteable-core';
 import { Tablature } from '@noteable/types';
-import { CanvasHandlerModeParameters } from '@noteable/noteable-core';
+import { CanvasHandlerModeParameters, COLOR } from '@noteable/noteable-core';
 
 type NoteableViewerProps = {
   tablature: Tablature;
@@ -42,7 +42,7 @@ export const NoteableViewer = ({ tablature, mode }: NoteableViewerProps) => {
           width={1600}
           height={900}
           className="w-full md:w-2/3 bg-base-100"
-          style={{ backgroundColor: 'oklch(0.253267 0.015896 252.418)' }}
+          style={{ backgroundColor: COLOR.BG_GRAY }}
         />
         <div
           className={

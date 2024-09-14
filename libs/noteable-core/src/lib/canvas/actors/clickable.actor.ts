@@ -1,4 +1,5 @@
 import { Actor, ActorProperties } from '.';
+import { COLOR } from '../colors';
 import { CanvasHandler } from '../handler';
 
 export type ClickableProperties = ActorProperties & {
@@ -26,7 +27,7 @@ export class Clickable extends Actor {
     super(properties);
     this.drawContent = properties.drawContent;
     this.onClick = properties.onClick;
-    this.backgroundColor = properties.backgroundColor || 'rgba(42,50,60,1)';
+    this.backgroundColor = properties.backgroundColor || COLOR.STD_GRAY;
     this.color = properties.color || '#ff71cf';
   }
 

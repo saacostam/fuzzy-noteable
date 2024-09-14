@@ -1,6 +1,7 @@
 import { Actor, ActorProperties } from '.';
 import { SyncMusicUnit } from '@noteable/types';
 import { CanvasHandler } from '../handler';
+import { COLOR } from '../colors';
 
 export type StringsFrameActorProperties = ActorProperties;
 
@@ -75,7 +76,7 @@ export class StringsFrameActor extends Actor {
 
     // Current Time Indicator
     ctx.lineWidth = 0.0112 * CANVAS_HEIGHT;
-    ctx.strokeStyle = '#ff59cb';
+    ctx.strokeStyle = COLOR.TIME_INDICATOR;
     ctx.lineCap = 'round';
     this.drawLine(
       ctx,
@@ -109,7 +110,7 @@ export class StringsFrameActor extends Actor {
       const WIDTH_PROPORTION =
         (rightTime - leftTime) / StringsFrameActor.SYNC_DELTA_TIME;
 
-      ctx.fillStyle = 'rgba(42,50,60,0.7)';
+      ctx.fillStyle = COLOR.TRANSPARENT_GRAY;
 
       ctx.beginPath();
       ctx.roundRect(

@@ -701,7 +701,7 @@ export const MOCK_DATA = {
         key: 'G# major',
         bpm: [126],
         genre: 'R&B',
-        artists: [{ name: ' John Legend', id: '65711f789365754d3ed353b8' }],
+        artists: [{ name: 'John Legend', id: '65711f789365754d3ed353b8' }],
       },
     },
     {

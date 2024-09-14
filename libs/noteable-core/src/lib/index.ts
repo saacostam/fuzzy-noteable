@@ -1,3 +1,3 @@
 export * from './viewer';
 export * from './util';
-export { CanvasHandlerModeParameters } from './canvas';
+export { CanvasHandlerModeParameters, COLOR } from './canvas';

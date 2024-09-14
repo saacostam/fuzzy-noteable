@@ -22,12 +22,44 @@ export interface FilterState {
   artists: string[];
   decade: Decade[];
   genre: Genre[];
+  page: number;
 }
 
 export interface FilterHandler {
   readonly currentFilterState: FilterState;
   getLink: (state: FilterState) => string;
   copyState: (state: FilterState) => FilterState;
+}
+
+const DEFAULT_PAGE = 1;
+const PAGE_SIZE = 8;
+
+function applyFilters(tablatures: Tablature[], filterState: FilterState) {
+  let filteredTablatures = tablatures.sort((tab1, tab2) =>
+    tab1.song.name.localeCompare(tab2.song.name)
+  );
+
+  if (filterState.artists.length > 0)
+    filteredTablatures = filteredTablatures.filter((tab) =>
+      tab.song.artists.some((oneSongArtist) =>
+        filterState.artists.includes(oneSongArtist.name)
+      )
+    );
+
+  if (filterState.difficulty.length > 0)
+    filteredTablatures = filteredTablatures.filter((tab) =>
+      filterState.difficulty.includes(tab.difficulty)
+    );
+  if (filterState.genre.length > 0)
+    filteredTablatures = filteredTablatures.filter((tab) =>
+      filterState.genre.includes(tab.song.genre!)
+    );
+
+  return filteredTablatures;
+}
+
+function getTotalPages(numberOfTablatures: number) {
+  return Math.ceil(numberOfTablatures / PAGE_SIZE);
 }
 
 export function useFilterTabs({ tablatures }: FilterTabsOptions) {
@@ -38,18 +70,34 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
     artists: [],
     decade: [],
     genre: [],
+    page: 1,
   });
 
   const [allArtists, setAllArtists] = useState<string[]>([]);
 
+  const filteredTablatures = useMemo(
+    () => applyFilters(tablatures, currentFilterState),
+    [currentFilterState, tablatures]
+  );
+
+  const totalPages = getTotalPages(filteredTablatures.length);
+  const pageTablatures = filteredTablatures.slice(
+    (currentFilterState.page - 1) * PAGE_SIZE,
+    PAGE_SIZE * currentFilterState.page
+  );
+
   const doCleanState = useCallback(
     (state: {
-      difficulty: any;
-      artists: any;
-      decade: any;
-      genre: any;
+      difficulty: unknown;
+      artists: unknown;
+      decade: unknown;
+      genre: unknown;
+      page: unknown;
     }): FilterState => {
-      const handleRawParam = <T>(value: any, possibilities: T[]): T[] => {
+      const handleRawListParam = <T>(
+        value: unknown,
+        possibilities: T[]
+      ): T[] => {
         let cleanValue = (Array.isArray(value) ? value : []) as T[];
         cleanValue = cleanValue.filter((element) =>
           possibilities.includes(element)
@@ -57,13 +105,30 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
         return removeDuplicates(cleanValue);
       };
 
+      const handleRawSingleParam = <T>(
+        value: unknown,
+        possibilities?: T[],
+        defaultValue?: T
+      ): T => {
+        return (possibilities || []).includes(value as T)
+          ? (value as T)
+          : ((value || defaultValue) as T);
+      };
+
+      const page = Number(handleRawSingleParam(state.page, undefined, 1));
+
       return {
         difficulty: removeDuplicates(
-          handleRawParam(state.difficulty, AllDifficulties)
+          handleRawListParam(state.difficulty, AllDifficulties)
         ),
-        artists: removeDuplicates(handleRawParam(state.artists, allArtists)),
-        decade: removeDuplicates(handleRawParam(state.decade, SortedDecades)),
-        genre: removeDuplicates(handleRawParam(state.genre, AllGenres)),
+        artists: removeDuplicates(
+          handleRawListParam(state.artists, allArtists)
+        ),
+        decade: removeDuplicates(
+          handleRawListParam(state.decade, SortedDecades)
+        ),
+        genre: removeDuplicates(handleRawListParam(state.genre, AllGenres)),
+        page: Number.isNaN(page) ? DEFAULT_PAGE : page,
       };
     },
     [allArtists]
@@ -88,9 +153,17 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
         searchParams.append('genre', oneGenre)
       );
 
+      const newTabs = applyFilters(tablatures, cleanState);
+      const newTotalPages = getTotalPages(newTabs.length);
+
+      searchParams.append(
+        'page',
+        String(Math.min(newTotalPages, cleanState.page))
+      );
+
       return pathname + '?' + searchParams.toString();
     },
-    [doCleanState]
+    [doCleanState, tablatures, pathname]
   );
 
   const copyState = useCallback(
@@ -99,8 +172,18 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
       artists: [...state.artists],
       decade: [...state.decade],
       genre: [...state.genre],
+      page: state.page,
     }),
     []
+  );
+
+  const filterHandler: FilterHandler = useMemo(
+    () => ({
+      currentFilterState: currentFilterState,
+      getLink: getLink,
+      copyState: copyState,
+    }),
+    [copyState, currentFilterState, getLink]
   );
 
   useEffect(() => {
@@ -112,6 +195,7 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
         artists: searchParams.getAll('artists'),
         decade: searchParams.getAll('decade'),
         genre: searchParams.getAll('genre'),
+        page: searchParams.get('page'),
       })
     );
   }, [search, tablatures, doCleanState]);
@@ -128,44 +212,13 @@ export function useFilterTabs({ tablatures }: FilterTabsOptions) {
     setAllArtists(allArtists);
   }, [tablatures]);
 
-  const filterHandler: FilterHandler = {
-    currentFilterState: currentFilterState,
-    getLink: getLink,
-    copyState: copyState,
-  };
-
-  let filteredTablatures = tablatures.sort((tab1, tab2) =>
-    tab1.song.name.localeCompare(tab2.song.name)
-  );
-
-  if (currentFilterState.artists.length > 0)
-    filteredTablatures = filteredTablatures.filter((tab) =>
-      tab.song.artists.some((oneSongArtist) =>
-        currentFilterState.artists.includes(oneSongArtist.name)
-      )
-    );
-
-  if (currentFilterState.difficulty.length > 0)
-    filteredTablatures = filteredTablatures.filter((tab) =>
-      currentFilterState.difficulty.includes(tab.difficulty)
-    );
-
-  if (currentFilterState.decade.length > 0)
-    filteredTablatures = filteredTablatures.filter((tab) =>
-      currentFilterState.decade.includes(tab.song.decade!)
-    );
-
-  if (currentFilterState.genre.length > 0)
-    filteredTablatures = filteredTablatures.filter((tab) =>
-      currentFilterState.genre.includes(tab.song.genre!)
-    );
-
   return useMemo(
     () => ({
+      totalPages: totalPages,
       allArtists: allArtists,
       filterHandler: filterHandler,
-      filteredTablatures: filteredTablatures,
+      filteredTablatures: pageTablatures,
     }),
-    [allArtists, filterHandler, filteredTablatures]
+    [allArtists, filterHandler, pageTablatures, totalPages]
   );
 }

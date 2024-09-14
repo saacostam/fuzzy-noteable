@@ -1,4 +1,5 @@
 import { Actor, ActorProperties } from '.';
+import { COLOR } from '../colors';
 
 export type SongNameActorProperties = ActorProperties & {
   name: string;
@@ -16,13 +17,15 @@ export class SongNameActor extends Actor {
     this.artistsToString = properties.artistsToString;
   }
 
-  update() {}
+  update() {
+    // empty
+  }
 
   draw(ctx: CanvasRenderingContext2D) {
     const CANVAS_WIDTH = ctx.canvas.width;
     const ROUNDED_CORNER_RATIO = 0.00625;
 
-    ctx.fillStyle = 'rgba(42,50,60,0.5)';
+    ctx.fillStyle = COLOR.STD_GRAY;
     ctx.beginPath();
     ctx.roundRect(
       this.x,
