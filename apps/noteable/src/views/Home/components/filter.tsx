@@ -59,21 +59,21 @@ export const Filter = ({ filterHandler, allArtists }: FilterProps) => {
 
   return (
     <>
-      <div className="flex flex-wrap m-4">
+      <div className="flex flex-wrap mx-4 my-2">
         <select
-          className="select mr-2 mb-2 bg-base-200"
+          className="select select-sm mr-2 mb-2 bg-base-200"
           onChange={getSelectOnChangeHandler('artist')}
         >
           <option value={EMPTY} defaultChecked>
             Artist
           </option>
-          {allArtists.map((artist) => (
+          {allArtists.sort().map((artist) => (
             <option value={artist}>{artist}</option>
           ))}
         </select>
 
         <select
-          className="select mr-2 mb-2 bg-base-200"
+          className="select select-sm mr-2 mb-2 bg-base-200"
           onChange={getSelectOnChangeHandler('difficulty')}
         >
           <option value={EMPTY} defaultChecked>
@@ -85,19 +85,19 @@ export const Filter = ({ filterHandler, allArtists }: FilterProps) => {
         </select>
 
         <select
-          className="select mr-2 mb-2 bg-base-200"
+          className="select select-sm mr-2 mb-2 bg-base-200"
           onChange={getSelectOnChangeHandler('genre')}
         >
           <option value={EMPTY} defaultChecked>
             Genre
           </option>
-          {AllGenres.map((genre) => (
+          {AllGenres.sort().map((genre) => (
             <option value={genre}>{genre}</option>
           ))}
         </select>
       </div>
       {allFilters.length > 0 ? (
-        <section className="border-2 border-secondary flex m-4 p-4 pb-2 rounded-2xl">
+        <section className="border border-secondary flex m-4 p-2 pb-0 rounded bg-base-200">
           <div className="flex-1 flex flex-wrap">
             {allFilters.map((filterOption) => (
               <FilterOption {...filterOption} filterHandler={filterHandler} />

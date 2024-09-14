@@ -39,8 +39,8 @@ export const FilterOption = ({
   const newStateLink = getLink(newState);
 
   return (
-    <div className="badge badge-secondary badge-outline py-4 mr-4 border-2 mb-2">
-      <Link to={newStateLink} className="text-secondary mr-1">
+    <div className="badge badge-secondary badge-outline rounded-lg py-3 mr-4 mb-2 select-none">
+      <Link to={newStateLink} className="mr-1">
         <XCircleIcon />
       </Link>
       {type === 'difficulty'
