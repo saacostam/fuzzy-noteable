@@ -164,6 +164,8 @@ export class DataHandler {
         SMU.self = newChord;
       }
     });
+
+    this.schedule = this.schedule.map((unit) => ({ ...unit, id: uuid() }));
   }
 
   get transposition() {
